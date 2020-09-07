@@ -1,38 +1,36 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Head from "next/head"
 
-export default function Home() {
+const Home = () => {
   return (
-    <div className={styles.container}>
+    <>
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
+      <main className="">
+        <h1 className="">
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
+        <p className="">
+          Get started by editing <code className="">pages/index.js</code>
         </p>
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
+        <div className="">
+          <a href="https://nextjs.org/docs" className="">
             <h3>Documentation &rarr;</h3>
             <p>Find in-depth information about Next.js features and API.</p>
           </a>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
+          <a href="https://nextjs.org/learn" className="">
             <h3>Learn &rarr;</h3>
             <p>Learn about Next.js in an interactive course with quizzes!</p>
           </a>
 
           <a
             href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
+            className=""
           >
             <h3>Examples &rarr;</h3>
             <p>Discover and deploy boilerplate example Next.js projects.</p>
@@ -40,7 +38,7 @@ export default function Home() {
 
           <a
             href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
+            className=""
           >
             <h3>Deploy &rarr;</h3>
             <p>
@@ -50,16 +48,17 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className={styles.footer}>
+      <footer className="">
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
+          Powered by <img src="/vercel.svg" alt="Vercel Logo" className="" />
         </a>
       </footer>
-    </div>
+    </>
   )
 }
+
+export default Home

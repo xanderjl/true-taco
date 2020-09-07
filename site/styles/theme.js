@@ -1,15 +1,21 @@
-export default {
-  breakpoints: [
-    { tablet: "769px" },
-    { desktop: "1024px" },
-    { widescreen: "1216px" },
-    { fullhd: "1408" },
-  ],
+import { theme } from "@chakra-ui/core"
+
+const customTheme = {
+  ...theme,
+  breakpoints: ["769px", "1024px", "1216px", "1408px"],
   fonts: {
     heading: "'Sunset Boulevard', sans-serif",
     banner: "'York White Letter', sans-serif",
     body: "'Lato', sans-serif",
   },
+  // TODO: fix whatever in this object is breaking Next
+  // colors: {
+  //   redDark: "#BF1E2D",
+  //   redLight: "#FF2E42",
+  //   greenDark: "#006838",
+  //   greenLight: "#00B361",
+  //   greenLime: "#A9CF37",
+  // },
   fontSizes: {
     xs: "0.75rem",
     sm: "0.875rem",
@@ -23,3 +29,5 @@ export default {
     "6xl": "4rem",
   },
 }
+
+export default customTheme

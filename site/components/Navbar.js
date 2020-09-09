@@ -9,7 +9,7 @@ const Navbar = () => {
       display="flex"
       alignItems="center"
       justifyContent="space-between"
-      bg={colors.green[500]}
+      bg={colors.green.light}
       padding="1rem"
     >
       <Box display="flex" alignItems="center" justifyContent="space-around">

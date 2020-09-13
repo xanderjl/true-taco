@@ -1,25 +1,38 @@
 import React from "react"
+import NavbarItem from "../components/NavbarItem"
 import customTheme from "../styles/theme"
-import { Box } from "@chakra-ui/core"
+import { Image, Flex } from "@chakra-ui/core"
 
 const Navbar = () => {
   const { colors } = customTheme
   return (
-    <Box
-      display="flex"
-      alignItems="center"
-      justifyContent="space-between"
-      bg={colors.green.light}
-      padding="1rem"
-    >
-      <Box display="flex" alignItems="center" justifyContent="space-around">
-        <Box m="0 1rem" color={colors.white}>Home</Box>
-        <Box m="0 1rem" color={colors.white}>About Us</Box>
-        <Box m="0 1rem" color={colors.white}>Menu</Box>
-        <Box m="0 1rem" color={colors.white}>Contact</Box>
-      </Box>
-      <Box color={colors.white}>Takeout (n)</Box>
-    </Box>
+    <div>
+      <Flex
+        alignItems="center"
+        justifyContent="space-between"
+        bg={colors.green.light}
+        p="0 0.75rem"
+      >
+        <Flex alignItems="center" justifyContent="space-around">
+          <NavbarItem>Home</NavbarItem>
+          <NavbarItem>About Us</NavbarItem>
+          <NavbarItem>Menu</NavbarItem>
+          <NavbarItem>Contact</NavbarItem>
+        </Flex>
+        <NavbarItem>Takeout (n)</NavbarItem>
+      </Flex>
+      <Image
+        zIndex="1"
+        w="6rem"
+        h="auto"
+        src="/logo/2.svg"
+        alt="True Taco logo"
+        pos="absolute"
+        top="1rem"
+        left="50%"
+        transform="translateX(-25%)"
+      />
+    </div>
   )
 }
 

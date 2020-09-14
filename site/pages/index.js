@@ -23,13 +23,15 @@ const Home = () => {
             d="inline-block"
             as="h1"
             p="0.25rem 1.25rem"
+            pb={["1.5rem", "0"]}
             pos="absolute"
-            bottom={["0", "15%", "15%", "15%"]}
+            bottom={["0", "15%"]}
             right="0"
             bg={colors.red.light}
             color={colors.white}
             fontWeight="400"
             fontSize="6xl"
+            textAlign={["center", "left"]}
           >
             authentic comedor latino
           </Heading>

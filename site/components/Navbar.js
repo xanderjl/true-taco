@@ -1,13 +1,18 @@
+/** @jsx jsx */
+import { useState } from "react"
 import Link from "next/link"
 import { Box, Flex, Icon, Image } from "@chakra-ui/core"
+import { css, jsx } from "@emotion/core"
 import customTheme from "../styles/theme"
 import NavbarItem from "../components/NavbarItem"
 import Container from "../components/Container"
+import Hamburger from "hamburger-react"
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false)
   const { colors } = customTheme
   return (
-    <Box bg={colors.green.light} p="0 0.75rem">
+    <Box minH="72px" bg={colors.green.light} p="0 0.75rem">
       <Container>
         <Flex alignItems="center" justifyContent="space-between">
           <Flex alignItems="center" justifyContent="space-around">
@@ -20,6 +25,13 @@ const Navbar = () => {
             Takeout (n){" "}
             <Icon name="brownBag" w="auto" height="2rem" ml="0.75rem" />
           </NavbarItem>
+          <Box d={["inline-block", "none"]}>
+            <Hamburger
+              toggle={setIsOpen}
+              toggled={isOpen}
+              color={colors.white}
+            />
+          </Box>
         </Flex>
       </Container>
       <Link href="/">

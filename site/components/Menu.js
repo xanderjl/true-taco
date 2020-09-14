@@ -12,21 +12,24 @@ const Menu = (props) => {
 
   const frills = css`
     &::before {
+      overflow-x: hidden;
       position: absolute;
       top: -22px;
-      width: 100vw;
-      height: auto;
-      content: url("/frills/top.svg");
-      background-color: transparent;
+      width: 100%;
+      height: 25px;
+      content: "";
+      background-repeat: repeat;
+      background: url("/frills/top.svg");
     }
 
     &::after {
-      position: relative;
-      top: 29px;
-      width: 100vw;
-      height: auto;
-      content: url("/frills/bottom.svg");
-      background-color: transparent;
+      overflow-x: hidden;
+      position: absolute;
+      bottom: -22px;
+      width: 100%;
+      height: 22px;
+      content: "";
+      background: url("/frills/bottom.svg");
     }
   `
 
@@ -50,8 +53,8 @@ const Menu = (props) => {
         </Link>
         <Grid
           mb="6rem"
-          rowGap="5rem"
-          columnGap="8rem"
+          rowGap={["4rem", "4rem", "5rem"]}
+          columnGap={["4rem", "4rem", "8rem"]}
           gridTemplateRows="auto"
           gridTemplateColumns={["minmax(0, 1fr)", "repeat(2, 1fr)"]}
         >

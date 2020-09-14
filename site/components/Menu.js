@@ -12,14 +12,26 @@ const Menu = (props) => {
 
   const frills = css`
     &::before {
+      position: absolute;
+      top: -22px;
       width: 100vw;
       height: auto;
-      background-image: url("/frills/top.svg");
+      content: url("/frills/top.svg");
+      background-color: transparent;
+    }
+
+    &::after {
+      position: relative;
+      top: 29px;
+      width: 100vw;
+      height: auto;
+      content: url("/frills/bottom.svg");
+      background-color: transparent;
     }
   `
 
   return (
-    <Box bg={colors.black}>
+    <Box position="relative" css={frills} bg={colors.black} mb="22px">
       <Container {...props}>
         <Link href="/">
           <a>
@@ -37,7 +49,6 @@ const Menu = (props) => {
           </a>
         </Link>
         <Grid
-          css={frills}
           mb="6rem"
           rowGap="5rem"
           columnGap="8rem"

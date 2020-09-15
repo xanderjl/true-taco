@@ -12,7 +12,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const { colors } = customTheme
   return (
-    <Box minH="72px" bg={colors.green.light} p="0 0.75rem">
+    <Box h="72px" bg={colors.green.light} p="0 0.75rem">
       <Container>
         <Flex alignItems="center" justifyContent="space-between">
           <Flex alignItems="center" justifyContent="space-around">

@@ -29,10 +29,6 @@ jobs:
           steps.cache-yarn-cache.outputs.cache-hit != 'true' ||
           steps.cache-node-modules.outputs.cache-hit != 'true'
       - name: Run build
-        env:
-          GATSBY_SANITY_ID: ${{ secrets.GATSBY_SANITY_ID }}
-          GATSBY_SANITY_TOKEN: ${{ secrets.GATSBY_SANITY_TOKEN }}
-          GATSBY_SANITY_DATASET: ${{ secrets.GATSBY_SANITY_DATASET }}
         run: yarn workspace site build
 
       - name: Deploy to Netlify

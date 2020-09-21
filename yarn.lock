@@ -1188,9 +1188,10 @@
     fs-extra "^6.0.1"
     promise-props-recursive "^1.0.0"
 
-"@sanity/client@1.150.7":
+"@sanity/client@1.150.7", "@sanity/client@^1.150.7":
   version "1.150.7"
-  resolved "https://registry.npmjs.org/@sanity/client/-/client-1.150.7.tgz#e05eec38becd5fc8db0ba11d30e406d17013b9de"
+  resolved "https://registry.yarnpkg.com/@sanity/client/-/client-1.150.7.tgz#e05eec38becd5fc8db0ba11d30e406d17013b9de"
+  integrity sha512-tqIi2MDE8MTJU6N2su0Ct7n+fioYe+tI9ZM2xVrvIUxU1wPxlBEs4f01rRdCttLRp6CoXUmRC7F0j68ZQWMcdA==
   dependencies:
     "@sanity/eventsource" "1.150.1"
     "@sanity/generate-help-url" "1.150.1"
@@ -1203,19 +1204,6 @@
 "@sanity/client@^1.149.13":
   version "1.150.1"
   resolved "https://registry.yarnpkg.com/@sanity/client/-/client-1.150.1.tgz#052ba267d9e8bba21576fbe5a69aa2aeaa0caf22"
-  dependencies:
-    "@sanity/eventsource" "1.150.1"
-    "@sanity/generate-help-url" "1.150.1"
-    "@sanity/observable" "1.150.1"
-    deep-assign "^2.0.0"
-    get-it "^5.0.3"
-    make-error "^1.3.0"
-    object-assign "^4.1.1"
-
-"@sanity/client@^1.150.7":
-  version "1.150.7"
-  resolved "https://registry.yarnpkg.com/@sanity/client/-/client-1.150.7.tgz#e05eec38becd5fc8db0ba11d30e406d17013b9de"
-  integrity sha512-tqIi2MDE8MTJU6N2su0Ct7n+fioYe+tI9ZM2xVrvIUxU1wPxlBEs4f01rRdCttLRp6CoXUmRC7F0j68ZQWMcdA==
   dependencies:
     "@sanity/eventsource" "1.150.1"
     "@sanity/generate-help-url" "1.150.1"
@@ -8162,10 +8150,6 @@ react-spring@^8.0.27:
     "@babel/runtime" "^7.3.1"
     prop-types "^15.5.8"
 
-react-storage-hooks@^4.0.0:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/react-storage-hooks/-/react-storage-hooks-4.0.1.tgz#e30ed5cda48c77c431ecc02ec3824bd615f5b7fb"
-
 react-style-proptype@^3.2.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/react-style-proptype/-/react-style-proptype-3.2.2.tgz#d8e998e62ce79ec35b087252b90f19f1c33968a0"
@@ -9680,12 +9664,6 @@ use-persisted-state@^0.3.0:
   resolved "https://registry.yarnpkg.com/use-persisted-state/-/use-persisted-state-0.3.0.tgz#f8e3d2fd8eee67e0c86fd596c3ea3e8121c07402"
   dependencies:
     "@use-it/event-listener" "^0.1.2"
-
-use-shopping-cart@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/use-shopping-cart/-/use-shopping-cart-2.1.0.tgz#93e2ec5a4ca19144d98e146948377ca8821970a9"
-  dependencies:
-    react-storage-hooks "^4.0.0"
 
 use-sidecar@^1.0.1:
   version "1.0.3"

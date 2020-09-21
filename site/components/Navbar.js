@@ -17,9 +17,8 @@ const Navbar = () => {
         <Flex alignItems="center" justifyContent="space-between">
           <Flex alignItems="center" justifyContent="space-around">
             <NavbarItem href="/">Home</NavbarItem>
-            <NavbarItem>About Us</NavbarItem>
             <NavbarItem>Menu</NavbarItem>
-            <NavbarItem>Contact</NavbarItem>
+            <NavbarItem href="/catering">Catering</NavbarItem>
           </Flex>
           <NavbarItem>
             Takeout (n){" "}

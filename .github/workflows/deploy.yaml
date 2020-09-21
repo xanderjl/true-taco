@@ -1,0 +1,42 @@
+name: Deploy site
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: Cache node_modules
+        id: cache-node-modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules/
+          key: ${{ runner.os }}-${{ matrix.node-version }}-nodemodules-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.node-version }}-nodemodules-
+      - name: Install packages
+        run: yarn
+        if: |
+          steps.cache-yarn-cache.outputs.cache-hit != 'true' ||
+          steps.cache-node-modules.outputs.cache-hit != 'true'
+      - name: Run build
+        env:
+          GATSBY_SANITY_ID: ${{ secrets.GATSBY_SANITY_ID }}
+          GATSBY_SANITY_TOKEN: ${{ secrets.GATSBY_SANITY_TOKEN }}
+          GATSBY_SANITY_DATASET: ${{ secrets.GATSBY_SANITY_DATASET }}
+        run: yarn workspace site build
+
+      - name: Deploy to Netlify
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: npx netlify-cli deploy --dir=site/public --prod

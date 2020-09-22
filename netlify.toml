@@ -1,4 +1,3 @@
 [build]
 command = "yarn workspace site build && yarn workspace site export"
-functions = "./site/out_functions"
-publish = "./site/out_publish"
+publish = "./site/out"

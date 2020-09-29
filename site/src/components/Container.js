@@ -1,5 +1,6 @@
+import React from "react"
 import { Box } from "@chakra-ui/core"
-import customTheme from "../styles/theme"
+import customTheme from "../gatsby-plugin-chakra-ui/theme"
 
 const Container = (props) => {
   return (

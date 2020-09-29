@@ -1,0 +1,14 @@
+@font-face {
+  font-family: "Lato";
+  src: url("../fonts/lato/Lato-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Sunset Boulevard";
+  src: url("../fonts/sunset-boulevard.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "York White Letter";
+  src: url("../fonts/york-white-letter.otf") format("opentype");
+}

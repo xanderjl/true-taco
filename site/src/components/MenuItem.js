@@ -1,7 +1,8 @@
 /** @jsx jsx */
+import React from "react"
 import { css, jsx } from "@emotion/core"
 import { Flex, Heading, Text } from "@chakra-ui/core"
-import customTheme from "../styles/theme"
+import customTheme from "../gatsby-plugin-chakra-ui/theme"
 
 const MenuItem = ({ heading, price, children }) => {
   const { colors, fonts } = customTheme

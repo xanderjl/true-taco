@@ -1,13 +1,16 @@
 /** @jsx jsx */
-import Link from "next/link"
+import React from "react"
+import { Link } from "gatsby"
 import { Box, Grid, Heading } from "@chakra-ui/core"
 import { css, jsx } from "@emotion/core"
-import customTheme from "../styles/theme"
-import Container from "../components/Container"
-import MenuItem from "../components/MenuItem"
-import OrderButton from "../components/OrderButton"
+import customTheme from "../gatsby-plugin-chakra-ui/theme"
+import Container from "./Container"
+import MenuItem from "./MenuItem"
+import OrderButton from "./OrderButton"
+import FrillsTop from "../images/frills/top.svg"
+import FrillsBottom from "../images/frills/bottom.svg"
 
-const Menu = (props) => {
+const Menu = props => {
   const { colors } = customTheme
 
   const frills = css`
@@ -19,7 +22,7 @@ const Menu = (props) => {
       height: 25px;
       content: "";
       background-repeat: repeat;
-      background: url("/frills/top.svg");
+      background: url(${FrillsTop});
     }
 
     &::after {
@@ -29,27 +32,25 @@ const Menu = (props) => {
       width: 100%;
       height: 22px;
       content: "";
-      background: url("/frills/bottom.svg");
+      background: url(${FrillsBottom});
     }
   `
 
   return (
     <Box position="relative" css={frills} bg={colors.black} mb="22px">
       <Container {...props}>
-        <Link href="/">
-          <a>
-            <Heading
-              mb="5rem"
-              as="h1"
-              color={colors.white}
-              fontWeight="400"
-              fontSize="6xl"
-              textAlign="center"
-              textDecor="underline"
-            >
-              Saturday Pickup
-            </Heading>
-          </a>
+        <Link to="/">
+          <Heading
+            mb="5rem"
+            as="h1"
+            color={colors.white}
+            fontWeight="400"
+            fontSize="6xl"
+            textAlign="center"
+            textDecor="underline"
+          >
+            Saturday Pickup
+          </Heading>
         </Link>
         <Grid
           mb="6rem"

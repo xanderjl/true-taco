@@ -1,8 +1,11 @@
-import Layout from "../components/Layout"
+import React from "react"
+import PaymentForm from "../components/PaymentForm"
 import { Box, Heading } from "@chakra-ui/core"
-import customTheme from "../styles/theme"
+import customTheme from "../gatsby-plugin-chakra-ui/theme"
+import Layout from "../components/Layout"
 import Menu from "../components/Menu"
 import Container from "../components/Container"
+import formingPupusas from "../images/forming-pupusa.jpg"
 
 const Home = () => {
   const { colors, maxWidth } = customTheme
@@ -13,7 +16,7 @@ const Home = () => {
         h="800px"
         pos="relative"
         bg={colors.orange[100]}
-        backgroundImage="url(/images/forming-pupusa.JPG)"
+        backgroundImage={`url(${formingPupusas})`}
         backgroundPosition="center"
         backgroundSize="cover"
         backgroundRepeat="none"
@@ -38,6 +41,7 @@ const Home = () => {
         </Container>
       </Box>
       <Menu p="8rem 1.25rem" m="auto" />
+      <PaymentForm />
     </Layout>
   )
 }

@@ -1,12 +1,13 @@
 /** @jsx jsx */
-import { useState } from "react"
-import Link from "next/link"
+import React, { useState } from "react"
+import { Link } from "gatsby"
 import { Box, Flex, Icon, Image } from "@chakra-ui/core"
 import { css, jsx } from "@emotion/core"
-import customTheme from "../styles/theme"
+import customTheme from "../gatsby-plugin-chakra-ui/theme"
 import NavbarItem from "../components/NavbarItem"
 import Container from "../components/Container"
 import Hamburger from "hamburger-react"
+import Logo from "../images/logo/2.svg"
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -33,20 +34,18 @@ const Navbar = () => {
           </Box>
         </Flex>
       </Container>
-      <Link href="/">
-        <a>
-          <Image
-            zIndex="1"
-            w="6rem"
-            h="auto"
-            src="/logo/2.svg"
-            alt="True Taco logo"
-            pos="absolute"
-            top="1rem"
-            left="50%"
-            transform="translateX(-25%)"
-          />
-        </a>
+      <Link to="/">
+        <Image
+          zIndex="1"
+          w="6rem"
+          h="auto"
+          src={Logo}
+          alt="True Taco logo"
+          pos="absolute"
+          top="1rem"
+          left="50%"
+          transform="translateX(-25%)"
+        />
       </Link>
     </Box>
   )

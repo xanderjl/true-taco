@@ -27,6 +27,7 @@ const Menu = props => {
             }
             unit_amount
             id
+            currency
           }
         }
       }
@@ -82,10 +83,22 @@ const Menu = props => {
           gridTemplateColumns={["minmax(0, 1fr)", "repeat(2, 1fr)"]}
         >
           {products.map(({ node: node }) => {
-            const { id, name, description } = node.product
+            const { id, name, description, images } = node.product
 
             return (
-              <MenuItem key={id} heading={name} price={node.unit_amount / 100}>
+              <MenuItem
+                key={id}
+                heading={name}
+                price={node.unit_amount / 100}
+                product={{
+                  name,
+                  description,
+                  sku: id,
+                  price: node.unit_amount,
+                  curreny: node.currency,
+                  image: images[0],
+                }}
+              >
                 {description}
               </MenuItem>
             )

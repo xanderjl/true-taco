@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { Link } from "gatsby"
-import { PseudoBox } from "@chakra-ui/core"
+import { PseudoBox, Text } from "@chakra-ui/core"
 import customTheme from "../gatsby-plugin-chakra-ui/theme"
 
 const NavbarItem = ({ children, href, ...props }) => {
@@ -15,7 +15,9 @@ const NavbarItem = ({ children, href, ...props }) => {
       _hover={{ bg: colors.green[400] }}
       {...props}
     >
-      <Link to={href ? href : "/"}>{children}</Link>
+      <Link to={href ? href : "/"}>
+        <Text fontSize={["lg", "xl"]}>{children}</Text>
+      </Link>
     </PseudoBox>
   )
 }

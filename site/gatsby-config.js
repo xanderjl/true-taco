@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `True Taco`,
@@ -15,8 +19,15 @@ module.exports = {
     {
       resolve: `gatsby-source-sanity`,
       options: {
-        projectId: `6z3o6gu0`,
-        dataset: `production`,
+        projectId: process.env.GATSBY_SANITY_ID,
+        dataset: process.env.GATSBY_SANITY_DATASET,
+      },
+    },
+    {
+      resolve: `gatsby-source-stripe`,
+      options: {
+        objects: [`Product`, `Sku`, `Price`],
+        secretKey: process.env.GATSBY_STRIPE_API_SECRET,
       },
     },
     {

@@ -1,1 +1,2 @@
-require("./src/styles/fonts.css")
+import "./src/styles/fonts.css"
+import "./src/components/ProviderWrapper"

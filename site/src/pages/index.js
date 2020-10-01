@@ -1,5 +1,4 @@
 import React from "react"
-import PaymentForm from "../components/PaymentForm"
 import { Box, Heading } from "@chakra-ui/core"
 import customTheme from "../gatsby-plugin-chakra-ui/theme"
 import Layout from "../components/Layout"
@@ -41,7 +40,6 @@ const Home = () => {
         </Container>
       </Box>
       <Menu p="8rem 1.25rem" m="auto" />
-      <PaymentForm />
     </Layout>
   )
 }

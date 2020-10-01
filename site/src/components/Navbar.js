@@ -18,7 +18,7 @@ const Navbar = () => {
         <Flex alignItems="center" justifyContent="space-between">
           <Flex alignItems="center" justifyContent="space-around">
             <NavbarItem href="/">Home</NavbarItem>
-            <NavbarItem>Menu</NavbarItem>
+            <NavbarItem href="/menu">Menu</NavbarItem>
             <NavbarItem href="/catering">Catering</NavbarItem>
           </Flex>
           <NavbarItem>

@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import React from "react"
-import { Link } from "gatsby"
+import { Link, graphql, useStaticQuery } from "gatsby"
 import { Box, Grid, Heading } from "@chakra-ui/core"
 import { css, jsx } from "@emotion/core"
 import customTheme from "../gatsby-plugin-chakra-ui/theme"
@@ -12,6 +12,30 @@ import FrillsBottom from "../images/frills/bottom.svg"
 
 const Menu = props => {
   const { colors } = customTheme
+  const data = useStaticQuery(graphql`
+    {
+      allStripePrice {
+        edges {
+          node {
+            product {
+              id
+              images
+              name
+              type
+              active
+              metadata {
+                description
+              }
+            }
+            unit_amount
+            id
+          }
+        }
+      }
+    }
+  `)
+
+  const products = data.allStripePrice.edges
 
   const frills = css`
     &::before {
@@ -59,7 +83,16 @@ const Menu = props => {
           gridTemplateRows="auto"
           gridTemplateColumns={["minmax(0, 1fr)", "repeat(2, 1fr)"]}
         >
-          <MenuItem heading="Quesadillas" price="3.5-7">
+          {products.map(({ node: node }) => {
+            const { id, name, metadata } = node.product
+
+            return (
+              <MenuItem key={id} heading={name} price={node.unit_amount / 100}>
+                {metadata.description}
+              </MenuItem>
+            )
+          })}
+          {/* <MenuItem heading="Quesadillas" price="3.5-7">
             Mixed cheeses, tomatoes, green onions. Choose your filling. Choose
             your shell. Served with sour cream and sour cream.
           </MenuItem>
@@ -82,7 +115,7 @@ const Menu = props => {
           <MenuItem heading="Empanada Mexicana" price="3.5">
             Handmade corn tortilla, stuffed with your choice of filling. Served
             with lettuce, sour cream, and parmesan.
-          </MenuItem>
+          </MenuItem> */}
         </Grid>
         <OrderButton w="6rem" h="auto" />
       </Container>

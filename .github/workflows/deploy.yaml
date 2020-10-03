@@ -35,4 +35,6 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          GATSBY_STRIPE_API_PUBLIC: ${{ secrets.GATSBY_STRIPE_API_PUBLIC }}
+          GATSBY_STRIPE_API_SECRET: ${{ secrets.GATSBY_STRIPE_API_SECRET }}
         run: npx netlify-cli deploy --dir=./site/out --prod

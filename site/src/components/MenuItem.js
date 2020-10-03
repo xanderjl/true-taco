@@ -60,14 +60,14 @@ const MenuItem = ({ heading, price, children, product }) => {
             bg="transparent"
             color="white"
             _hover={{ bg: "transparent" }}
-            fontSize="3xl"
+            fontSize="2xl"
             onClick={() => {
               quantity > 1 && setQuantity(quantity - 1)
             }}
           >
             -
           </Button>
-          <Text m="0 0.25rem 0 0.25rem" color="white" fontSize="3xl">
+          <Text m="0 0.25rem 0 0.25rem" color="white" fontSize="2xl">
             {quantity}
           </Text>
           <Button
@@ -75,7 +75,7 @@ const MenuItem = ({ heading, price, children, product }) => {
             bg="transparent"
             color="white"
             _hover={{ bg: "transparent" }}
-            fontSize="3xl"
+            fontSize="2xl"
             onClick={() => setQuantity(quantity + 1)}
           >
             +
@@ -92,7 +92,6 @@ const MenuItem = ({ heading, price, children, product }) => {
           onClick={e => {
             e.preventDefault()
             addItem(product, quantity)
-            console.log(product, quantity, cartDetails, cartCount)
           }}
         >
           Add to cart

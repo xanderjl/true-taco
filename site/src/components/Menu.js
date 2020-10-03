@@ -95,7 +95,7 @@ const Menu = props => {
                   description,
                   sku: id,
                   price: node.unit_amount,
-                  curreny: node.currency,
+                  currency: node.currency,
                   image: images[0],
                 }}
               >

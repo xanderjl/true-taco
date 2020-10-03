@@ -12,16 +12,29 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const { colors } = customTheme
   return (
-    <Box minH="72px" bg={colors.green.light} p="0 0.75rem">
+    <Box
+      minH="72px"
+      bg={colors.green.light}
+      p="0 0.75rem"
+      position="fixed"
+      left="0"
+      right="0"
+      zIndex="1"
+    >
       <Container>
-        <Flex
-          alignItems={["flex-start", "center"]}
-          justifyContent="space-between"
-        >
-          <Box d={[!isOpen && `none`, "inline-block"]}>
+        <Flex alignItems={["flex-start", "center"]}>
+          <Box
+            d={[!isOpen && `none`, "flex"]}
+            justifyContent="space-between"
+            bg={colors.green.light}
+            w="100vw"
+            position={["fixed", "static"]}
+            top="72px"
+            left="0"
+          >
             <Flex
               direction={["column", "row"]}
-              alignItems="center"
+              alignItems={["flex-start", "center"]}
               justifyContent="space-around"
             >
               <NavbarItem href="/">Home</NavbarItem>
@@ -31,7 +44,15 @@ const Navbar = () => {
               <CartPopover />
             </NavbarItem>
           </Box>
-          <Box d={["flex", "none"]} w="100%" h="100%" justifyContent="flex-end">
+          <Box
+            d={["flex", "none"]}
+            w="100%"
+            h="100%"
+            justifyContent="flex-end"
+            pos="absolute"
+            top={["0.75rem", "1rem", ".75rem"]}
+            right="1.25rem"
+          >
             <Hamburger
               toggle={setIsOpen}
               toggled={isOpen}
@@ -48,8 +69,8 @@ const Navbar = () => {
           src={Logo}
           alt="True Taco logo"
           pos="absolute"
-          top={["0.5rem", "1rem", ".75rem"]}
-          left={["1.25rem", "50%"]}
+          top={["0.75rem", "1rem", ".75rem"]}
+          left={["1.75rem", "50%"]}
           transform="translateX(-25%)"
         />
       </Link>

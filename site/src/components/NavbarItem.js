@@ -10,6 +10,7 @@ const NavbarItem = ({ children, href, ...props }) => {
     <PseudoBox
       d="flex"
       alignItems="center"
+      w={["100%", "max-content"]}
       p="1.25rem"
       color={colors.white}
       _hover={{ bg: colors.green[400] }}

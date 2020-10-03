@@ -1,15 +1,16 @@
 import React from "react"
+import { Box } from "@chakra-ui/core"
 import PropTypes from "prop-types"
 import SEO from "../components/SEO"
 import Navbar from "../components/Navbar"
 
 const Layout = ({ title, description, children }) => {
   return (
-    <div>
+    <Box overflowX="hidden">
       <SEO title={title && title} description={description && description} />
       <Navbar />
-      {children}
-    </div>
+      <Box pt="72px">{children}</Box>
+    </Box>
   )
 }
 

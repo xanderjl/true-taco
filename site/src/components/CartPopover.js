@@ -54,6 +54,7 @@ const CartPopover = () => {
         <Button
           color="white"
           bg="transparent"
+          p="0"
           _hover={{ bg: "transparent" }}
           fontSize={["lg", "xl"]}
           fontWeight="400"

@@ -52,10 +52,10 @@ const CartPopover = () => {
     <Popover usePortal initialFocusRef={checkoutRef}>
       <PopoverTrigger>
         <Button
-          color="white"
-          bg="transparent"
           p="0"
-          _hover={{ bg: "transparent" }}
+          w="max-content"
+          variant="unstyled"
+          color="white"
           fontSize={["lg", "xl"]}
           fontWeight="400"
         >

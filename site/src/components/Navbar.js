@@ -11,6 +11,8 @@ import Logo from "../images/logo/2.svg"
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const { colors } = customTheme
+
+  // TODO: Fix navItem styling
   return (
     <Box
       minH="72px"
@@ -26,6 +28,7 @@ const Navbar = () => {
           <Box
             d={[!isOpen && `none`, "flex"]}
             justifyContent="space-between"
+            alignItems="center"
             bg={colors.green.light}
             w="100vw"
             position={["fixed", "static"]}

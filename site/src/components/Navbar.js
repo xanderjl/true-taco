@@ -15,25 +15,25 @@ const Navbar = () => {
   // TODO: Fix navItem styling
   return (
     <Box
-      minH="72px"
-      bg={colors.green.light}
+      h="3.25rem"
       p="0 0.75rem"
       position="fixed"
       left="0"
       right="0"
       zIndex="1"
+      bg={colors.green.light}
     >
       <Container>
         <Flex alignItems={["flex-start", "center"]}>
           <Box
-            d={[!isOpen && `none`, "flex"]}
+            w="100vw"
+            position={["fixed", "static"]}
+            top="3.25rem"
+            left="0"
+            d={[!isOpen && "none", "flex"]}
             justifyContent="space-between"
             alignItems="center"
             bg={colors.green.light}
-            w="100vw"
-            position={["fixed", "static"]}
-            top="72px"
-            left="0"
           >
             <Flex
               direction={["column", "row"]}
@@ -53,8 +53,8 @@ const Navbar = () => {
             h="100%"
             justifyContent="flex-end"
             pos="absolute"
-            top={["0.75rem", "1rem", ".75rem"]}
-            right="1.25rem"
+            top="0rem"
+            right="0.75rem"
           >
             <Hamburger
               toggle={setIsOpen}
@@ -67,13 +67,13 @@ const Navbar = () => {
       <Link to="/">
         <Image
           zIndex="1"
-          w={["3rem", "6rem", "8rem"]}
+          w={["2.75rem", "6rem"]}
           h="auto"
           src={Logo}
           alt="True Taco logo"
           pos="absolute"
-          top={["0.75rem", "1rem", ".75rem"]}
-          left={["1.75rem", "50%"]}
+          top={["0.25rem", "0.75rem"]}
+          left={["1.2rem", "50%"]}
           transform="translateX(-25%)"
         />
       </Link>

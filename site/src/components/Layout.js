@@ -9,7 +9,7 @@ const Layout = ({ title, description, children }) => {
     <Box overflowX="hidden">
       <SEO title={title && title} description={description && description} />
       <Navbar />
-      <Box pt="3.25rem">{children}</Box>
+      <Box pt={["3.25rem", "4rem"]}>{children}</Box>
     </Box>
   )
 }

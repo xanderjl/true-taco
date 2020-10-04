@@ -12,10 +12,9 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const { colors } = customTheme
 
-  // TODO: Fix navItem styling
   return (
     <Box
-      h="3.25rem"
+      h={["3.25rem", "4rem"]}
       p="0 0.75rem"
       position="fixed"
       left="0"
@@ -28,7 +27,7 @@ const Navbar = () => {
           <Box
             w="100vw"
             position={["fixed", "static"]}
-            top="3.25rem"
+            top={["3.25rem", "4rem"]}
             left="0"
             d={[!isOpen && "none", "flex"]}
             justifyContent="space-between"

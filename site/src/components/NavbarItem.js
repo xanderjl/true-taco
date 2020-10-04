@@ -11,7 +11,7 @@ const NavbarItem = ({ children, href, ...props }) => {
       d="flex"
       alignItems="center"
       w={["100%", "max-content"]}
-      maxH="3.25rem"
+      h={["3.25rem", "4rem"]}
       p="0.5rem 0.75rem"
       color={colors.white}
       _hover={{ bg: colors.green[400] }}

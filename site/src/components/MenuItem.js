@@ -53,11 +53,11 @@ const MenuItem = ({ heading, price, children, product }) => {
       <Text maxW="75%" fontSize="lg" color={colors.white}>
         {children}
       </Text>
-      <Flex pt="3rem" justify="flex-end">
+      <Flex pt="3rem" justify={["space-between", "flex-end"]}>
         <Flex>
           <Button
+            variant="ghost"
             p="0.25rem"
-            bg="transparent"
             color="white"
             _hover={{ bg: "transparent" }}
             fontSize="2xl"
@@ -71,8 +71,8 @@ const MenuItem = ({ heading, price, children, product }) => {
             {quantity}
           </Text>
           <Button
+            variant="ghost"
             p="0.25rem"
-            bg="transparent"
             color="white"
             _hover={{ bg: "transparent" }}
             fontSize="2xl"
@@ -82,12 +82,11 @@ const MenuItem = ({ heading, price, children, product }) => {
           </Button>
         </Flex>
         <Button
+          variantColor="red"
           w="max-content"
           ml="1rem"
           borderRadius={0}
           fontSize="lg"
-          bg="red.light"
-          _hover={{ bg: "red.300" }}
           color="black"
           onClick={e => {
             e.preventDefault()

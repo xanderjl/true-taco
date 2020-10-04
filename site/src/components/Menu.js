@@ -62,19 +62,17 @@ const Menu = props => {
   return (
     <Box position="relative" css={frills} bg={colors.black} mb="22px">
       <Container {...props}>
-        <Link to="/">
-          <Heading
-            mb="5rem"
-            as="h1"
-            color={colors.white}
-            fontWeight="400"
-            fontSize="6xl"
-            textAlign="center"
-            textDecor="underline"
-          >
-            Saturday Pickup
-          </Heading>
-        </Link>
+        <Heading
+          mb="5rem"
+          as="h1"
+          color={colors.white}
+          fontWeight="400"
+          fontSize="6xl"
+          textAlign="center"
+          textDecor="underline"
+        >
+          <Link to="/">Saturday Pickup</Link>
+        </Heading>
         <Grid
           mb="6rem"
           rowGap={["4rem", "4rem", "5rem"]}

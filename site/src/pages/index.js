@@ -12,7 +12,7 @@ const Home = () => {
     <Layout title="Home">
       <Box
         w="100%"
-        h="800px"
+        h={["calc(100vh - 3.25rem)", "calc(100vh - 4rem)"]}
         pos="relative"
         bg={colors.orange[100]}
         backgroundImage={`url(${formingPupusas})`}
@@ -25,7 +25,8 @@ const Home = () => {
             d="inline-block"
             as="h1"
             p="0.25rem 1.25rem"
-            pb={["1.5rem", "0"]}
+            pb={{ sm: "2.5rem" }}
+            pt={{ sm: "1.25rem" }}
             pos="absolute"
             bottom={["0", "15%"]}
             right="0"

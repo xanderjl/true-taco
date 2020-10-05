@@ -3,6 +3,24 @@ import { Box } from "@chakra-ui/core"
 import PropTypes from "prop-types"
 import SEO from "../components/SEO"
 import Navbar from "../components/Navbar"
+import Footer from "../components/Footer"
+import customTheme from "../gatsby-plugin-chakra-ui/theme"
+
+export const Container = props => {
+  return (
+    <Box maxW={customTheme.maxWidth} h="100%" m="auto" {...props}>
+      {props.children}
+    </Box>
+  )
+}
+
+export const Section = props => {
+  return (
+    <Box p={["3rem 1.25rem"]} {...props}>
+      {props.children}
+    </Box>
+  )
+}
 
 const Layout = ({ title, description, children }) => {
   return (
@@ -10,6 +28,7 @@ const Layout = ({ title, description, children }) => {
       <SEO title={title && title} description={description && description} />
       <Navbar />
       <Box pt={["3.25rem", "4rem"]}>{children}</Box>
+      <Footer />
     </Box>
   )
 }

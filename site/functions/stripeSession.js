@@ -1,8 +1,6 @@
 const stripe = require("stripe")(process.env.GATSBY_STRIPE_API_SECRET)
 const { validateCartItems } = require("use-shopping-cart/src/util")
 
-const inventory = {}
-
 exports.handler = async e => {
   try {
     const productJSON = JSON.parse(e.body)

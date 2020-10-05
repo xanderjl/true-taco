@@ -140,7 +140,6 @@ const CartPopover = () => {
                     </Box>
                     <Text>{formattedValue}</Text>
                   </Flex>
-                  {cartItems.length > 1 && <hr />}
                 </Flex>
               )
             })}

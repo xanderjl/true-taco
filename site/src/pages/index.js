@@ -1,20 +1,33 @@
 import React from "react"
 import { Box, Heading } from "@chakra-ui/core"
-import customTheme from "../gatsby-plugin-chakra-ui/theme"
-import Layout from "../components/Layout"
+import Layout, { Container } from "../components/Layout"
 import Menu from "../components/Menu"
-import Container from "../components/Container"
 import formingPupusas from "../images/forming-pupusa.jpg"
 
 const Home = () => {
-  const { colors, maxWidth } = customTheme
+  const inventory = async () => {
+    await fetch("https://api.stripe.com/v1/prices", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authentication: `Bearer ${process.env.GATSBY_STRIPE_API_SECRET}`,
+      },
+    })
+      .then(response => {
+        return response.json()
+      })
+      .then(data => console.log(data))
+      .catch(err => console.log(err))
+  }
+  // inventory()
+
   return (
     <Layout title="Home">
       <Box
         w="100%"
         h={["calc(100vh - 3.25rem)", "calc(100vh - 4rem)"]}
         pos="relative"
-        bg={colors.orange[100]}
+        bg="orange.100"
         backgroundImage={`url(${formingPupusas})`}
         backgroundPosition="center"
         backgroundSize="cover"
@@ -30,8 +43,8 @@ const Home = () => {
             pos="absolute"
             bottom={["0", "15%"]}
             right="0"
-            bg={colors.red.light}
-            color={colors.white}
+            bg="red.light"
+            color="white"
             fontWeight="400"
             fontSize="6xl"
             textAlign={["center", "left"]}

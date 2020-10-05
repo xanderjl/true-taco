@@ -3,15 +3,13 @@ import React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
 import { Box, Grid, Heading } from "@chakra-ui/core"
 import { css, jsx } from "@emotion/core"
-import customTheme from "../gatsby-plugin-chakra-ui/theme"
-import Container from "./Container"
+import { Container } from "./Layout"
 import MenuItem from "./MenuItem"
 import OrderButton from "./OrderButton"
 import FrillsTop from "../images/frills/top.svg"
 import FrillsBottom from "../images/frills/bottom.svg"
 
 const Menu = props => {
-  const { colors } = customTheme
   const data = useStaticQuery(graphql`
     {
       allStripePrice {
@@ -60,12 +58,12 @@ const Menu = props => {
   `
 
   return (
-    <Box position="relative" css={frills} bg={colors.black} mb="22px">
+    <Box position="relative" css={frills} bg="black">
       <Container {...props}>
         <Heading
           mb="5rem"
           as="h1"
-          color={colors.white}
+          color="white"
           fontWeight="400"
           fontSize="6xl"
           textAlign="center"

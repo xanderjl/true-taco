@@ -24,10 +24,12 @@ export const Section = props => {
 
 const Layout = ({ title, description, children }) => {
   return (
-    <Box overflowX="hidden">
+    <Box d="flex" flexDir="column" minH="100vh" overflowX="hidden">
       <SEO title={title && title} description={description && description} />
-      <Navbar />
-      <Box pt={["3.25rem", "4rem"]}>{children}</Box>
+      <Box flex={1}>
+        <Navbar />
+        <Box pt={["3.25rem", "4rem"]}>{children}</Box>
+      </Box>
       <Footer />
     </Box>
   )

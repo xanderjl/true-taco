@@ -3,9 +3,12 @@ import PropTypes from "prop-types"
 import { Link } from "gatsby"
 import { PseudoBox, Text } from "@chakra-ui/core"
 
+const ConditionalLink = ({ href, children }) =>
+  href ? <Link to={href}>{children}</Link> : children
+
 const NavbarItem = ({ children, href, ...props }) => {
   return (
-    <Link to={href ? href : "/"}>
+    <ConditionalLink href={href}>
       <PseudoBox
         d="flex"
         alignItems="center"
@@ -18,7 +21,7 @@ const NavbarItem = ({ children, href, ...props }) => {
       >
         <Text fontSize={["lg", "xl"]}>{children}</Text>
       </PseudoBox>
-    </Link>
+    </ConditionalLink>
   )
 }
 

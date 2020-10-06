@@ -11,6 +11,9 @@ const Catering = () => {
         w="100%"
         h={["calc(100vh - 3.35rem)", "calc(100vh - 4rem)"]}
         bgImage={`url(${chileRelleno})`}
+        bgPos="50% 0"
+        bgSize="cover"
+        backgroundRepeat="no-repeat"
       >
         <Container>
           <Section>

@@ -1,16 +1,15 @@
 import React, { useState } from "react"
 import { Link } from "gatsby"
 import { Box, Flex, Icon, Image, Text } from "@chakra-ui/core"
-import customTheme from "../gatsby-plugin-chakra-ui/theme"
 import NavbarItem from "../components/NavbarItem"
 import { Container } from "../components/Layout"
-import CartPopover from "../components/CartPopover"
 import Hamburger from "hamburger-react"
+import { useShoppingCart } from "use-shopping-cart"
 import Logo from "../images/logo/2.svg"
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const { colors } = customTheme
+  const { cartCount } = useShoppingCart()
 
   return (
     <Box
@@ -20,7 +19,7 @@ const Navbar = () => {
       left="0"
       right="0"
       zIndex="1"
-      bg={colors.green.light}
+      bg="green.light"
     >
       <Container>
         <Flex alignItems={["flex-start", "center"]}>
@@ -32,7 +31,7 @@ const Navbar = () => {
             d={[!isOpen && "none", "flex"]}
             justifyContent="space-between"
             alignItems="center"
-            bg={colors.green.light}
+            bg="green.light"
           >
             <Flex
               direction={["column", "row"]}
@@ -42,8 +41,14 @@ const Navbar = () => {
               <NavbarItem href="/">Home</NavbarItem>
               <NavbarItem href="/catering">Catering</NavbarItem>
             </Flex>
-            <NavbarItem>
-              <CartPopover />
+            <NavbarItem href="/cart">
+              Takeout ({cartCount})
+              <Icon
+                name="brownBag"
+                w="auto"
+                height="1.5rem"
+                ml="0.75rem"
+              />{" "}
             </NavbarItem>
           </Box>
           <Box
@@ -55,11 +60,7 @@ const Navbar = () => {
             top="0rem"
             right="0.75rem"
           >
-            <Hamburger
-              toggle={setIsOpen}
-              toggled={isOpen}
-              color={colors.white}
-            />
+            <Hamburger toggle={setIsOpen} toggled={isOpen} color="white" />
           </Box>
         </Flex>
       </Container>

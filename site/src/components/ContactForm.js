@@ -41,6 +41,7 @@ const ContactForm = ({ color, inputColor, buttonColor }) => {
             name="firstName"
             type="text"
             ref={register({ required: true })}
+            bg="white"
             borderColor={inputColor}
             placeholder="Jane"
           />
@@ -52,6 +53,7 @@ const ContactForm = ({ color, inputColor, buttonColor }) => {
             name="lastName"
             type="text"
             ref={register}
+            bg="white"
             borderColor={inputColor}
             placeholder="Doe"
           />
@@ -64,14 +66,11 @@ const ContactForm = ({ color, inputColor, buttonColor }) => {
           name="email"
           type="text"
           ref={register({ required: true, pattern: re })}
+          bg="white"
           borderColor={inputColor}
           placeholder="j.doe@gmail.com"
         />
-        {errors.email?.pattern && (
-          <FormErrorMessage>
-            Please submit a valid email address
-          </FormErrorMessage>
-        )}
+        {errors.email?.pattern && <p>"Please submit a valid email address"</p>}
       </FormControl>
       <FormControl isRequired>
         <FormLabel color={color}>Message</FormLabel>
@@ -82,6 +81,7 @@ const ContactForm = ({ color, inputColor, buttonColor }) => {
             required: true,
             minLength: 2,
           })}
+          bg="white"
           h="auto"
           rows={8}
           borderColor={inputColor}

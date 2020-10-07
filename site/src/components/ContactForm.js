@@ -65,7 +65,7 @@ const ContactForm = ({ color, inputColor, buttonColor }) => {
   const CustomError = ({ children }) => <CustomError>{children}</CustomError>
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form name="contact" data-netlify="true" onSubmit={handleSubmit(onSubmit)}>
       <Grid
         gridTemplateColumns={["minmax(0, 1fr)", "repeat(2, 1fr)"]}
         gap="16px"

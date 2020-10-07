@@ -22,9 +22,15 @@ export const Section = props => {
   )
 }
 
-const Layout = ({ title, description, children }) => {
+const Layout = ({ title, description, children, bg }) => {
   return (
-    <Box d="flex" flexDir="column" minH="100vh" overflowX="hidden">
+    <Box
+      d="flex"
+      flexDir="column"
+      minH="100vh"
+      overflowX="hidden"
+      bg={bg ? bg : "white"}
+    >
       <SEO title={title && title} description={description && description} />
       <Box flex={1}>
         <Navbar />
@@ -38,6 +44,8 @@ const Layout = ({ title, description, children }) => {
 Layout.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  bg: PropTypes.string,
 }
 
 export default Layout

@@ -34,6 +34,7 @@ const Navbar = () => {
             bg="green.light"
           >
             <Flex
+              w={["100vw", "max-content"]}
               direction={["column", "row"]}
               alignItems={["flex-start", "center"]}
               justifyContent="space-around"

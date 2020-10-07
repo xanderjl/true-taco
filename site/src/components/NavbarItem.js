@@ -13,7 +13,7 @@ const NavbarItem = ({ children, href, ...props }) => {
         d="flex"
         alignItems="center"
         flex={1}
-        w={["100%", "max-content"]}
+        w="100%"
         h={["3.25rem", "4rem"]}
         p="0.5rem 0.75rem"
         color="white"

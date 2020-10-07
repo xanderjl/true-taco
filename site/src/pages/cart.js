@@ -1,7 +1,16 @@
 /** @jsx jsx */
 import React from "react"
 import Layout, { Container, Section } from "../components/Layout"
-import { Text, Button, Icon, Box, Flex, Grid, Divider } from "@chakra-ui/core"
+import {
+  theme,
+  Text,
+  Button,
+  Icon,
+  Box,
+  Flex,
+  Grid,
+  Divider,
+} from "@chakra-ui/core"
 import { css, jsx } from "@emotion/core"
 import { useShoppingCart } from "use-shopping-cart"
 import Zigs from "../images/frills/clip-zigs.svg"
@@ -50,14 +59,13 @@ const Cart = () => {
       background-image: url(${Zigs});
     }
   `
-
   return (
-    <Layout title="Cart" bg="red.50">
+    <Layout title="Cart" bg="gray.50">
       <Container>
         <Section
           css={ziggies}
           maxW="960px"
-          m="0 auto"
+          m={[0, "0 auto", "5rem auto"]}
           p={["3rem 1.25rem", "3rem 2.5rem"]}
           bg="white"
         >

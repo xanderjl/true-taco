@@ -11,14 +11,49 @@ import {
   Button,
   FormLabel,
   FormControl,
-  FormErrorMessage,
+  useToast,
 } from "@chakra-ui/core"
 import { css, jsx } from "@emotion/core"
 import { useForm } from "react-hook-form"
 
+const encode = data => {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&")
+}
+
 const ContactForm = ({ color, inputColor, buttonColor }) => {
-  const { register, handleSubmit, errors } = useForm()
-  const onSubmit = data => console.log(data)
+  const { register, handleSubmit, errors, reset } = useForm()
+  const toast = useToast()
+
+  const onSubmit = data => {
+    fetch("/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: encode({ "form-name": "contact", ...data }),
+    })
+      .then(() => {
+        toast({
+          title: "Your message has been sent.",
+          description: "We'll get back to you as soon as we can.",
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+        })
+        reset()
+      })
+      .catch(err =>
+        toast({
+          title: "Uh oh.",
+          description: `Something went wrong. ${err}`,
+          duration: 9000,
+          isClosable: true,
+        })
+      )
+  }
+
   const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
   const inputStyles = css`

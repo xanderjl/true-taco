@@ -6,6 +6,7 @@ import {
   Box,
   Grid,
   Input,
+  Text,
   Textarea,
   Button,
   FormLabel,
@@ -26,6 +27,8 @@ const ContactForm = ({ color, inputColor, buttonColor }) => {
     }
   `
 
+  const CustomError = ({ children }) => <CustomError>{children}</CustomError>
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Grid
@@ -45,6 +48,11 @@ const ContactForm = ({ color, inputColor, buttonColor }) => {
             borderColor={inputColor}
             placeholder="Jane"
           />
+          {errors.firstName && (
+            <Text color="red.400">
+              You must enter your first name in this field.
+            </Text>
+          )}
         </FormControl>
         <FormControl>
           <FormLabel color={color}>Last Name</FormLabel>
@@ -59,7 +67,7 @@ const ContactForm = ({ color, inputColor, buttonColor }) => {
           />
         </FormControl>
       </Grid>
-      <FormControl>
+      <FormControl isRequired>
         <FormLabel color={color}>Email</FormLabel>
         <Input
           css={inputStyles}
@@ -70,7 +78,12 @@ const ContactForm = ({ color, inputColor, buttonColor }) => {
           borderColor={inputColor}
           placeholder="j.doe@gmail.com"
         />
-        {errors.email?.pattern && <p>"Please submit a valid email address"</p>}
+        {errors.email && errors.email.type === "required" && (
+          <Text color="red.400">The email field is required.</Text>
+        )}
+        {errors.email && errors.email.type === "pattern" && (
+          <Text color="red.400">Please submit a valid email address.</Text>
+        )}
       </FormControl>
       <FormControl isRequired>
         <FormLabel color={color}>Message</FormLabel>
@@ -87,6 +100,14 @@ const ContactForm = ({ color, inputColor, buttonColor }) => {
           borderColor={inputColor}
           placeholder="Hello"
         />
+        {errors.message && errors.message.type === "required" && (
+          <Text color="red.400">Your message cannot be left blank.</Text>
+        )}
+        {errors.message && errors.message.type === "minLength" && (
+          <Text color="red.400">
+            Your message must be longer than two characters.
+          </Text>
+        )}
       </FormControl>
       <Box pt="12px">
         <Button variantColor={buttonColor} type="submit">

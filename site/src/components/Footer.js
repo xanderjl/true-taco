@@ -24,7 +24,7 @@ const Footer = () => {
           <Grid
             pb="4rem"
             gridTemplateColumns={["minmax(0, 1fr)", "repeat(3, 1fr)"]}
-            gap={["0.75rem", "1rem"]}
+            gap={["2rem", "1rem"]}
           >
             <Flex flexDir="column">
               <Heading as="h2" fontSize="5xl" fontWeight="400" pb="0.5rem">

@@ -2,12 +2,10 @@
 import React, { useState } from "react"
 import { css, jsx } from "@emotion/core"
 import { Button, Flex, Heading, Text } from "@chakra-ui/core"
-import customTheme from "../gatsby-plugin-chakra-ui/theme"
 import { useShoppingCart } from "use-shopping-cart"
 
 const MenuItem = ({ heading, price, children, product }) => {
-  const { colors, fonts } = customTheme
-  const { addItem, cartDetails, cartCount } = useShoppingCart()
+  const { addItem } = useShoppingCart()
   const [quantity, setQuantity] = useState(1)
 
   const dotLeaders = css`
@@ -21,38 +19,40 @@ const MenuItem = ({ heading, price, children, product }) => {
   `
 
   return (
-    <Flex direction="column">
-      <Flex
-        maxW="40em"
-        overflowX="hidden"
-        alignItems="center"
-        justifyContent="space-between"
-      >
-        <Heading
-          css={dotLeaders}
-          as="h2"
-          color={colors.white}
-          fontWeight="400"
-          fontSize="5xl"
+    <Flex direction="column" justify="space-between">
+      <Flex direction="column">
+        <Flex
+          maxW="40em"
+          overflowX="hidden"
+          alignItems="center"
+          justifyContent="space-between"
         >
-          {heading}
-        </Heading>
-        <Heading
-          d="inline-block"
-          as="h2"
-          pl="1.5rem"
-          color={colors.white}
-          bg={colors.black}
-          fontFamily={fonts.banner}
-          fontWeight="400"
-          fontSize="4xl"
-        >
-          Õ{price}Ô
-        </Heading>
+          <Heading
+            css={dotLeaders}
+            as="h2"
+            color="white"
+            fontWeight="400"
+            fontSize="5xl"
+          >
+            {heading}
+          </Heading>
+          <Heading
+            d="inline-block"
+            as="h2"
+            pl="1.5rem"
+            color="white"
+            bg="black"
+            fontFamily="banner"
+            fontWeight="400"
+            fontSize="4xl"
+          >
+            Õ{price}Ô
+          </Heading>
+        </Flex>
+        <Text maxW="75%" fontSize="lg" color="white">
+          {children}
+        </Text>
       </Flex>
-      <Text maxW="75%" fontSize="lg" color={colors.white}>
-        {children}
-      </Text>
       <Flex pt="3rem" justify={["space-between", "flex-end"]}>
         <Flex>
           <Button

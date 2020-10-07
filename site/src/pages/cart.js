@@ -1,16 +1,7 @@
 /** @jsx jsx */
 import React from "react"
 import Layout, { Container, Section } from "../components/Layout"
-import {
-  theme,
-  Text,
-  Button,
-  Icon,
-  Box,
-  Flex,
-  Grid,
-  Divider,
-} from "@chakra-ui/core"
+import { Text, Button, Box, Flex, Grid, Divider } from "@chakra-ui/core"
 import { css, jsx } from "@emotion/core"
 import { useShoppingCart } from "use-shopping-cart"
 import Zigs from "../images/frills/clip-zigs.svg"
@@ -66,19 +57,24 @@ const Cart = () => {
           css={ziggies}
           maxW="960px"
           m={[0, "0 auto", "5rem auto"]}
+          mb={{ sm: "5rem" }}
           p={["3rem 1.25rem", "3rem 2.5rem"]}
           bg="white"
         >
           {cartItems.map((item, i) => {
             const { name, sku, currency, formattedValue, quantity } = item
             return (
-              <Box key={i}>
+              <Box key={i} color="black">
                 <Grid
                   templateColumns={["minmax(0, 1fr)", "repeat(2, 1fr)"]}
                   gap="2.5rem"
                   pb="2rem"
                 >
-                  <Flex align="center" justify="space-between">
+                  <Flex
+                    align="center"
+                    justify="space-between"
+                    fontSize={["lg", "xl"]}
+                  >
                     <Text as="span">{name}</Text>
                     <Flex>
                       <Box p="0 1rem">
@@ -110,7 +106,11 @@ const Cart = () => {
                       </Box>
                     </Flex>
                   </Flex>
-                  <Flex justify="flex-end" align="center">
+                  <Flex
+                    justify="flex-end"
+                    align="center"
+                    fontSize={["lg", "xl"]}
+                  >
                     <Box pr={["1rem", "2rem"]}>
                       <Button
                         size="sm"
@@ -130,11 +130,16 @@ const Cart = () => {
                     <Text>{formattedValue}</Text>
                   </Flex>
                 </Grid>
-                <Divider mb="2rem" />
+                <Divider mb="2rem" borderColor="gray.200" />
               </Box>
             )
           })}
-          <Flex p="2rem 0 1rem 0" justify="flex-end" align="center">
+          <Flex
+            p="2rem 0 1rem 0"
+            justify="flex-end"
+            align="center"
+            fontSize={["lg", "xl"]}
+          >
             <Text>Cart Total: ${totalPrice / 100}</Text>
           </Flex>
           <Flex justify="flex-end">

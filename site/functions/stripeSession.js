@@ -1,12 +1,7 @@
 const stripe = require("stripe")(process.env.GATSBY_STRIPE_API_SECRET)
-const { validateCartItems } = require("use-shopping-cart/src/util")
 
 exports.handler = async e => {
   try {
-    const productJSON = JSON.parse(e.body)
-
-    const line_items = validateCartItems(inventory, productJSON)
-
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       billing_address_collection: "auto",
@@ -15,7 +10,7 @@ exports.handler = async e => {
       },
       success_url: `${process.env.URL}/success.html`,
       cancel_url: process.env.URL,
-      line_items,
+      line_items: JSON.parse(e.body),
     })
 
     return {

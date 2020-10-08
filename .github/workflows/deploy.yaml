@@ -34,6 +34,7 @@ jobs:
           GATSBY_SANITY_DATASET: ${{ secrets.GATSBY_SANITY_DATASET }}
           GATSBY_STRIPE_API_PUBLIC: ${{ secrets.GATSBY_STRIPE_API_PUBLIC }}
           GATSBY_STRIPE_API_SECRET: ${{ secrets.GATSBY_STRIPE_API_SECRET }}
+          URL: ${{ secrets.URL }}
         run: yarn workspace site build
 
       - name: Deploy to Netlify

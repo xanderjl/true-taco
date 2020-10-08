@@ -4,7 +4,6 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "stripe": "^8.107.0",
-    "use-shopping-cart": "^2.1.0"
+    "stripe": "^8.107.0"
   }
 }

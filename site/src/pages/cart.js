@@ -21,7 +21,7 @@ const Cart = () => {
   const handleSubmit = async e => {
     e.preventDefault()
 
-    const response = await fetch("/.netlify/functions/stripeSession", {
+    const response = await fetch("/.netlify/functions/create-session", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -50,6 +50,7 @@ const Cart = () => {
       background-image: url(${Zigs});
     }
   `
+  console.log(cartDetails)
   return (
     <Layout title="Cart" bg="gray.50">
       <Container>
@@ -91,7 +92,7 @@ const Cart = () => {
                         </Button>
                       </Box>
                       <Text as="span">{quantity}</Text>
-                      <Box p="0 1rem">
+                      <Box p="0 0 0 1rem">
                         <Button
                           size="sm"
                           p="0"
@@ -150,7 +151,7 @@ const Cart = () => {
               _hover={{ bg: "red.200" }}
               borderRadius="0"
               onClick={handleSubmit}
-              onKeyDown={e => e.key === "Enter" && handleSubmit()}
+              onKeyDown={e => e.key === "Enter" && handleSubmit}
             >
               Proceed to Checkout
             </Button>

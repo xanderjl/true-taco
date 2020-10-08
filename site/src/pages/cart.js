@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React from "react"
+import React, { useState } from "react"
 import Layout, { Container, Section } from "../components/Layout"
 import { Text, Button, Box, Flex, Grid, Divider } from "@chakra-ui/core"
 import { css, jsx } from "@emotion/core"
@@ -7,10 +7,12 @@ import { useShoppingCart } from "use-shopping-cart"
 import Zigs from "../images/frills/clip-zigs.svg"
 
 const Cart = () => {
+  const [status, setStatus] = useState("idle")
   const {
     incrementItem,
     decrementItem,
     removeItem,
+    cartCount,
     cartDetails,
     totalPrice,
     redirectToCheckout,
@@ -50,7 +52,7 @@ const Cart = () => {
       background-image: url(${Zigs});
     }
   `
-  console.log(cartDetails)
+
   return (
     <Layout title="Cart" bg="gray.50">
       <Container>
@@ -63,7 +65,7 @@ const Cart = () => {
           bg="white"
         >
           {cartItems.map((item, i) => {
-            const { name, sku, currency, formattedValue, quantity } = item
+            const { name, sku, formattedValue, quantity } = item
             return (
               <Box key={i} color="black">
                 <Grid

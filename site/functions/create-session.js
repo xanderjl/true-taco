@@ -1,6 +1,7 @@
 const stripe = require("stripe")(process.env.GATSBY_STRIPE_API_SECRET)
 
 exports.handler = async e => {
+  console.log(e)
   try {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],

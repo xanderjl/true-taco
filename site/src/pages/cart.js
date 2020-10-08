@@ -53,6 +53,8 @@ const Cart = () => {
     }
   `
 
+  console.log(cartDetails)
+
   return (
     <Layout title="Cart" bg="gray.50">
       <Container>

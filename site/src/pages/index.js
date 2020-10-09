@@ -38,8 +38,8 @@ const Home = () => {
             d="inline-block"
             as="h1"
             p="0.25rem 1.25rem"
-            pb={{ sm: "2.5rem" }}
-            pt={{ sm: "1.25rem" }}
+            pb={["2.5rem", "0.25rem"]}
+            pt={["1.25rem", "0.25rem"]}
             pos="absolute"
             bottom={["0", "15%"]}
             right="0"

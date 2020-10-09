@@ -77,14 +77,14 @@ const Navbar = () => {
       <Link to="/">
         <Image
           zIndex="1"
-          w={["2.75rem", "6rem"]}
+          w={["2.5rem", "6rem"]}
           h="auto"
           src={Logo}
           alt="True Taco logo"
           pos="absolute"
-          top={["0.25rem", "0.75rem"]}
-          left={["1.2rem", "50%"]}
-          transform="translateX(-25%)"
+          top={["0.325rem", "0.75rem"]}
+          left={["0.75rem", "50%"]}
+          transform={[0, "translateX(-50%)"]}
         />
       </Link>
     </Box>

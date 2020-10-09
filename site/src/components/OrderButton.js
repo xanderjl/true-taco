@@ -8,7 +8,7 @@ const OrderButton = props => {
       <Link to="/cart">
         <Flex flexDir="column" alignItems="center">
           <Text mb="1rem" fontSize="4xl" color="red.light" fontFamily="banner">
-            ÌPROCEEDèTOèORDERÍ
+            ÌPROCEEDèTOèCHECKOUTÍ
           </Text>
           <Icon {...props} name="shop" color="white" />
         </Flex>

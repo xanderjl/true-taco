@@ -1,14 +1,23 @@
 @font-face {
   font-family: "Lato";
-  src: url("../fonts/lato/Lato-Regular.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Sunset Boulevard";
-  src: url("../fonts/sunset-boulevard.otf") format("opentype");
+  src: url("./fonts/lato/Lato-Regular.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "York White Letter";
-  src: url("../fonts/york-white-letter.otf") format("opentype");
+  src: url("./fonts/york-white-letter/york-white-letter.ttf") format("truetype"),
+    url("./fonts/york-white-letter/york-white-letter.woff2") format("woff2"),
+    url("./fonts/york-white-letter/york-white-letter.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Sunset Boulevard";
+  src: url("./fonts/sunset-boulevard//sunset-boulevard.woff2") format("woff2"),
+    url("./fonts/sunset-boulevard//sunset-boulevard.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }

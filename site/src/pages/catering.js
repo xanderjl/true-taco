@@ -56,7 +56,7 @@ const Catering = () => {
         bgSize="cover"
         backgroundRepeat="no-repeat"
       >
-        <Container>
+        <Container pt={["3rem", "5rem"]}>
           <Section>
             <Flex
               w="100%"

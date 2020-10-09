@@ -50,7 +50,7 @@ const Navbar = () => {
               <NavbarItem href="/catering">Catering</NavbarItem>
             </Flex>
             {data.sanityMenu.isOpen && (
-              <NavbarItem href="/cart">
+              <NavbarItem href="/cart" display={["none", "flex"]}>
                 Takeout ({cartCount})
                 <Icon
                   name="brownBag"
@@ -70,6 +70,10 @@ const Navbar = () => {
             top="0rem"
             right="0.75rem"
           >
+            <NavbarItem href="/cart" fontSize="2xl" display={["flex", "none"]}>
+              <Icon name="brownBag" w="auto" h="2rem" mr="0.5rem" /> (
+              {cartCount})
+            </NavbarItem>
             <Hamburger toggle={setIsOpen} toggled={isOpen} color="white" />
           </Box>
         </Flex>

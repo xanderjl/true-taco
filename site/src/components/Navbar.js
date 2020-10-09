@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Link } from "gatsby"
+import { Link, useStaticQuery, graphql } from "gatsby"
 import { Box, Flex, Icon, Image } from "@chakra-ui/core"
 import NavbarItem from "../components/NavbarItem"
 import { Container } from "../components/Layout"
@@ -8,6 +8,13 @@ import { useShoppingCart } from "use-shopping-cart"
 import Logo from "../images/logo/2.svg"
 
 const Navbar = () => {
+  const data = useStaticQuery(graphql`
+    {
+      sanityMenu {
+        isOpen
+      }
+    }
+  `)
   const [isOpen, setIsOpen] = useState(false)
   const { cartCount } = useShoppingCart()
 
@@ -42,15 +49,17 @@ const Navbar = () => {
               <NavbarItem href="/">Home</NavbarItem>
               <NavbarItem href="/catering">Catering</NavbarItem>
             </Flex>
-            <NavbarItem href="/cart">
-              Takeout ({cartCount})
-              <Icon
-                name="brownBag"
-                w="auto"
-                height="1.5rem"
-                ml="0.75rem"
-              />{" "}
-            </NavbarItem>
+            {data.sanityMenu.isOpen && (
+              <NavbarItem href="/cart">
+                Takeout ({cartCount})
+                <Icon
+                  name="brownBag"
+                  w="auto"
+                  height="1.5rem"
+                  ml="0.75rem"
+                />{" "}
+              </NavbarItem>
+            )}
           </Box>
           <Box
             d={["flex", "none"]}

@@ -1,12 +1,13 @@
 /** @jsx jsx */
 import React, { useState } from "react"
 import { css, jsx } from "@emotion/core"
-import { Button, Flex, Heading, Text } from "@chakra-ui/core"
+import { Button, Flex, Heading, Text, useToast } from "@chakra-ui/core"
 import { useShoppingCart } from "use-shopping-cart"
 
 const MenuItem = ({ heading, price, children, product }) => {
   const { addItem } = useShoppingCart()
   const [quantity, setQuantity] = useState(1)
+  const toast = useToast()
 
   const dotLeaders = css`
     &::after {
@@ -91,6 +92,12 @@ const MenuItem = ({ heading, price, children, product }) => {
           onClick={e => {
             e.preventDefault()
             addItem(product, quantity)
+            toast({
+              title: "Item added to cart.",
+              status: "success",
+              duration: 9000,
+              isClosable: true,
+            })
           }}
         >
           Add to cart

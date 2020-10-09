@@ -1,7 +1,8 @@
 /** @jsx jsx */
 import React from "react"
-import { Link, graphql, useStaticQuery } from "gatsby"
-import { Box, Grid, Heading } from "@chakra-ui/core"
+import { graphql, useStaticQuery } from "gatsby"
+import BlockContent from "@sanity/block-content-to-react"
+import { Box, Grid, Heading, Text, Flex } from "@chakra-ui/core"
 import { css, jsx } from "@emotion/core"
 import { Container } from "./Layout"
 import MenuItem from "./MenuItem"
@@ -12,6 +13,11 @@ import FrillsBottom from "../images/frills/bottom.svg"
 const Menu = props => {
   const data = useStaticQuery(graphql`
     {
+      sanityMenu {
+        isOpen
+        heading
+        _rawBody
+      }
       allStripePrice {
         edges {
           node {
@@ -33,6 +39,7 @@ const Menu = props => {
   `)
 
   const products = data.allStripePrice.edges
+  const { isOpen, heading, _rawBody } = data.sanityMenu
 
   const frills = css`
     &::before {
@@ -69,38 +76,52 @@ const Menu = props => {
           textAlign="center"
           textDecor="underline"
         >
-          <Link to="/">Saturday Pickup</Link>
+          {heading}
         </Heading>
-        <Grid
-          mb="6rem"
-          rowGap={["4rem", "4rem", "5rem"]}
-          columnGap={["4rem", "4rem", "8rem"]}
-          gridTemplateRows="auto"
-          gridTemplateColumns={["minmax(0, 1fr)", "repeat(2, 1fr)"]}
-        >
-          {products.map(({ node: node }) => {
-            const { name, description, images } = node.product
+        {isOpen ? (
+          <Box>
+            <Grid
+              mb="6rem"
+              rowGap={["4rem", "4rem", "5rem"]}
+              columnGap={["4rem", "4rem", "8rem"]}
+              gridTemplateRows="auto"
+              gridTemplateColumns={["minmax(0, 1fr)", "repeat(2, 1fr)"]}
+            >
+              {products.map(({ node: node }) => {
+                const { name, description, images } = node.product
 
-            return (
-              <MenuItem
-                key={node.id}
-                heading={name}
-                price={node.unit_amount / 100}
-                product={{
-                  name,
-                  description,
-                  sku: node.id,
-                  price: node.unit_amount,
-                  currency: node.currency,
-                  image: images[0],
-                }}
-              >
-                {description}
-              </MenuItem>
-            )
-          })}
-        </Grid>
-        <OrderButton w="6rem" h="auto" />
+                return (
+                  <MenuItem
+                    key={node.id}
+                    heading={name}
+                    price={node.unit_amount / 100}
+                    product={{
+                      name,
+                      description,
+                      sku: node.id,
+                      price: node.unit_amount,
+                      currency: node.currency,
+                      image: images[0],
+                    }}
+                  >
+                    {description}
+                  </MenuItem>
+                )
+              })}
+            </Grid>
+            <OrderButton w="6rem" h="auto" />
+          </Box>
+        ) : (
+          <Flex
+            dir="column"
+            align="center"
+            justify="center"
+            color="white"
+            fontSize={["lg", "3xl"]}
+          >
+            <BlockContent blocks={_rawBody} />
+          </Flex>
+        )}
       </Container>
     </Box>
   )

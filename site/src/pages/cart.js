@@ -128,9 +128,9 @@ const Cart = () => {
               )
             })
           ) : (
-            <Flex align="center" justify="center">
+            <Flex dir="column" align="center" justify="center">
               <Heading fontWeight="400" fontSize="6xl">
-                Your cart appears to be empty
+                Your cart is empty
               </Heading>
             </Flex>
           )}

@@ -14,7 +14,7 @@ module.exports.wrapRootElement = ({ element }) => {
       currency="CAD"
       allowedCountries={["CA"]}
       billingAddressCollection={true}
-      mode="checkout-session"
+      mode="client-only"
     >
       {element}
     </CartProvider>

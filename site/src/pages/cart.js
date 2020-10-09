@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React, { useState } from "react"
+import React from "react"
 import Layout, { Container, Section } from "../components/Layout"
 import { Text, Button, Box, Flex, Grid, Divider } from "@chakra-ui/core"
 import { css, jsx } from "@emotion/core"
@@ -7,12 +7,10 @@ import { useShoppingCart } from "use-shopping-cart"
 import Zigs from "../images/frills/clip-zigs.svg"
 
 const Cart = () => {
-  const [status, setStatus] = useState("idle")
   const {
     incrementItem,
     decrementItem,
     removeItem,
-    cartCount,
     cartDetails,
     totalPrice,
     redirectToCheckout,
@@ -52,8 +50,6 @@ const Cart = () => {
       background-image: url(${Zigs});
     }
   `
-
-  console.log(cartDetails)
 
   return (
     <Layout title="Cart" bg="gray.50">
@@ -154,8 +150,8 @@ const Cart = () => {
               color="white"
               _hover={{ bg: "red.200" }}
               borderRadius="0"
-              onClick={handleSubmit}
-              onKeyDown={e => e.key === "Enter" && handleSubmit}
+              onClick={redirectToCheckout}
+              onKeyDown={e => e.key === "Enter" && redirectToCheckout}
             >
               Proceed to Checkout
             </Button>

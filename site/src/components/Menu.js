@@ -79,17 +79,17 @@ const Menu = props => {
           gridTemplateColumns={["minmax(0, 1fr)", "repeat(2, 1fr)"]}
         >
           {products.map(({ node: node }) => {
-            const { id, name, description, images } = node.product
+            const { name, description, images } = node.product
 
             return (
               <MenuItem
-                key={id}
+                key={node.id}
                 heading={name}
                 price={node.unit_amount / 100}
                 product={{
                   name,
                   description,
-                  sku: id,
+                  sku: node.id,
                   price: node.unit_amount,
                   currency: node.currency,
                   image: images[0],
@@ -99,30 +99,6 @@ const Menu = props => {
               </MenuItem>
             )
           })}
-          {/* <MenuItem heading="Quesadillas" price="3.5-7">
-            Mixed cheeses, tomatoes, green onions. Choose your filling. Choose
-            your shell. Served with sour cream and sour cream.
-          </MenuItem>
-          <MenuItem heading="Taco Kit" price="3.5-7">
-            Flavourful tacos with a variety of fillings served on a corn
-            tortilla, topped with onion, cillantro, and a wedge of lime.
-          </MenuItem>
-          <MenuItem heading="Taquitos Dorados" price="7.5">
-            Crispy, deepfried, rolled tacos made with your choice of filling.
-            Topped with lettuce, sour cream and parmesean.
-          </MenuItem>
-          <MenuItem heading="Chile Relleno" price="5">
-            Whole jalapeño stuffed with your choice of filling. Served with
-            fried cheese and corn tortilla.
-          </MenuItem>
-          <MenuItem heading="Tostadas" price="3.5">
-            Crispy, flat corn tortilla topped with refried beans, chicken,
-            lettuce, sour cream and parmesan.
-          </MenuItem>
-          <MenuItem heading="Empanada Mexicana" price="3.5">
-            Handmade corn tortilla, stuffed with your choice of filling. Served
-            with lettuce, sour cream, and parmesan.
-          </MenuItem> */}
         </Grid>
         <OrderButton w="6rem" h="auto" />
       </Container>

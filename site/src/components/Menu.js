@@ -114,10 +114,12 @@ const Menu = props => {
         ) : (
           <Flex
             dir="column"
+            maxW="70ch"
+            m="0 auto"
             align="center"
             justify="center"
             color="white"
-            fontSize={["lg", "3xl"]}
+            fontSize={["xl", "2xl"]}
           >
             <BlockContent blocks={_rawBody} />
           </Flex>

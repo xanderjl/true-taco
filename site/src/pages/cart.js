@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/core"
 import { css, jsx } from "@emotion/core"
 import { useShoppingCart } from "use-shopping-cart"
-import Zigs from "../images/frills/clip-zigs.svg"
+import bottomFrills from "../images/frills/bottom-white.svg"
 
 const Cart = () => {
   const {
@@ -28,17 +28,15 @@ const Cart = () => {
   const cartItems = Object.values(cartDetails)
 
   const ziggies = css`
-    overflow: hidden;
-
     &::after {
-      width: calc(100% + 6rem);
+      width: calc(100% + 5rem);
       height: 22px;
       content: "";
       display: block;
       position: relative;
-      bottom: -3rem;
-      left: -2.5rem;
-      background-image: url(${Zigs});
+      bottom: calc(-5rem + 13px);
+      left: calc(-2.5rem);
+      background-image: url(${bottomFrills});
     }
   `
 

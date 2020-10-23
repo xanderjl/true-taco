@@ -18,7 +18,7 @@ import { HiLocationMarker } from "react-icons/hi"
 
 const Footer = () => {
   return (
-    <Box bg="orange.100" color="orange.900">
+    <Box p="1rem 0" bg="orange.100" color="orange.900">
       <Container>
         <Section pb="1rem">
           <Grid

@@ -28,6 +28,9 @@ const Menu = props => {
               type
               active
               description
+              metadata {
+                menu
+              }
             }
             unit_amount
             id
@@ -40,6 +43,16 @@ const Menu = props => {
 
   const products = data.allStripePrice.edges
   const { isOpen, heading, _rawBody } = data.sanityMenu
+
+  const lunchMenu = products.filter(
+    ({ node: node }) => node.product.metadata.menu === "lunch"
+  )
+  const breakfastMenu = products.filter(
+    ({ node: node }) => node.product.metadata.menu === "breakfast"
+  )
+  const toGoMenu = products.filter(
+    ({ node: node }) => node.product.metadata.menu === "to-go"
+  )
 
   const frills = css`
     &::before {
@@ -64,6 +77,40 @@ const Menu = props => {
     }
   `
 
+  const SubMenu = data => {
+    return (
+      <Grid
+        mb="6rem"
+        rowGap={["4rem", "4rem", "5rem"]}
+        columnGap={["4rem", "4rem", "8rem"]}
+        gridTemplateRows="auto"
+        gridTemplateColumns={["minmax(0, 1fr)", "repeat(2, 1fr)"]}
+      >
+        {data.data.map(({ node: node }) => {
+          const { name, description, images } = node.product
+
+          return (
+            <MenuItem
+              key={node.id}
+              heading={name}
+              price={node.unit_amount / 100}
+              product={{
+                name,
+                description,
+                sku: node.id,
+                price: node.unit_amount,
+                currency: node.currency,
+                image: images[0],
+              }}
+            >
+              {description}
+            </MenuItem>
+          )
+        })}
+      </Grid>
+    )
+  }
+
   return (
     <Box position="relative" css={frills} bg="black">
       <Container {...props}>
@@ -80,35 +127,39 @@ const Menu = props => {
         </Heading>
         {isOpen ? (
           <Box>
-            <Grid
-              mb="6rem"
-              rowGap={["4rem", "4rem", "5rem"]}
-              columnGap={["4rem", "4rem", "8rem"]}
-              gridTemplateRows="auto"
-              gridTemplateColumns={["minmax(0, 1fr)", "repeat(2, 1fr)"]}
+            <Heading
+              mb="3rem"
+              as="h2"
+              color="white"
+              fontWeight="400"
+              fontSize="6xl"
+              textDecor="underline"
             >
-              {products.map(({ node: node }) => {
-                const { name, description, images } = node.product
-
-                return (
-                  <MenuItem
-                    key={node.id}
-                    heading={name}
-                    price={node.unit_amount / 100}
-                    product={{
-                      name,
-                      description,
-                      sku: node.id,
-                      price: node.unit_amount,
-                      currency: node.currency,
-                      image: images[0],
-                    }}
-                  >
-                    {description}
-                  </MenuItem>
-                )
-              })}
-            </Grid>
+              Breakfast
+            </Heading>
+            <SubMenu data={breakfastMenu} />
+            <Heading
+              mb="3rem"
+              as="h2"
+              color="white"
+              fontWeight="400"
+              fontSize="6xl"
+              textDecor="underline"
+            >
+              Lunch
+            </Heading>
+            <SubMenu data={lunchMenu} />
+            <Heading
+              mb="3rem"
+              as="h2"
+              color="white"
+              fontWeight="400"
+              fontSize="6xl"
+              textDecor="underline"
+            >
+              To Go
+            </Heading>
+            <SubMenu data={toGoMenu} />
             <OrderButton w="6rem" h="auto" />
           </Box>
         ) : (

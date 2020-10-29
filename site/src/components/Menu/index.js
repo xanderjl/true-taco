@@ -4,11 +4,11 @@ import { graphql, useStaticQuery } from "gatsby"
 import BlockContent from "@sanity/block-content-to-react"
 import { Box, Grid, Heading, Text, Flex } from "@chakra-ui/core"
 import { css, jsx } from "@emotion/core"
-import { Container } from "./Layout"
+import { Container } from "../Layout"
 import MenuItem from "./MenuItem"
-import OrderButton from "./OrderButton"
-import FrillsTop from "../images/frills/top.svg"
-import FrillsBottom from "../images/frills/bottom.svg"
+import OrderButton from "../OrderButton"
+import FrillsTop from "../../images/frills/top.svg"
+import FrillsBottom from "../../images/frills/bottom.svg"
 
 const Menu = props => {
   const data = useStaticQuery(graphql`

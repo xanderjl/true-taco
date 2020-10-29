@@ -2,6 +2,15 @@ import React from "react"
 import { extendTheme } from "@chakra-ui/core"
 
 const theme = extendTheme({
+  styles: {
+    global: {
+      a: {
+        _hover: {
+          textDecor: "none",
+        },
+      },
+    },
+  },
   maxWidth: "1440px",
   breakpoints: ["769px", "1024px", "1216px", "1408px"],
   fonts: {

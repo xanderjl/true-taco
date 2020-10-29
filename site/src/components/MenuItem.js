@@ -24,28 +24,28 @@ const MenuItem = ({ heading, price, children, product }) => {
       <Flex direction="column">
         <Flex
           maxW="40em"
-          overflowX="hidden"
-          alignItems="center"
+          overflow="hidden"
+          alignItems="flex-end"
           justifyContent="space-between"
         >
           <Heading
             css={dotLeaders}
             as="h2"
+            size="3xl"
             color="white"
             fontWeight="400"
-            fontSize="5xl"
           >
             {heading}
           </Heading>
           <Heading
-            d="inline-block"
             as="h2"
+            size="2xl"
+            d="inline-block"
             pl="1.5rem"
-            color="white"
             bg="black"
+            color="white"
             fontFamily="banner"
             fontWeight="400"
-            fontSize="4xl"
           >
             Õ{price}Ô
           </Heading>
@@ -83,7 +83,7 @@ const MenuItem = ({ heading, price, children, product }) => {
           </Button>
         </Flex>
         <Button
-          variantColor="red"
+          colorScheme="red"
           w="max-content"
           ml="1rem"
           borderRadius={0}

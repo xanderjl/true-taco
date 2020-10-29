@@ -115,11 +115,11 @@ const Menu = props => {
     <Box position="relative" css={frills} bg="black">
       <Container {...props}>
         <Heading
-          mb="5rem"
           as="h1"
+          size="4xl"
+          mb="5rem"
           color="white"
           fontWeight="400"
-          fontSize="6xl"
           textAlign="center"
           textDecor="underline"
         >
@@ -128,33 +128,33 @@ const Menu = props => {
         {isOpen ? (
           <Box>
             <Heading
-              mb="3rem"
               as="h2"
+              size="4xl"
+              mb="3rem"
               color="white"
               fontWeight="400"
-              fontSize="6xl"
               textDecor="underline"
             >
               Breakfast
             </Heading>
             <SubMenu data={breakfastMenu} />
             <Heading
-              mb="3rem"
               as="h2"
+              size="4xl"
+              mb="3rem"
               color="white"
               fontWeight="400"
-              fontSize="6xl"
               textDecor="underline"
             >
               Lunch
             </Heading>
             <SubMenu data={lunchMenu} />
             <Heading
-              mb="3rem"
               as="h2"
+              size="4xl"
+              mb="3rem"
               color="white"
               fontWeight="400"
-              fontSize="6xl"
               textDecor="underline"
             >
               To Go

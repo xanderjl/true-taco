@@ -145,7 +145,7 @@ const ContactForm = ({ color, inputColor, buttonColor }) => {
         )}
       </FormControl>
       <Box pt="12px">
-        <Button variantColor={buttonColor} type="submit">
+        <Button colorScheme={buttonColor} type="submit">
           Submit
         </Button>
       </Box>

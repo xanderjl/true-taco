@@ -1,16 +1,35 @@
 import React from "react"
-import { Link } from "gatsby"
-import { Box, Flex, Icon, Text } from "@chakra-ui/core"
+import { Link as GaLink } from "gatsby"
+import { Box, Flex, Link, Text } from "@chakra-ui/core"
+import { ShopIcon } from "./Icons"
 
 const OrderButton = props => {
   return (
     <Box d="block" w="max-content" m="0 auto">
-      <Link to="/cart">
+      <Link
+        as={GaLink}
+        to="/cart"
+        // textDecor="none"
+        _hover={{
+          textDecor: "none",
+        }}
+      >
         <Flex flexDir="column" alignItems="center">
-          <Text mb="1rem" fontSize="4xl" color="red.light" fontFamily="banner">
+          <Text
+            mb="1rem"
+            fontSize="4xl"
+            color="red.light"
+            fontFamily="banner"
+            _hover={{ color: "red.400" }}
+          >
             ÌPROCEEDèTOèCHECKOUTÍ
           </Text>
-          <Icon {...props} name="shop" color="white" />
+          <ShopIcon
+            {...props}
+            name="shop"
+            color="white"
+            _hover={{ color: "red.50" }}
+          />
         </Flex>
       </Link>
     </Box>

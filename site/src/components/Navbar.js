@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
 import { Box, Flex, Icon, Image } from "@chakra-ui/core"
+import { BrownBagIcon } from "./Icons"
 import NavbarItem from "../components/NavbarItem"
 import { Container } from "../components/Layout"
 import Hamburger from "hamburger-react"
@@ -52,12 +53,7 @@ const Navbar = () => {
             {data.sanityMenu.isOpen && (
               <NavbarItem href="/cart" display={["none", "flex"]}>
                 Takeout ({cartCount})
-                <Icon
-                  name="brownBag"
-                  w="auto"
-                  height="1.5rem"
-                  ml="0.75rem"
-                />{" "}
+                <BrownBagIcon w="auto" height="1.5rem" ml="0.75rem" />{" "}
               </NavbarItem>
             )}
           </Box>
@@ -71,8 +67,7 @@ const Navbar = () => {
             right="0.75rem"
           >
             <NavbarItem href="/cart" fontSize="2xl" display={["flex", "none"]}>
-              <Icon name="brownBag" w="auto" h="2rem" mr="0.5rem" /> (
-              {cartCount})
+              <BrownBagIcon w="auto" h="2rem" mr="0.5rem" /> ({cartCount})
             </NavbarItem>
             <Hamburger toggle={setIsOpen} toggled={isOpen} color="white" />
           </Box>

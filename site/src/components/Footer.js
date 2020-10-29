@@ -11,6 +11,7 @@ import {
   ListItem,
   ListIcon,
 } from "@chakra-ui/core"
+import { PhoneIcon, EmailIcon } from "@chakra-ui/icons"
 import { Container, Section } from "./Layout"
 import { FaFacebookSquare } from "react-icons/fa"
 import { FiInstagram, FiExternalLink } from "react-icons/fi"
@@ -27,7 +28,7 @@ const Footer = () => {
             gap={["2rem", "1rem"]}
           >
             <Flex flexDir="column">
-              <Heading as="h2" fontSize="5xl" fontWeight="400" pb="0.5rem">
+              <Heading as="h2" size="2xl" fontWeight="400" pb="0.5rem">
                 True Taco
               </Heading>
               <Text>
@@ -40,7 +41,7 @@ const Footer = () => {
               </Text>
             </Flex>
             <Flex flexDir="column">
-              <Heading as="h3" fontFamily="body" fontSize="lg">
+              <Heading as="h3" fontFamily="body" size="md">
                 Site Links
               </Heading>
               <List>
@@ -53,7 +54,7 @@ const Footer = () => {
               </List>
             </Flex>
             <Flex flexDir="column">
-              <Heading as="h3" fontFamily="body" fontSize="lg">
+              <Heading as="h3" fontFamily="body" size="md">
                 Contact Us
               </Heading>
               <List>
@@ -63,20 +64,20 @@ const Footer = () => {
                   rel="noopener noreferrer"
                 >
                   <ListItem d="flex" alignItems="center">
-                    <ListIcon icon={HiLocationMarker} />
+                    <ListIcon as={HiLocationMarker} />
                     900 King Street, N5W 2X7, London Ontario
                     <Box as={FiExternalLink} ml="0.25rem" />
                   </ListItem>
                 </Link>{" "}
                 <Link href="tel:226-237-2573">
                   <ListItem>
-                    <ListIcon icon="phone" />
+                    <ListIcon as={PhoneIcon} />
                     (226) 237-2573
                   </ListItem>
                 </Link>{" "}
                 <Link href="mailto:admin@truetaco.ca">
                   <ListItem>
-                    <ListIcon icon="email" />
+                    <ListIcon as={EmailIcon} />
                     admin@truetaco.ca
                   </ListItem>
                 </Link>{" "}
@@ -86,7 +87,7 @@ const Footer = () => {
                   rel="noopener noreferrer"
                 >
                   <ListItem d="flex" alignItems="center">
-                    <ListIcon icon={FaFacebookSquare} />
+                    <ListIcon as={FaFacebookSquare} />
                     True Taco
                     <Box as={FiExternalLink} ml="0.25rem" />
                   </ListItem>
@@ -97,7 +98,7 @@ const Footer = () => {
                   rel="noopener noreferrer"
                 >
                   <ListItem d="flex" alignItems="center">
-                    <ListIcon icon={FiInstagram} />
+                    <ListIcon as={FiInstagram} />
                     @truetaco
                     <Box as={FiExternalLink} ml="0.25rem" />
                   </ListItem>

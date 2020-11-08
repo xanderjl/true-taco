@@ -18,7 +18,7 @@ const Menu = props => {
         heading
         _rawBody
       }
-      allStripePrice {
+      allStripePrice(filter: { product: { active: { eq: true } } }) {
         edges {
           node {
             product {
@@ -81,8 +81,8 @@ const Menu = props => {
     return (
       <Grid
         mb="6rem"
-        rowGap={["4rem", "4rem", "5rem"]}
-        columnGap={["4rem", "4rem", "8rem"]}
+        rowGap={{ base: "3rem", md: "5rem" }}
+        columnGap={{ base: "3rem", md: "5rem" }}
         gridTemplateRows="auto"
         gridTemplateColumns={["minmax(0, 1fr)", "repeat(2, 1fr)"]}
       >
@@ -113,7 +113,7 @@ const Menu = props => {
 
   return (
     <Box position="relative" css={frills} bg="black">
-      <Container {...props}>
+      <Container maxW="5xl" m="0 auto" {...props}>
         <Heading
           as="h1"
           size="4xl"
@@ -129,7 +129,7 @@ const Menu = props => {
           <Box>
             <Heading
               as="h2"
-              size="4xl"
+              size="3xl"
               mb="3rem"
               color="white"
               fontWeight="400"
@@ -140,7 +140,7 @@ const Menu = props => {
             <SubMenu data={breakfastMenu} />
             <Heading
               as="h2"
-              size="4xl"
+              size="3xl"
               mb="3rem"
               color="white"
               fontWeight="400"
@@ -151,7 +151,7 @@ const Menu = props => {
             <SubMenu data={lunchMenu} />
             <Heading
               as="h2"
-              size="4xl"
+              size="3xl"
               mb="3rem"
               color="white"
               fontWeight="400"

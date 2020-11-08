@@ -70,7 +70,7 @@ const Catering = () => {
                   d="inline-block"
                   as="h1"
                   p="0.25rem 1.25rem"
-                  bg="red.light"
+                  bg="red.500"
                   color="white"
                   fontWeight="400"
                   fontSize="6xl"

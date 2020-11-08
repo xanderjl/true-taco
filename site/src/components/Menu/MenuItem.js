@@ -31,7 +31,7 @@ const MenuItem = ({ heading, price, children, product }) => {
           <Heading
             css={dotLeaders}
             as="h2"
-            size="3xl"
+            size="2xl"
             color="white"
             fontWeight="400"
           >
@@ -39,7 +39,7 @@ const MenuItem = ({ heading, price, children, product }) => {
           </Heading>
           <Heading
             as="h2"
-            size="2xl"
+            size="xl"
             d="inline-block"
             pl="1.5rem"
             bg="black"
@@ -87,7 +87,7 @@ const MenuItem = ({ heading, price, children, product }) => {
           w="max-content"
           ml="1rem"
           borderRadius={0}
-          fontSize="lg"
+          size="md"
           color="black"
           onClick={e => {
             e.preventDefault()

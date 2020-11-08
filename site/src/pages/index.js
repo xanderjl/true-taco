@@ -28,10 +28,10 @@ const Home = () => {
             p="0.25rem 1.25rem"
             pb={{ base: "2.5rem", md: "0.5rem" }}
             pt={{ base: "1.25rem", md: "0.5rem" }}
-            bg="red.light"
+            bg="red.500"
             color="white"
             fontWeight="400"
-            textAlign={["center", "left"]}
+            textAlign={{ base: "center", md: "left" }}
           >
             authentic comedor latino
           </Heading>

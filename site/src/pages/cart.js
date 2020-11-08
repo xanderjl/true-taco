@@ -9,6 +9,7 @@ import {
   Grid,
   Divider,
   Heading,
+  Textarea,
 } from "@chakra-ui/core"
 import { css, jsx } from "@emotion/core"
 import { useShoppingCart } from "use-shopping-cart"
@@ -73,7 +74,7 @@ const Cart = () => {
                             size="sm"
                             p="0"
                             color="white"
-                            bg="red.light"
+                            bg="red.500"
                             _hover={{ bg: "red.200" }}
                             borderRadius="0"
                             onClick={() => quantity > 1 && decrementItem(sku)}
@@ -87,7 +88,7 @@ const Cart = () => {
                             size="sm"
                             p="0"
                             color="white"
-                            bg="red.light"
+                            bg="red.500"
                             _hover={{ bg: "red.200" }}
                             borderRadius="0"
                             onClick={() => incrementItem(sku)}
@@ -106,7 +107,7 @@ const Cart = () => {
                         <Button
                           size="sm"
                           color="white"
-                          bg="red.light"
+                          bg="red.500"
                           _hover={{ bg: "red.200" }}
                           borderRadius="0"
                           onClick={() => removeItem(sku)}
@@ -122,6 +123,28 @@ const Cart = () => {
                     </Flex>
                   </Grid>
                   <Divider mb="2rem" borderColor="gray.200" />
+                  <Heading
+                    as="h3"
+                    size="md"
+                    fontWeight="bold"
+                    fontFamily="body"
+                  >
+                    Notes:
+                  </Heading>
+                  <Heading
+                    as="h4"
+                    mb="1.25rem"
+                    size="sm"
+                    fontFamily="body"
+                    color="gray.700"
+                  >
+                    Alergies, substitutions, etc.
+                  </Heading>
+                  <Textarea
+                    rows={10}
+                    borderRadius="2px"
+                    placeholder="Can I substitute the tortilla for a lettuce wrap?"
+                  />
                 </Box>
               )
             })
@@ -145,7 +168,7 @@ const Cart = () => {
               <Flex justify="flex-end">
                 <Button
                   mb="1rem"
-                  bg="red.light"
+                  bg="red.500"
                   color="white"
                   _hover={{ bg: "red.200" }}
                   borderRadius="0"

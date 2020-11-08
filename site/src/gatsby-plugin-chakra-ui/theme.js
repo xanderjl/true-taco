@@ -2,11 +2,16 @@ import React from "react"
 import { extendTheme } from "@chakra-ui/core"
 
 const theme = extendTheme({
-  styles: {
-    global: {
-      a: {
+  components: {
+    Heading: {
+      baseStyle: {
+        fontWeight: 400,
+      },
+    },
+    Link: {
+      baseStyle: {
         _hover: {
-          textDecor: "none",
+          textDecoration: "none",
         },
       },
     },
@@ -20,13 +25,28 @@ const theme = extendTheme({
   },
   colors: {
     red: {
-      dark: "#BF1E2D",
-      light: "#FF2E42",
+      50: "#fdeaee",
+      100: "#fbcbd3",
+      200: "#ea979c",
+      300: "#de6f76",
+      400: "#e84c55",
+      500: "#ed393d",
+      600: "#de2f3c",
+      700: "#cc2535",
+      800: "#bf1e2e",
+      900: "#b01023",
     },
     green: {
-      dark: "#006838",
-      light: "#00B361",
-      lime: "#A9CF37",
+      50: "#e5f6eb",
+      100: "#c0e8cf",
+      200: "#98d9b0",
+      300: "#6aca91",
+      400: "#44bf7a",
+      500: "#00b362",
+      600: "#00a458",
+      700: "#00914c",
+      800: "#008040",
+      900: "#00612c",
     },
   },
 })

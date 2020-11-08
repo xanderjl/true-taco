@@ -27,7 +27,7 @@ const Navbar = () => {
       left="0"
       right="0"
       zIndex="1"
-      bg="green.light"
+      bg="green.500"
     >
       <Container>
         <Flex alignItems={["flex-start", "center"]}>
@@ -39,7 +39,7 @@ const Navbar = () => {
             d={[!isOpen && "none", "flex"]}
             justifyContent="space-between"
             alignItems="center"
-            bg="green.light"
+            bg="green.500"
           >
             <Flex
               w={["100vw", "max-content"]}

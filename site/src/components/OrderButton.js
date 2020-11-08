@@ -18,7 +18,7 @@ const OrderButton = props => {
           <Text
             mb="1rem"
             fontSize="4xl"
-            color="red.light"
+            color="red.500"
             fontFamily="banner"
             _hover={{ color: "red.400" }}
           >

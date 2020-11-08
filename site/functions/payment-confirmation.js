@@ -1,6 +1,8 @@
 const stripe = require("stripe")(process.env.GATSBY_STRIPE_API_SECRET)
 
 exports.handler = async ({ body, headers }) => {
+  console.log(body)
+
   try {
     const stripeEvent = stripe.webhooks.constructEvent(
       body,
@@ -9,7 +11,6 @@ exports.handler = async ({ body, headers }) => {
     )
 
     if (stripeEvent.type === "checkout.session.completed") {
-      console.log(stripeEvent)
     }
 
     return {

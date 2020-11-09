@@ -1,7 +1,7 @@
 import React from "react"
 import { Link as GaLink } from "gatsby"
 import { Box, Flex, Link, Text } from "@chakra-ui/core"
-import { ShopIcon } from "./Icons"
+import { ShopIcon } from "../Icons"
 
 const OrderButton = props => {
   return (
@@ -9,7 +9,6 @@ const OrderButton = props => {
       <Link
         as={GaLink}
         to="/cart"
-        // textDecor="none"
         _hover={{
           textDecor: "none",
         }}

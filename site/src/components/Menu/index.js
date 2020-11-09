@@ -6,7 +6,7 @@ import { Box, Grid, Heading, Text, Flex } from "@chakra-ui/core"
 import { css, jsx } from "@emotion/core"
 import { Container } from "../Layout"
 import MenuItem from "./MenuItem"
-import OrderButton from "../OrderButton"
+import OrderButton from "./OrderButton"
 import FrillsTop from "../../images/frills/top.svg"
 import FrillsBottom from "../../images/frills/bottom.svg"
 

@@ -96,11 +96,11 @@ const Menu = props => {
               price={node.unit_amount / 100}
               product={{
                 name,
-                description,
                 sku: node.id,
                 price: node.unit_amount,
-                currency: node.currency,
                 image: images[0],
+                currency: node.currency,
+                description,
               }}
             >
               {description}

@@ -44,7 +44,7 @@ const Cart = () => {
   const handleCheckout = async e => {
     e.preventDefault()
 
-    const res = await fetch("/.netlify/functions/create-session", {
+    const response = await fetch("/.netlify/functions/create-session", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -56,7 +56,7 @@ const Cart = () => {
       })
       .catch(err => console.error(err))
 
-    redirectToCheckout({ sessionId: res.sessionId })
+    redirectToCheckout({ sessionId: response.sessionId })
   }
 
   return (

@@ -9,12 +9,18 @@ module.exports.wrapRootElement = ({ element }) => {
   return (
     <CartProvider
       stripe={stripePromise}
-      successUrl={`${process.env.URL || "http://localhost:8000/success"}`}
-      cancelUrl={`${process.env.URL || "http://localhost:8000/cart"}`}
+      successUrl={`${
+        process.env.GATSBY_PRODUCTION_URL + "/success" ||
+        "http://localhost:8000/success"
+      }`}
+      cancelUrl={`${
+        process.env.GATSBY_PRODUCTION_URL + "/cart" ||
+        "http://localhost:8000/cart"
+      }`}
       currency="CAD"
       allowedCountries={["CA"]}
       billingAddressCollection={true}
-      mode="client-only"
+      mode="checkout-session"
     >
       {element}
     </CartProvider>

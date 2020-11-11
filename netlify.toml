@@ -2,7 +2,3 @@
 command = "yarn workspace site build"
 functions = "./site/functions"
 publish = "./site/public"
-
-[[redirects]]
-from = "/api/*"
-to="/.netlify/functions/:splat"

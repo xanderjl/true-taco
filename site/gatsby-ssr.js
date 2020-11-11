@@ -11,11 +11,11 @@ module.exports.wrapRootElement = ({ element }) => {
       stripe={stripePromise}
       successUrl={`${
         process.env.GATSBY_PRODUCTION_URL + "/success" ||
-        "http://localhost:8000/success"
+        "http://localhost:8888/success"
       }`}
       cancelUrl={`${
         process.env.GATSBY_PRODUCTION_URL + "/cart" ||
-        "http://localhost:8000/cart"
+        "http://localhost:8888/cart"
       }`}
       currency="CAD"
       allowedCountries={["CA"]}

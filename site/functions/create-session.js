@@ -3,7 +3,7 @@ const stripe = require("stripe")(process.env.GATSBY_STRIPE_API_SECRET)
 exports.handler = async ({ body }) => {
   try {
     const line_items = JSON.parse(body)
-    console.log(line_items)
+    console.log("LINE ITEMS:::   " + JSON.stringify(line_items, null, 2))
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],

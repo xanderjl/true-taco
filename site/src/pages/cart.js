@@ -41,11 +41,11 @@ const Cart = () => {
     }
   `
 
-  const handleCheckout = async e => {
-    e.preventDefault()
+  const handleSubmit = async event => {
+    event.preventDefault()
 
     const response = await fetch("/.netlify/functions/create-session", {
-      method: "POST",
+      method: "post",
       headers: {
         "Content-Type": "application/json",
       },
@@ -54,8 +54,9 @@ const Cart = () => {
       .then(res => {
         return res.json()
       })
-      .catch(err => console.error(err))
+      .catch(error => console.log(error))
 
+    console.log(JSON.stringify(cartDetails, null, 2))
     redirectToCheckout({ sessionId: response.sessionId })
   }
 
@@ -190,8 +191,8 @@ const Cart = () => {
                   color="white"
                   _hover={{ bg: "red.200" }}
                   borderRadius="0"
-                  onClick={handleCheckout}
-                  onKeyDown={e => e.key === "Enter" && handleCheckout}
+                  onClick={handleSubmit}
+                  onKeyDown={e => e.key === "Enter" && handleSubmit}
                 >
                   Proceed to Checkout
                 </Button>

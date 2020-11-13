@@ -1,10 +1,10 @@
 import React from "react"
-import { Box } from "@chakra-ui/core"
+import { Box } from "@chakra-ui/react"
 import PropTypes from "prop-types"
 import SEO from "../components/SEO"
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
-import customTheme from "../gatsby-plugin-chakra-ui/theme"
+import customTheme from "../@chakra-ui/gatsby-plugin/theme"
 
 export const Container = props => {
   return (

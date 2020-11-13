@@ -2,8 +2,16 @@ const stripe = require("stripe")(process.env.GATSBY_STRIPE_API_SECRET)
 
 exports.handler = async ({ body }) => {
   try {
-    const line_items = JSON.parse(body)
-    console.log("LINE ITEMS:::   " + JSON.stringify(line_items, null, 2))
+    const line_items = []
+    const raw_items = Object.values(JSON.parse(body))
+
+    raw_items.map(item => {
+      const new_item = {
+        price: item.sku,
+        quantity: item.quantity,
+      }
+      line_items.push(new_item)
+    })
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],

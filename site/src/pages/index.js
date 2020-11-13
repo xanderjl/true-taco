@@ -1,5 +1,5 @@
 import React from "react"
-import { Box, Heading } from "@chakra-ui/core"
+import { Box, Heading } from "@chakra-ui/react"
 import Layout, { Container } from "../components/Layout"
 import Menu from "../components/Menu"
 import formingPupusas from "../images/forming-pupusa.jpg"

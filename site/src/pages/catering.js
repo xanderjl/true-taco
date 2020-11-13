@@ -2,7 +2,7 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import BlockContent from "@sanity/block-content-to-react"
-import { Box, Flex, Heading } from "@chakra-ui/core"
+import { Box, Flex, Heading } from "@chakra-ui/react"
 import { css, jsx } from "@emotion/core"
 import Layout, { Container, Section } from "../components/Layout"
 import ContactForm from "../components/ContactForm"

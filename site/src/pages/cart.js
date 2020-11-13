@@ -10,7 +10,7 @@ import {
   Divider,
   Heading,
   Textarea,
-} from "@chakra-ui/core"
+} from "@chakra-ui/react"
 import { css, jsx } from "@emotion/core"
 import { useShoppingCart } from "use-shopping-cart"
 import bottomFrills from "../images/frills/bottom-white.svg"
@@ -56,7 +56,6 @@ const Cart = () => {
       })
       .catch(error => console.log(error))
 
-    console.log(JSON.stringify(cartDetails, null, 2))
     redirectToCheckout({ sessionId: response.sessionId })
   }
 

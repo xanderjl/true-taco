@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { Link } from "gatsby"
-import { Box, Text } from "@chakra-ui/core"
+import { Box, Text } from "@chakra-ui/react"
 
 const ConditionalLink = ({ href, children }) =>
   href ? <Link to={href}>{children}</Link> : children

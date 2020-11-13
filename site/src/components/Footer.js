@@ -10,7 +10,7 @@ import {
   List,
   ListItem,
   ListIcon,
-} from "@chakra-ui/core"
+} from "@chakra-ui/react"
 import { PhoneIcon, EmailIcon } from "@chakra-ui/icons"
 import { motion } from "framer-motion"
 import { Container, Section } from "./Layout"

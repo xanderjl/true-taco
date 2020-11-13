@@ -1,6 +1,6 @@
 import React from "react"
 import { Link as GaLink } from "gatsby"
-import { Box, Flex, Link, Text } from "@chakra-ui/core"
+import { Box, Flex, Link, Text } from "@chakra-ui/react"
 import { ShopIcon } from "../Icons"
 
 const OrderButton = props => {

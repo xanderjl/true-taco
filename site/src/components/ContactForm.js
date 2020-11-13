@@ -12,7 +12,7 @@ import {
   FormLabel,
   FormControl,
   useToast,
-} from "@chakra-ui/core"
+} from "@chakra-ui/react"
 import { css, jsx } from "@emotion/core"
 import { useForm } from "react-hook-form"
 

@@ -2,7 +2,7 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import BlockContent from "@sanity/block-content-to-react"
-import { Box, Grid, Heading, Text, Flex } from "@chakra-ui/core"
+import { Box, Grid, Heading, Text, Flex } from "@chakra-ui/react"
 import { css, jsx } from "@emotion/core"
 import { Container } from "../Layout"
 import MenuItem from "./MenuItem"
@@ -77,6 +77,7 @@ const Menu = props => {
     }
   `
 
+  console.log(data)
   const SubMenu = data => {
     return (
       <Grid

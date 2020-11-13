@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React, { useState } from "react"
 import { css, jsx } from "@emotion/core"
-import { Button, Flex, Heading, Text, useToast } from "@chakra-ui/core"
+import { Button, Flex, Heading, Text, useToast } from "@chakra-ui/react"
 import { useShoppingCart } from "use-shopping-cart"
 
 const MenuItem = ({ heading, price, children, product }) => {

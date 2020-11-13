@@ -1,6 +1,6 @@
 import React from "react"
 import Layout, { Section, Container } from "../components/Layout"
-import { Flex, Heading, Text } from "@chakra-ui/core"
+import { Flex, Heading, Text } from "@chakra-ui/react"
 
 const Success = () => {
   return (

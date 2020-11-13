@@ -1,5 +1,5 @@
 import React from "react"
-import { theme } from "@chakra-ui/core"
+import { theme } from "@chakra-ui/react"
 
 const customIcons = {
   shop: {

@@ -22,6 +22,7 @@ const Cart = () => {
     removeItem,
     cartCount,
     cartDetails,
+    clearCart,
     totalPrice,
     redirectToCheckout,
   } = useShoppingCart()
@@ -44,6 +45,7 @@ const Cart = () => {
       .catch(error => console.log(error))
 
     redirectToCheckout({ sessionId: response.sessionId })
+    clearCart()
   }
 
   return (

@@ -52,7 +52,6 @@ const Menu = props => {
     ({ node }) => node.product.metadata.menu === "to-go"
   )
 
-  console.log(data)
   const SubMenu = data => {
     return (
       <Grid

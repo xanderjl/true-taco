@@ -1,9 +1,11 @@
 const stripe = require("stripe")(process.env.GATSBY_STRIPE_API_SECRET)
 
 exports.handler = async ({ body }) => {
+  const { cart, metadata } = JSON.parse(body)
+
   try {
     const line_items = []
-    const raw_items = Object.values(JSON.parse(body))
+    const raw_items = Object.values(cart)
 
     raw_items.map(item => {
       const new_item = {
@@ -23,6 +25,7 @@ exports.handler = async ({ body }) => {
       cancel_url: process.env.GATSBY_PRODUCTION_URL,
       mode: "payment",
       line_items,
+      metadata,
     })
 
     return {

@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
-import { Box, Flex, Icon, Image } from "@chakra-ui/react"
+import { Box, Flex, Image } from "@chakra-ui/react"
 import { BrownBagIcon } from "./Icons"
 import NavbarItem from "../components/NavbarItem"
 import { Container } from "../components/Layout"

@@ -9,7 +9,7 @@ exports.handler = async ({ body, headers }) => {
     )
 
     if (stripeEvent.type === "checkout.session.completed") {
-      
+      console.log(body)
     }
 
     return {

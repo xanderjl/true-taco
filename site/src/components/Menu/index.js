@@ -1,9 +1,7 @@
-/** @jsx jsx */
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import BlockContent from "@sanity/block-content-to-react"
-import { Box, Grid, Heading, Text, Flex } from "@chakra-ui/react"
-import { css, jsx } from "@emotion/core"
+import { Box, Grid, Heading, Flex } from "@chakra-ui/react"
 import { Container } from "../Layout"
 import MenuItem from "./MenuItem"
 import OrderButton from "./OrderButton"
@@ -45,37 +43,14 @@ const Menu = props => {
   const { isOpen, heading, _rawBody } = data.sanityMenu
 
   const lunchMenu = products.filter(
-    ({ node: node }) => node.product.metadata.menu === "lunch"
+    ({ node }) => node.product.metadata.menu === "lunch"
   )
   const breakfastMenu = products.filter(
-    ({ node: node }) => node.product.metadata.menu === "breakfast"
+    ({ node }) => node.product.metadata.menu === "breakfast"
   )
   const toGoMenu = products.filter(
-    ({ node: node }) => node.product.metadata.menu === "to-go"
+    ({ node }) => node.product.metadata.menu === "to-go"
   )
-
-  const frills = css`
-    &::before {
-      overflow-x: hidden;
-      position: absolute;
-      top: -22px;
-      width: 100%;
-      height: 25px;
-      content: "";
-      background-repeat: repeat;
-      background: url(${FrillsTop});
-    }
-
-    &::after {
-      overflow-x: hidden;
-      position: absolute;
-      bottom: -22px;
-      width: 100%;
-      height: 22px;
-      content: "";
-      background: url(${FrillsBottom});
-    }
-  `
 
   console.log(data)
   const SubMenu = data => {
@@ -87,7 +62,7 @@ const Menu = props => {
         gridTemplateRows="auto"
         gridTemplateColumns={["minmax(0, 1fr)", "repeat(2, 1fr)"]}
       >
-        {data.data.map(({ node: node }) => {
+        {data.data.map(({ node }) => {
           const { name, description, images } = node.product
 
           return (
@@ -113,7 +88,29 @@ const Menu = props => {
   }
 
   return (
-    <Box position="relative" css={frills} bg="black">
+    <Box
+      position="relative"
+      bg="black"
+      _before={{
+        overflowX: "hidden",
+        position: "absolute",
+        top: "-22px",
+        width: "100%",
+        height: "25px",
+        content: `""`,
+        backgroundRepeat: "repeat",
+        background: `url(${FrillsTop})`,
+      }}
+      _after={{
+        overflowX: "hidden",
+        position: "absolute",
+        bottom: "-22px",
+        width: "100%",
+        height: "22px",
+        content: `""`,
+        background: `url(${FrillsBottom})`,
+      }}
+    >
       <Container maxW="5xl" m="0 auto" {...props}>
         <Heading
           as="h1"

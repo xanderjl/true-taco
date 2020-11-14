@@ -54,7 +54,7 @@ const ContactForm = ({ color, inputColor, buttonColor }) => {
       )
   }
 
-  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
   const inputStyles = css`
     &::placeholder {
@@ -145,7 +145,7 @@ const ContactForm = ({ color, inputColor, buttonColor }) => {
         )}
       </FormControl>
       <Box pt="12px">
-        <Button colorScheme={buttonColor} type="submit">
+        <Button colorScheme={buttonColor} type="submit" borderRadius="2px">
           Submit
         </Button>
       </Box>

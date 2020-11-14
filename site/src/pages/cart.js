@@ -1,5 +1,4 @@
-/** @jsx jsx */
-import React from "react"
+import React, { useState } from "react"
 import Layout, { Container, Section } from "../components/Layout"
 import {
   Text,
@@ -11,11 +10,12 @@ import {
   Heading,
   Textarea,
 } from "@chakra-ui/react"
-import { css, jsx } from "@emotion/core"
 import { useShoppingCart } from "use-shopping-cart"
 import bottomFrills from "../images/frills/bottom-white.svg"
 
 const Cart = () => {
+  const [notes, setNotes] = useState()
+
   const {
     incrementItem,
     decrementItem,
@@ -28,19 +28,6 @@ const Cart = () => {
 
   const cartItems = Object.values(cartDetails)
 
-  const ziggies = css`
-    &::after {
-      width: calc(100% + 5rem);
-      height: 22px;
-      content: "";
-      display: block;
-      position: relative;
-      bottom: calc(-5rem + 13px);
-      left: calc(-2.5rem);
-      background-image: url(${bottomFrills});
-    }
-  `
-
   const handleSubmit = async event => {
     event.preventDefault()
 
@@ -49,7 +36,7 @@ const Cart = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(cartDetails),
+      body: JSON.stringify({ cart: cartDetails, metadata: { notes } }),
     })
       .then(res => {
         return res.json()
@@ -60,15 +47,24 @@ const Cart = () => {
   }
 
   return (
-    <Layout title="Cart" bg="gray.50">
+    <Layout title="Cart" bg="gray.100">
       <Container>
         <Section
-          css={ziggies}
           maxW="960px"
           m={[0, "0 auto", "5rem auto"]}
           mb={{ sm: "5rem" }}
           p={["3rem 1.25rem", "3rem 2.5rem"]}
           bg="white"
+          _after={{
+            width: "calc(100% + 5rem)",
+            height: "22px",
+            content: `""`,
+            display: "block",
+            position: "relative",
+            bottom: "calc(-5rem + 10px)",
+            left: "calc(-2.5rem)",
+            backgroundImage: `url(${bottomFrills})`,
+          }}
         >
           {cartCount > 0 ? (
             cartItems.map((item, i) => {
@@ -141,28 +137,6 @@ const Cart = () => {
                     </Flex>
                   </Grid>
                   <Divider mb="2rem" borderColor="gray.200" />
-                  <Heading
-                    as="h3"
-                    size="md"
-                    fontWeight="bold"
-                    fontFamily="body"
-                  >
-                    Notes:
-                  </Heading>
-                  <Heading
-                    as="h4"
-                    mb="1.25rem"
-                    size="sm"
-                    fontFamily="body"
-                    color="gray.700"
-                  >
-                    Alergies, substitutions, etc.
-                  </Heading>
-                  <Textarea
-                    rows={10}
-                    borderRadius="2px"
-                    placeholder="Can I substitute the tortilla for a lettuce wrap?"
-                  />
                 </Box>
               )
             })
@@ -175,6 +149,27 @@ const Cart = () => {
           )}
           {cartCount > 0 && (
             <Box>
+              <Heading as="h3" size="md" fontWeight="bold" fontFamily="body">
+                Notes:
+              </Heading>
+              <Heading
+                as="h4"
+                mb="1.25rem"
+                size="sm"
+                fontFamily="body"
+                color="gray.700"
+              >
+                Alergies, substitutions, etc.
+              </Heading>
+              <Textarea
+                rows={10}
+                borderRadius="2px"
+                placeholder="Can I substitute the tortilla for a lettuce wrap?"
+                value={notes}
+                onChange={e => {
+                  setNotes(e.target.value)
+                }}
+              />
               <Flex
                 p="2rem 0 1rem 0"
                 justify="flex-end"

@@ -50,9 +50,7 @@ const MenuItem = ({ heading, price, children, product }) => {
             Õ{price}Ô
           </Heading>
         </Flex>
-        <Text maxW="75%" fontSize="lg" color="white">
-          {children}
-        </Text>
+        {children}
       </Flex>
       <Flex pt="3rem" justify={["space-between", "flex-end"]}>
         <Flex>

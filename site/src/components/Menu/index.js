@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import BlockContent from "@sanity/block-content-to-react"
-import { Box, Grid, Heading, Flex } from "@chakra-ui/react"
+import { Box, Grid, Heading, Text, Flex, Select } from "@chakra-ui/react"
 import { Container } from "../Layout"
 import MenuItem from "./MenuItem"
 import OrderButton from "./OrderButton"
@@ -16,7 +16,7 @@ const Menu = props => {
         heading
         _rawBody
       }
-      allStripePrice(filter: { product: { active: { eq: true } } }) {
+      allStripePrice(filter: { active: { eq: true } }) {
         edges {
           node {
             product {
@@ -28,6 +28,7 @@ const Menu = props => {
               description
               metadata {
                 menu
+                options
               }
             }
             unit_amount
@@ -52,6 +53,10 @@ const Menu = props => {
     ({ node }) => node.product.metadata.menu === "to-go"
   )
 
+  const extrasMenu = products.filter(
+    ({ node }) => node.product.metadata.menu === "extras"
+  )
+
   const SubMenu = data => {
     return (
       <Grid
@@ -62,7 +67,7 @@ const Menu = props => {
         gridTemplateColumns={["minmax(0, 1fr)", "repeat(2, 1fr)"]}
       >
         {data.data.map(({ node }) => {
-          const { name, description, images } = node.product
+          const { name, description, images, metadata } = node.product
 
           return (
             <MenuItem
@@ -78,7 +83,24 @@ const Menu = props => {
                 description,
               }}
             >
-              {description}
+              <Text maxW="75%" fontSize="lg" color="white">
+                {description}
+              </Text>
+              {metadata?.options && (
+                <Select
+                  size="sm"
+                  variant="filled"
+                  maxW="max-content"
+                  mt="1rem"
+                  color="black"
+                >
+                  {metadata?.options.split(", ").map((item, i) => (
+                    <option key={i} value={`Option ${i}`}>
+                      {item}
+                    </option>
+                  ))}
+                </Select>
+              )}
             </MenuItem>
           )
         })}
@@ -157,6 +179,17 @@ const Menu = props => {
               To Go
             </Heading>
             <SubMenu data={toGoMenu} />
+            <Heading
+              as="h2"
+              size="3xl"
+              mb="3rem"
+              color="white"
+              fontWeight="400"
+              textDecor="underline"
+            >
+              Extras
+            </Heading>
+            <SubMenu data={extrasMenu} />
             <OrderButton w="6rem" h="auto" />
           </Box>
         ) : (

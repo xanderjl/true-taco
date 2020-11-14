@@ -14,10 +14,10 @@ const Success = () => {
             align="center"
             justify="center"
           >
-            <Heading fontWeight="400" fontSize="6xl">
+            <Heading size="4xl" fontWeight="400">
               Thank you
             </Heading>
-            <Text textAlign="center" fontSize="2xl">
+            <Text textAlign="center" fontSize="xl">
               An email copy of your receipt should have been sent to your inbox
             </Text>
           </Flex>

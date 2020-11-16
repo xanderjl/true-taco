@@ -1,6 +1,8 @@
 const stripe = require("stripe")(process.env.GATSBY_STRIPE_API_SECRET)
 
 exports.handler = async ({ body, headers }) => {
+  console.log("env:::   ", process.env)
+  console.log("body:::    " + body)
   try {
     const stripeEvent = stripe.webhooks.constructEvent(
       body,

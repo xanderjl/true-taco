@@ -16,24 +16,48 @@ const Menu = props => {
         heading
         _rawBody
       }
+      # Previous query
+      # allStripePrice(filter: { active: { eq: true } }) {
+      #   edges {
+      #     node {
+      #       product {
+      #         id
+      #         images
+      #         name
+      #         type
+      #         active
+      #         description
+      #         metadata {
+      #           menu
+      #           options
+      #         }
+      #       }
+      #       unit_amount
+      #       id
+      #       currency
+      #     }
+      #   }
+      # }
       allStripePrice(filter: { active: { eq: true } }) {
-        edges {
-          node {
-            product {
-              id
-              images
-              name
-              type
-              active
-              description
-              metadata {
-                menu
-                options
+        group(field: product___id) {
+          edges {
+            node {
+              product {
+                id
+                images
+                name
+                type
+                active
+                description
+                metadata {
+                  menu
+                  options
+                }
               }
+              unit_amount
+              id
+              currency
             }
-            unit_amount
-            id
-            currency
           }
         }
       }

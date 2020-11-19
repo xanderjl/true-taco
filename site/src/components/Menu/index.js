@@ -94,8 +94,49 @@ const Menu = props => {
         gridTemplateRows="auto"
         gridTemplateColumns={["minmax(0, 1fr)", "repeat(2, 1fr)"]}
       >
-        {menu.data.map(({ edges }) =>
-          edges.map(({ node }) => {
+        {menu.data.map(({ edges }) => {
+          if (edges.length > 1) {
+            return edges.map(({ node }) => {
+              const { name, description, images, metadata } = node.product
+
+              return (
+                <MenuItem
+                  key={node.id}
+                  heading={name}
+                  price={node.unit_amount / 100}
+                  product={{
+                    name,
+                    sku: node.id,
+                    price: node.unit_amount,
+                    image: images[0],
+                    currency: node.currency,
+                    description,
+                  }}
+                >
+                  <Text maxW="75%" fontSize="lg" color="white">
+                    {description}
+                  </Text>
+                  {metadata?.options && (
+                    <Select
+                      size="sm"
+                      variant="filled"
+                      maxW="max-content"
+                      mt="1rem"
+                      color="black"
+                    >
+                      {metadata?.options.split(", ").map((item, i) => (
+                        <option key={i} value={`Option ${i}`}>
+                          {item}
+                        </option>
+                      ))}
+                    </Select>
+                  )}
+                </MenuItem>
+              )
+            })
+          }
+
+          return edges.map(({ node }) => {
             const { name, description, images, metadata } = node.product
 
             return (
@@ -133,59 +174,10 @@ const Menu = props => {
               </MenuItem>
             )
           })
-        )}
+        })}
       </Grid>
     )
   }
-  //   return (
-  //     <Grid
-  //       mb="6rem"
-  //       rowGap={{ base: "3rem", md: "5rem" }}
-  //       columnGap={{ base: "3rem", md: "5rem" }}
-  //       gridTemplateRows="auto"
-  //       gridTemplateColumns={["minmax(0, 1fr)", "repeat(2, 1fr)"]}
-  //     >
-  //       {data.data.edges.map(({ node }) => {
-  //         const { name, description, images, metadata } = node.product
-
-  //         return (
-  //           <MenuItem
-  //             key={node.id}
-  //             heading={name}
-  //             price={node.unit_amount / 100}
-  //             product={{
-  //               name,
-  //               sku: node.id,
-  //               price: node.unit_amount,
-  //               image: images[0],
-  //               currency: node.currency,
-  //               description,
-  //             }}
-  //           >
-  //             <Text maxW="75%" fontSize="lg" color="white">
-  //               {description}
-  //             </Text>
-  //             {metadata?.options && (
-  //               <Select
-  //                 size="sm"
-  //                 variant="filled"
-  //                 maxW="max-content"
-  //                 mt="1rem"
-  //                 color="black"
-  //               >
-  //                 {metadata?.options.split(", ").map((item, i) => (
-  //                   <option key={i} value={`Option ${i}`}>
-  //                     {item}
-  //                   </option>
-  //                 ))}
-  //               </Select>
-  //             )}
-  //           </MenuItem>
-  //         )
-  //       })}
-  //     </Grid>
-  //   )
-  // }
 
   return (
     <Box

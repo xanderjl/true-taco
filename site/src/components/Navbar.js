@@ -49,6 +49,7 @@ const Navbar = () => {
             >
               <NavbarItem href="/">Home</NavbarItem>
               <NavbarItem href="/catering">Catering</NavbarItem>
+              <NavbarItem href="/about">About</NavbarItem>
             </Flex>
             {data.sanityMenu.isOpen && (
               <NavbarItem href="/cart" display={["none", "flex"]}>

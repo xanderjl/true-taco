@@ -1,9 +1,10 @@
 import S from "@sanity/desk-tool/structure-builder"
 import { GrClipboard } from "react-icons/gr"
 import { GiKnifeFork } from "react-icons/gi"
+import { AiOutlineInfoCircle } from "react-icons/ai"
 
 const hiddenDocTypes = (listItems) =>
-  !["menu", "catering"].includes(listItems.getId())
+  !["menu", "catering", "about"].includes(listItems.getId())
 
 export default () =>
   S.list()
@@ -23,6 +24,15 @@ export default () =>
             .id("catering")
             .schemaType("catering")
             .documentId("singletonCatering")
+        ),
+      S.listItem()
+        .title("About")
+        .icon(AiOutlineInfoCircle)
+        .child(
+          S.editor()
+            .id("about")
+            .schemaType("about")
+            .documentId("singletonAbout")
         ),
       ...S.documentTypeListItems().filter(hiddenDocTypes),
     ])

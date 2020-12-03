@@ -74,7 +74,10 @@ const Cart = () => {
               return (
                 <Box key={i} color="black">
                   <Grid
-                    templateColumns={["minmax(0, 1fr)", "repeat(2, 1fr)"]}
+                    templateColumns={{
+                      base: "minmax(0, 1fr)",
+                      md: "repeat(2, 1fr)",
+                    }}
                     gap="2.5rem"
                     pb="2rem"
                   >
@@ -83,7 +86,9 @@ const Cart = () => {
                       justify="space-between"
                       fontSize={["lg", "xl"]}
                     >
-                      <Text as="span">{name}</Text>
+                      <Text as="span" textTransform="capitalize">
+                        {name}
+                      </Text>
                       <Flex>
                         <Box p="0 1rem">
                           <Button

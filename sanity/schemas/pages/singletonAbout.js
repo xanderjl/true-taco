@@ -9,6 +9,11 @@ export default {
       type: "string",
     },
     {
+      name: "heading",
+      title: "Heading",
+      type: "string",
+    },
+    {
       name: "body",
       title: "Body Copy",
       type: "array",

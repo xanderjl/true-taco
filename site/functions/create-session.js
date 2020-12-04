@@ -1,7 +1,7 @@
 const stripe = require("stripe")(process.env.GATSBY_STRIPE_API_SECRET)
 
 exports.handler = async ({ body }) => {
-  const { cart, metadata } = JSON.parse(body)
+  const { cart, metadata, amount_subtotal } = JSON.parse(body)
 
   try {
     const line_items = []
@@ -11,6 +11,7 @@ exports.handler = async ({ body }) => {
       const new_item = {
         price: item.sku,
         quantity: item.quantity,
+        description: item.name,
       }
       line_items.push(new_item)
     })
@@ -26,6 +27,8 @@ exports.handler = async ({ body }) => {
       mode: "payment",
       line_items,
       metadata,
+      amount_subtotal,
+      amount_total: amount_subtotal * 1.13,
     })
 
     return {

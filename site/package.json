@@ -12,7 +12,6 @@
     "@emotion/react": "^11.0.0",
     "@emotion/styled": "^11.0.0",
     "@sanity/block-content-to-react": "^2.0.7",
-    "@stripe/react-stripe-js": "^1.1.2",
     "@stripe/stripe-js": "^1.9.0",
     "dotenv": "^8.2.0",
     "emotion-theming": "^10.0.27",
@@ -34,6 +33,7 @@
     "react-helmet": "^6.1.0",
     "react-hook-form": "^6.8.6",
     "react-icons": "^3.11.0",
+    "stripe": "^8.127.0",
     "use-shopping-cart": "^2.1.0"
   },
   "devDependencies": {

@@ -37,7 +37,11 @@ const Cart = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ cart: cartDetails, metadata: { notes } }),
+      body: JSON.stringify({
+        cart: cartDetails,
+        metadata: { notes },
+        amount_subtotal: totalPrice,
+      }),
     })
       .then(res => {
         return res.json()
@@ -45,7 +49,7 @@ const Cart = () => {
       .catch(error => console.log(error))
 
     redirectToCheckout({ sessionId: response.sessionId })
-    clearCart()
+    // clearCart()
   }
 
   return (

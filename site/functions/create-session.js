@@ -7,8 +7,6 @@ exports.handler = async ({ body }) => {
     const line_items = []
     const raw_items = Object.values(cart)
 
-    console.log(subtotal)
-
     raw_items.map(item => {
       const new_item = {
         price: item.sku,

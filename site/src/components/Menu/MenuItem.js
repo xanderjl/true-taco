@@ -52,7 +52,7 @@ const MenuItem = ({ heading, price, children, product }) => {
         </Flex>
         {children}
       </Flex>
-      <Flex pt="3rem" justify={["space-between", "flex-end"]}>
+      <Flex pt="3rem" justify={["space-between", "flex-start"]}>
         <Flex>
           <Button
             variant="ghost"

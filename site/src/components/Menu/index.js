@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import BlockContent from "@sanity/block-content-to-react"
-import { Box, Grid, Heading, Text, Flex, Select } from "@chakra-ui/react"
+import { Box, Grid, Heading, Text, Flex, Select, Stack } from "@chakra-ui/react"
 import { Container } from "../Layout"
 import MenuItem from "./MenuItem"
 import OrderButton from "./OrderButton"
@@ -70,13 +70,7 @@ const Menu = props => {
 
   const SubMenu = menu => {
     return (
-      <Grid
-        mb="6rem"
-        rowGap={{ base: "3rem", md: "5rem" }}
-        columnGap={{ base: "3rem", md: "5rem" }}
-        gridTemplateRows="auto"
-        gridTemplateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, 1fr)" }}
-      >
+      <Stack mb="6rem" spacing="2rem">
         {menu.data.map(({ edges }, i) => {
           // If there are multiple options for item
           if (edges.length > 1) {
@@ -100,11 +94,17 @@ const Menu = props => {
                   description,
                 }}
               >
-                <Text maxW="75%" fontSize="lg" color="white">
+                <Text fontSize="lg" color="white">
                   {description}
                 </Text>
                 {metadata?.options && (
-                  <Select size="sm" variant="flushed" mt="1rem" fontSize="lg" color="white">
+                  <Select
+                    size="sm"
+                    variant="flushed"
+                    mt="1rem"
+                    fontSize="lg"
+                    color="white"
+                  >
                     {metadata?.options.split(", ").map((item, i) => (
                       <Text
                         as="option"
@@ -121,7 +121,7 @@ const Menu = props => {
             )
           })
         })}
-      </Grid>
+      </Stack>
     )
   }
 

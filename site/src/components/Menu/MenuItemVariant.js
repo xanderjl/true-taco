@@ -39,7 +39,7 @@ const MenuItemVariant = ({ variants }) => {
   return (
     <Flex direction="column" justify="space-between">
       <Flex direction="column">
-        <Flex>
+        <Flex justify="space-between">
           <Image
             src={product.image}
             w="150px"
@@ -49,9 +49,7 @@ const MenuItemVariant = ({ variants }) => {
           />
           <Flex
             direction="column"
-            maxW="40em"
             overflow="hidden"
-            alignItems="flex-end"
             justifyContent="space-between"
           >
             <Heading
@@ -105,7 +103,7 @@ const MenuItemVariant = ({ variants }) => {
           })}
         </Select>
       </Flex>
-      <Flex pt="3rem" justify={["space-between", "flex-end"]}>
+      <Flex pt="3rem" justify={["space-between", "flex-start"]}>
         <Flex>
           <Button
             variant="ghost"

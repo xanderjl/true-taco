@@ -40,7 +40,7 @@ const Cart = () => {
       body: JSON.stringify({
         cart: cartDetails,
         metadata: { notes },
-        amount_subtotal: totalPrice,
+        subtotal: totalPrice,
       }),
     })
       .then(res => {
@@ -49,7 +49,7 @@ const Cart = () => {
       .catch(error => console.log(error))
 
     redirectToCheckout({ sessionId: response.sessionId })
-    // clearCart()
+    clearCart()
   }
 
   return (

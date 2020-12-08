@@ -37,7 +37,7 @@ const Home = () => {
           </Heading>
         </Container>
       </Box>
-      <Menu p="8rem 1.25rem" m="auto" />
+      <Menu maxW="85ch" p="8rem 1.25rem" m="auto" />
     </Layout>
   )
 }

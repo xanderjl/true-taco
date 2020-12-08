@@ -27,6 +27,10 @@ const Cart = () => {
     redirectToCheckout,
   } = useShoppingCart()
 
+  const subtotal = totalPrice / 100
+  const hst = subtotal * 0.13
+  const total = subtotal + hst
+
   const cartItems = Object.values(cartDetails)
 
   const handleSubmit = async event => {
@@ -183,11 +187,13 @@ const Cart = () => {
               />
               <Flex
                 p="2rem 0 1rem 0"
-                justify="flex-end"
-                align="center"
+                direction="column"
+                align="flex-end"
                 fontSize={["lg", "xl"]}
               >
-                <Text>Cart Total: ${totalPrice / 100}</Text>
+                <Text>Subtotal: ${subtotal}</Text>
+                <Text>HST: ${hst.toFixed(2)}</Text>
+                <Text fontWeight={600}>Total: ${total.toFixed(2)}</Text>
               </Flex>
               <Flex justify="flex-end">
                 <Button

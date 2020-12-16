@@ -7,12 +7,13 @@ import {
   Heading,
   Text,
   Select,
-  Image,
   useToast,
+  useDisclosure,
 } from "@chakra-ui/react"
 import { useShoppingCart } from "use-shopping-cart"
+import ImageModal from "./ImageModal"
 
-const MenuItemVariant = ({ variants }) => {
+const MenuItemVariant = ({ variants, metadata }) => {
   const { addItem } = useShoppingCart()
   const [quantity, setQuantity] = useState(1)
   const [variant, setVariant] = useState(variants[0].node)
@@ -36,53 +37,64 @@ const MenuItemVariant = ({ variants }) => {
     description: variant.product.description,
   }
 
+  const itemFillings = metadata?.fillings && metadata.fillings.split(", ")
+
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
   return (
     <Flex direction="column" justify="space-between">
       <Flex direction="column">
-        <Flex justify="space-between">
-          <Image
-            src={product.image}
-            w="150px"
-            h="150px"
-            objectFit="cover"
-            objectPosition="center"
-          />
-          <Flex
-            direction="column"
-            overflow="hidden"
-            justifyContent="space-between"
+        <Flex overflow="hidden" justify="space-between">
+          <Heading
+            css={dotLeaders}
+            as="h2"
+            size="2xl"
+            color="white"
+            fontWeight="400"
           >
-            <Heading
-              css={dotLeaders}
-              as="h2"
-              size="2xl"
-              color="white"
-              fontWeight="400"
-            >
-              {product.name}
-            </Heading>
-            <Heading
-              as="h2"
-              size="xl"
-              d="inline-block"
-              pl="1.5rem"
-              bg="black"
-              color="white"
-              fontFamily="banner"
-              fontWeight="400"
-            >
-              Õ{product.price / 100}Ô
-            </Heading>
-            <Text maxW="75%" mb="2rem" fontSize="lg" color="white">
-              {product.description}
-            </Text>
-          </Flex>
+            {product.name}
+          </Heading>
+          <Heading
+            as="h2"
+            size="xl"
+            d="inline-block"
+            pl="1.5rem"
+            bg="black"
+            color="white"
+            fontFamily="banner"
+            fontWeight="400"
+          >
+            Õ{product.price / 100}Ô
+          </Heading>
         </Flex>
+        <Text maxW="75%" mb="2rem" fontSize="lg" color="white">
+          {product.description}
+        </Text>
+        {product.image && (
+          <>
+            <Button
+              w="max-content"
+              mb="2rem"
+              size="sm"
+              colorScheme="red"
+              borderRadius={0}
+              onClick={onOpen}
+            >
+              Preview
+            </Button>
+            <ImageModal
+              image={product.image}
+              isOpen={isOpen}
+              onClose={onClose}
+            />
+          </>
+        )}
         <Heading size="lg" color="white">
           Options:
         </Heading>
         <Select
           variant="flushed"
+          mb="1rem"
           color="white"
           fontSize="lg"
           onChange={e => setVariant(JSON.parse(e.currentTarget.value))}
@@ -102,8 +114,43 @@ const MenuItemVariant = ({ variants }) => {
             )
           })}
         </Select>
+        {metadata?.options && (
+          <Select
+            size="sm"
+            variant="flushed"
+            mb="1rem"
+            fontSize="lg"
+            color="white"
+          >
+            {metadata?.options.split(", ").map((item, i) => (
+              <Text as="option" key={i} value={`Option ${i}`} color="black">
+                {item}
+              </Text>
+            ))}
+          </Select>
+        )}
+        {itemFillings && (
+          <>
+            <Heading size="lg" color="white">
+              Filling
+            </Heading>
+            <Select
+              size="sm"
+              variant="flushed"
+              mb="1rem"
+              fontSize="lg"
+              color="white"
+            >
+              {itemFillings.map((item, i) => (
+                <Text as="option" key={i} value={`Filling ${i}`} color="black">
+                  {item}
+                </Text>
+              ))}
+            </Select>
+          </>
+        )}
       </Flex>
-      <Flex pt="3rem" justify={["space-between", "flex-start"]}>
+      <Flex mt="1rem" justify={["space-between", "flex-start"]}>
         <Flex>
           <Button
             variant="ghost"
@@ -132,12 +179,11 @@ const MenuItemVariant = ({ variants }) => {
           </Button>
         </Flex>
         <Button
-          colorScheme="red"
+          colorScheme="green"
           w="max-content"
           ml="1rem"
           borderRadius={0}
           size="md"
-          color="black"
           onClick={e => {
             e.preventDefault()
             addItem(product, quantity)

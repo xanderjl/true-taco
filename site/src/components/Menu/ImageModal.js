@@ -12,7 +12,7 @@ const ImageModal = ({ image, isOpen, onClose }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay>
-        <ModalContent maxW="4xl" margin="3rem 1.25rem">
+        <ModalContent maxW="4xl" maxH="75vh" margin="3rem 1.25rem">
           <ModalCloseButton color="white" />
           <Image src={image} />
         </ModalContent>

@@ -1,10 +1,19 @@
 /** @jsx jsx */
 import React, { useState } from "react"
 import { css, jsx } from "@emotion/core"
-import { Button, Flex, Heading, Text, useToast } from "@chakra-ui/react"
+import {
+  Button,
+  Flex,
+  Heading,
+  Select,
+  Text,
+  useDisclosure,
+  useToast,
+} from "@chakra-ui/react"
 import { useShoppingCart } from "use-shopping-cart"
+import ImageModal from "./ImageModal"
 
-const MenuItem = ({ heading, price, children, product }) => {
+const MenuItem = ({ heading, price, children, product, metadata }) => {
   const { addItem } = useShoppingCart()
   const [quantity, setQuantity] = useState(1)
   const toast = useToast()
@@ -18,12 +27,14 @@ const MenuItem = ({ heading, price, children, product }) => {
       content: ". . . . . . . . . . . . . . . . . . . ";
     }
   `
+  const itemFillings = metadata?.fillings && metadata.fillings.split(", ")
+
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
     <Flex direction="column" justify="space-between">
       <Flex direction="column">
         <Flex
-          maxW="40em"
           overflow="hidden"
           alignItems="flex-end"
           justifyContent="space-between"
@@ -51,8 +62,62 @@ const MenuItem = ({ heading, price, children, product }) => {
           </Heading>
         </Flex>
         {children}
+        {product.image && (
+          <>
+            <Button
+              w="max-content"
+              mb="2rem"
+              size="sm"
+              colorScheme="red"
+              borderRadius={0}
+              onClick={onOpen}
+            >
+              Preview
+            </Button>
+            <ImageModal
+              image={product.image}
+              isOpen={isOpen}
+              onClose={onClose}
+            />
+          </>
+        )}
+        {metadata?.options && (
+          <Select
+            size="sm"
+            variant="flushed"
+            mb="1rem"
+            fontSize="lg"
+            color="white"
+          >
+            {metadata?.options.split(", ").map((item, i) => (
+              <Text as="option" key={i} value={`Option ${i}`} color="black">
+                {item}
+              </Text>
+            ))}
+          </Select>
+        )}
+        {itemFillings && (
+          <>
+            <Heading size="lg" color="white">
+              Filling
+            </Heading>
+            <Select
+              size="sm"
+              variant="flushed"
+              mb="1rem"
+              fontSize="lg"
+              color="white"
+            >
+              {itemFillings.map((item, i) => (
+                <Text as="option" key={i} value={`Filling ${i}`} color="black">
+                  {item}
+                </Text>
+              ))}
+            </Select>
+          </>
+        )}
       </Flex>
-      <Flex pt="3rem" justify={["space-between", "flex-start"]}>
+      <Flex justify={["space-between", "flex-start"]}>
         <Flex>
           <Button
             variant="ghost"
@@ -81,12 +146,11 @@ const MenuItem = ({ heading, price, children, product }) => {
           </Button>
         </Flex>
         <Button
-          colorScheme="red"
           w="max-content"
           ml="1rem"
+          colorScheme="green"
           borderRadius={0}
           size="md"
-          color="black"
           onClick={e => {
             e.preventDefault()
             addItem(product, quantity)

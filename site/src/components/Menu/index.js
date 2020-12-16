@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import BlockContent from "@sanity/block-content-to-react"
-import { Box, Grid, Heading, Text, Flex, Select, Stack } from "@chakra-ui/react"
+import { Box, Heading, Text, Flex, Stack } from "@chakra-ui/react"
 import { Container } from "../Layout"
 import MenuItem from "./MenuItem"
 import OrderButton from "./OrderButton"
@@ -31,6 +31,7 @@ const Menu = props => {
                 metadata {
                   menu
                   options
+                  fillings
                 }
               }
               unit_amount
@@ -38,7 +39,6 @@ const Menu = props => {
               currency
               metadata {
                 variant
-                fillings
               }
             }
           }
@@ -70,11 +70,17 @@ const Menu = props => {
 
   const SubMenu = menu => {
     return (
-      <Stack mb="6rem" spacing="2rem">
+      <Stack mb="6rem" spacing="5rem">
         {menu.data.map(({ edges }, i) => {
           // If there are multiple options for item
           if (edges.length > 1) {
-            return <MenuItemVariant key={i} variants={edges} />
+            return (
+              <MenuItemVariant
+                key={i}
+                variants={edges}
+                metadata={edges[0].node.product.metadata}
+              />
+            )
           }
 
           return edges.map(({ node }) => {
@@ -93,30 +99,11 @@ const Menu = props => {
                   currency: node.currency,
                   description,
                 }}
+                metadata={metadata}
               >
-                <Text fontSize="lg" color="white">
+                <Text mb="1rem" fontSize="lg" color="white">
                   {description}
                 </Text>
-                {metadata?.options && (
-                  <Select
-                    size="sm"
-                    variant="flushed"
-                    mt="1rem"
-                    fontSize="lg"
-                    color="white"
-                  >
-                    {metadata?.options.split(", ").map((item, i) => (
-                      <Text
-                        as="option"
-                        key={i}
-                        value={`Option ${i}`}
-                        color="black"
-                      >
-                        {item}
-                      </Text>
-                    ))}
-                  </Select>
-                )}
               </MenuItem>
             )
           })

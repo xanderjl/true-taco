@@ -22,7 +22,7 @@ exports.handler = async ({ body }) => {
         product_data: {
           name: "HST",
         },
-        unit_amount_decimal: subtotal * 0.13,
+        unit_amount_decimal: Math.ceil(subtotal * 0.13),
       },
       quantity: 1,
     }

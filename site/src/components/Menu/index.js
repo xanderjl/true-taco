@@ -1,13 +1,12 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import BlockContent from "@sanity/block-content-to-react"
-import { Box, Heading, Text, Flex, Stack } from "@chakra-ui/react"
+import { Box, Heading, Flex } from "@chakra-ui/react"
 import { Container } from "../Layout"
-import MenuItem from "./MenuItem"
 import OrderButton from "./OrderButton"
 import FrillsTop from "../../images/frills/top.svg"
 import FrillsBottom from "../../images/frills/bottom.svg"
-import MenuItemVariant from "./MenuItemVariant"
+import SubMenu from "./subMenu"
 
 const Menu = props => {
   const data = useStaticQuery(graphql`
@@ -68,50 +67,6 @@ const Menu = props => {
     product.edges.every(({ node }) => node.product.metadata.menu === "extras")
   )
 
-  const SubMenu = menu => {
-    return (
-      <Stack mb="6rem" spacing="5rem">
-        {menu.data.map(({ edges }, i) => {
-          // If there are multiple options for item
-          if (edges.length > 1) {
-            return (
-              <MenuItemVariant
-                key={i}
-                variants={edges}
-                metadata={edges[0].node.product.metadata}
-              />
-            )
-          }
-
-          return edges.map(({ node }) => {
-            const { name, description, images, metadata } = node.product
-
-            return (
-              <MenuItem
-                key={node.id}
-                heading={name}
-                price={node.unit_amount / 100}
-                product={{
-                  name,
-                  sku: node.id,
-                  price: node.unit_amount,
-                  image: images[0],
-                  currency: node.currency,
-                  description,
-                }}
-                metadata={metadata}
-              >
-                <Text mb="1rem" fontSize="lg" color="white">
-                  {description}
-                </Text>
-              </MenuItem>
-            )
-          })
-        })}
-      </Stack>
-    )
-  }
-
   return (
     <Box
       position="relative"
@@ -136,7 +91,7 @@ const Menu = props => {
         background: `url(${FrillsBottom})`,
       }}
     >
-      <Container maxW="5xl" m="0 auto" {...props}>
+      <Container {...props}>
         <Heading
           as="h1"
           size="4xl"

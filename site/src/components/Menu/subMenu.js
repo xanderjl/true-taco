@@ -1,5 +1,5 @@
 import React from "react"
-import { Grid, Stack, Text } from "@chakra-ui/react"
+import { Grid, Text } from "@chakra-ui/react"
 import MenuItemVariant from "./MenuItemVariant"
 import MenuItem from "./MenuItem"
 

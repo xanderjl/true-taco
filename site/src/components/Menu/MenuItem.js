@@ -16,6 +16,8 @@ import ImageModal from "./ImageModal"
 const MenuItem = ({ heading, price, children, product, metadata }) => {
   const { addItem } = useShoppingCart()
   const [quantity, setQuantity] = useState(1)
+  const itemFillings = metadata?.fillings && metadata.fillings.split(", ")
+  const [filling, setFilling] = useState(itemFillings && itemFillings[0])
   const toast = useToast()
 
   const dotLeaders = css`
@@ -27,7 +29,6 @@ const MenuItem = ({ heading, price, children, product, metadata }) => {
       content: ". . . . . . . . . . . . . . . . . . . ";
     }
   `
-  const itemFillings = metadata?.fillings && metadata.fillings.split(", ")
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -90,7 +91,7 @@ const MenuItem = ({ heading, price, children, product, metadata }) => {
             color="white"
           >
             {metadata?.options.split(", ").map((item, i) => (
-              <Text as="option" key={i} value={`Option ${i}`} color="black">
+              <Text as="option" key={i} value={item} color="black">
                 {item}
               </Text>
             ))}
@@ -107,12 +108,15 @@ const MenuItem = ({ heading, price, children, product, metadata }) => {
               mb="1rem"
               fontSize="lg"
               color="white"
+              onChange={e => setFilling(e.currentTarget.value)}
             >
-              {itemFillings.map((item, i) => (
-                <Text as="option" key={i} value={`Filling ${i}`} color="black">
-                  {item}
-                </Text>
-              ))}
+              {itemFillings.map((item, i) => {
+                return (
+                  <Text as="option" key={i} value={item} color="black">
+                    {item}
+                  </Text>
+                )
+              })}
             </Select>
           </>
         )}
@@ -153,6 +157,7 @@ const MenuItem = ({ heading, price, children, product, metadata }) => {
           size="md"
           onClick={e => {
             e.preventDefault()
+            product.product_data.metadata = { filling }
             addItem(product, quantity)
             toast({
               title: "Item added to cart.",

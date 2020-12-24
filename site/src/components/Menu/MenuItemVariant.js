@@ -16,6 +16,8 @@ import ImageModal from "./ImageModal"
 const MenuItemVariant = ({ variants, metadata }) => {
   const { addItem } = useShoppingCart()
   const [quantity, setQuantity] = useState(1)
+  const itemFillings = metadata?.fillings && metadata.fillings.split(", ")
+  const [filling, setFilling] = useState(itemFillings && itemFillings[0])
   const [variant, setVariant] = useState(variants[0].node)
   const toast = useToast()
 
@@ -36,8 +38,6 @@ const MenuItemVariant = ({ variants, metadata }) => {
     currency: variant.currency,
     description: variant.product.description,
   }
-
-  const itemFillings = metadata?.fillings && metadata.fillings.split(", ")
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -123,7 +123,7 @@ const MenuItemVariant = ({ variants, metadata }) => {
             color="white"
           >
             {metadata?.options.split(", ").map((item, i) => (
-              <Text as="option" key={i} value={`Option ${i}`} color="black">
+              <Text as="option" key={i} value={item} color="black">
                 {item}
               </Text>
             ))}
@@ -142,7 +142,7 @@ const MenuItemVariant = ({ variants, metadata }) => {
               color="white"
             >
               {itemFillings.map((item, i) => (
-                <Text as="option" key={i} value={`Filling ${i}`} color="black">
+                <Text as="option" key={i} value={item} color="black">
                   {item}
                 </Text>
               ))}
@@ -186,6 +186,7 @@ const MenuItemVariant = ({ variants, metadata }) => {
           size="md"
           onClick={e => {
             e.preventDefault()
+            product.product_data.metadata = { filling }
             addItem(product, quantity)
             toast({
               title: "Item added to cart.",

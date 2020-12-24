@@ -32,6 +32,7 @@ const Cart = () => {
   const total = subtotal + hst
 
   const cartItems = Object.values(cartDetails)
+  cartItems <= 1 && clearCart() // Clear cart of HST line if revisiting site
 
   const handleSubmit = async event => {
     event.preventDefault()

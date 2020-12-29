@@ -1,4 +1,8 @@
 const stripe = require("stripe")(process.env.GATSBY_STRIPE_API_SECRET)
+const mailgun = require("mailgun-js")({
+  apiKey: process.env.MAILGUN_API_KEY,
+  domain: process.env.MAILGUN_DOMAIN,
+})
 
 exports.handler = async ({ body, headers }) => {
   try {
@@ -10,6 +14,9 @@ exports.handler = async ({ body, headers }) => {
 
     if (stripeEvent.type === "checkout.session.completed") {
       console.log(body)
+      // 1. Take session data and plant them in email template
+      // 2. Send email "chit" to jo@truetacolondon.com
+      // 3. Subtract line items from inventory of products in Sanity
     }
 
     return {

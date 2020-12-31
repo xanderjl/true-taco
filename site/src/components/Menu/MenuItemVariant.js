@@ -37,6 +37,7 @@ const MenuItemVariant = ({ variants, metadata }) => {
     image: variant.product.images[0],
     currency: variant.currency,
     description: variant.product.description,
+    product_data: {},
   }
 
   const { isOpen, onOpen, onClose } = useDisclosure()

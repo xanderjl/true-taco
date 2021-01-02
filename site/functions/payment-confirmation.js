@@ -20,22 +20,43 @@ exports.handler = async ({ body, headers }) => {
       )
       console.log(JSON.parse(body, null, 2))
 
+      // 2. Send email "chit" to jo@truetacolondon.com
       const data = {
-        from: "Chit Bot <postmaster@sandbox7f002a272f1e4364ad016df5c6b3e403.mailgun.org>",
+        from:
+          "Chit Bot <postmaster@sandbox7f002a272f1e4364ad016df5c6b3e403.mailgun.org>",
         to: "alexanderjameslow@gmail.com",
         subject: `Chit for ${
           session?.shipping?.name || "dumdum who didn't supply an email >:("
         }`,
-        template: "test",
-        "h:X-Mailgun-Variables": { test: "test" },
+        html: `
+          <html>
+            <body>
+              <h1>Customer: ${session?.shipping.name}</h1>
+              <ul>
+                <li>City: ${session?.shipping.address.city}</li>
+                <li>Country: ${session?.shipping.address.country}</li>
+                <li>Line 1: ${session?.shipping.address.line1}</li>
+                <li>Line 2: ${session?.shipping.address.line2}</li>
+                <li>Postal Code: ${session?.shipping.address.postal_code}</li>
+                <li>Province: ${session?.shipping.address.state}</li>
+              </ul>
+              <table>
+                ${session.line_items.data.map(
+                  item => `<tr>
+                    <td>Item: ${item.description}<td>
+                    <td>Quantity: ${item.quantity}<td>
+                  </tr>`
+                )}
+              </table>
+              <pre>${JSON.stringify(session, null, 2)}</pre>
+            </body>
+          </html>
+        `,
       }
 
       mailgun.messages().send(data, (err, body) => {
         console.log(body)
       })
-
-      // 1. Take session data and plant them in email template
-      // 2. Send email "chit" to jo@truetacolondon.com
       // 3. Subtract line items from inventory of products in Sanity
     }
 

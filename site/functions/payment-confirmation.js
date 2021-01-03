@@ -16,8 +16,9 @@ exports.handler = async ({ body, headers }) => {
     if (stripeEvent.type === "checkout.session.completed") {
       const session = await stripe.checkout.sessions.retrieve(
         JSON.parse(body).data.object.id,
-        { expand: ["line_items"] }
+        { expand: ["line_items.data.price.product"] }
       )
+      const productName = async product => {}
       console.log(JSON.parse(body, null, 2))
 
       // 2. Send email "chit" to jo@truetacolondon.com
@@ -31,20 +32,35 @@ exports.handler = async ({ body, headers }) => {
         html: `
           <html>
             <body>
-              <h1>Customer: ${session?.shipping.name}</h1>
+              <h1>Customer: ${session?.shipping?.name}</h1>
               <ul>
-                <li>City: ${session?.shipping.address.city}</li>
-                <li>Country: ${session?.shipping.address.country}</li>
-                <li>Line 1: ${session?.shipping.address.line1}</li>
-                <li>Line 2: ${session?.shipping.address.line2}</li>
-                <li>Postal Code: ${session?.shipping.address.postal_code}</li>
-                <li>Province: ${session?.shipping.address.state}</li>
+                <li>City: ${session?.shipping?.address?.city}</li>
+                <li>Country: ${session?.shipping?.address?.country}</li>
+                <li>Line 1: ${session?.shipping?.address?.line1}</li>
+                <li>Line 2: ${session?.shipping?.address?.line2}</li>
+                <li>Postal Code: ${session?.shipping?.address?.postal_code}</li>
+                <li>Province: ${session?.shipping?.address?.state}</li>
               </ul>
+              <p>Notes: ${session?.metadata?.notes}</p>
               <table>
+              <tr>
+                <th>Item</th>
+                <th>Variant</th>
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Unit Amount</th>
+                <th>Amount Total</th>
+              </tr>
                 ${session.line_items.data.map(
                   item => `<tr>
-                    <td>Item: ${item.description}<td>
-                    <td>Quantity: ${item.quantity}<td>
+                    <td>${item.price.product.name}<td>
+                    <td>${
+                      item.price.metadata.variant && item.price.metadata.variant
+                    }<td>
+                    <td>${item.description}<td>
+                    <td>${item.quantity}<td>
+                    <td>${item.price.unit_amount / 100}<td>
+                    <td>${item.amount_total / 100}<td>
                   </tr>`
                 )}
               </table>

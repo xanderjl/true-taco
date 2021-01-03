@@ -109,13 +109,13 @@ const Footer = () => {
                     (226) 237-2573
                   </MotionListItem>
                 </MotionLink>
-                <MotionLink href="mailto:admin@truetaco.ca">
+                <MotionLink href="mailto:info@truetacolondon.com">
                   <MotionListItem
                     variants={listVariant}
                     whileHover="whileHover"
                   >
                     <ListIcon as={EmailIcon} />
-                    admin@truetaco.ca
+                    info@truetacolondon.com
                   </MotionListItem>
                 </MotionLink>
                 <MotionLink

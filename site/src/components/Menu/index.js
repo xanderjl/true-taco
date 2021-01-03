@@ -29,7 +29,6 @@ const Menu = props => {
                 description
                 metadata {
                   menu
-                  options
                   fillings
                 }
               }

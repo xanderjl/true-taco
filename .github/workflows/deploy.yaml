@@ -49,6 +49,11 @@ jobs:
           GATSBY_STRIPE_API_PUBLIC: ${{ secrets.GATSBY_STRIPE_API_PUBLIC }}
           GATSBY_STRIPE_API_SECRET: ${{ secrets.GATSBY_STRIPE_API_SECRET }}
           GATSBY_PRODUCTION_URL: ${{ secrets.GATSBY_PRODUCTION_URL }}
+          STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
+          MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
+          MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
+          MAILGUN_URL: ${{ secrets.MAILGUN_URL }}
+
         run: yarn workspace site build
 
       - name: Deploy to Netlify

@@ -12,6 +12,7 @@ exports.handler = async ({ body, headers }) => {
       headers["stripe-signature"],
       process.env.STRIPE_WEBHOOK_SECRET
     )
+    console.log(stripeEvent)
 
     if (stripeEvent.type === "checkout.session.completed") {
       const session = await stripe.checkout.sessions.retrieve(

@@ -5,27 +5,26 @@ import {
   Button,
   Box,
   Flex,
-  Grid,
-  Divider,
   Heading,
   Textarea,
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  TableCaption,
+  Stack,
+  Select,
+  useMediaQuery,
+  useTheme,
 } from "@chakra-ui/react"
 import { useShoppingCart } from "use-shopping-cart"
 import bottomFrills from "../images/frills/bottom-white.svg"
+import CartAccordion from "../components/Cart/CartAccordion"
 
 const Cart = () => {
   const [notes, setNotes] = useState()
+  const theme = useTheme()
+  const [isMobile] = useMediaQuery(`(max-width:${theme.breakpoints[1]})`)
 
   const {
     incrementItem,
     decrementItem,
+    setItemQuantity,
     removeItem,
     cartCount,
     cartDetails,
@@ -69,7 +68,7 @@ const Cart = () => {
       <Container>
         <Section
           maxW="960px"
-          m={[0, "0 auto", "5rem auto"]}
+          m={[0, "5rem auto", "5rem auto"]}
           mb={{ sm: "5rem" }}
           p={["3rem 1.25rem", "3rem 2.5rem"]}
           bg="white"
@@ -85,92 +84,76 @@ const Cart = () => {
           }}
         >
           {cartCount > 0 ? (
-            <Table variant="simple">
-              <Thead>
-                <Tr>
-                  <Th color="black" fontFamily="body">
-                    Item
-                  </Th>
-                  <Th color="black" fontFamily="body">
-                    Variant
-                  </Th>
-                  <Th color="black" fontFamily="body">
-                    Filling
-                  </Th>
-                  <Th color="black" fontFamily="body">
-                    Quantity
-                  </Th>
-                  <Th color="black" fontFamily="body">
-                    Subtotal
-                  </Th>
-                </Tr>
-              </Thead>
-              <Tbody>
-                {cartItems.map((item, i) => {
-                  const {
-                    name,
-                    sku,
-                    price_data,
-                    formattedValue,
-                    quantity,
-                  } = item
-                  console.log(item)
-                  return (
-                    <Tr>
-                      <Td>{name}</Td>
-                      <Td>{price_data?.metadata?.variant}</Td>
-                      <Td>{price_data?.metadata?.filling}</Td>
-                      <Td>
-                        <Flex alignItems="center">
-                          <Box p="0 1rem">
-                            <Button
-                              size="sm"
-                              p="0"
-                              color="white"
-                              bg="red.500"
-                              _hover={{ bg: "red.200" }}
-                              borderRadius="0"
-                              onClick={() => quantity > 1 && decrementItem(sku)}
-                            >
-                              -
-                            </Button>
-                          </Box>
-                          <Text as="span">{quantity}</Text>
-                          <Box p="0 0 0 1rem">
-                            <Button
-                              size="sm"
-                              p="0"
-                              color="white"
-                              bg="red.500"
-                              _hover={{ bg: "red.200" }}
-                              borderRadius="0"
-                              onClick={() => incrementItem(sku)}
-                            >
-                              +
-                            </Button>
-                            <Button
-                              size="sm"
-                              color="white"
-                              bg="red.500"
-                              _hover={{ bg: "red.200" }}
-                              borderRadius="0"
-                              onClick={() => removeItem(sku)}
-                            >
-                              {cartItems > 1 ? (
-                                <span>Remove Items</span>
-                              ) : (
-                                <span>Remove Item</span>
-                              )}
-                            </Button>
-                          </Box>
-                        </Flex>
-                      </Td>
-                      <Td>{formattedValue}</Td>
-                    </Tr>
-                  )
-                })}
-              </Tbody>
-            </Table>
+            cartItems.map((item, i) => {
+              const {
+                name,
+                sku,
+                description,
+                price_data,
+                formattedValue,
+                quantity,
+              } = item
+              const options = []
+              for (let quantity = 1; quantity <= 20; ++quantity)
+                options.push(<option value={quantity}>{quantity}</option>)
+
+              return (
+                <CartAccordion key={i} title={`${name} (${quantity})`}>
+                  <Stack direction="column" spacing="1rem">
+                    <Text color="gray.500">
+                      {description.slice(0, 120) +
+                        (description.length > 120 ? "..." : "")}
+                    </Text>
+                    {price_data?.metadata?.variant && (
+                      <Text>
+                        Variant:{" "}
+                        <Text as="span" color="gray.500">
+                          {price_data?.metadata?.variant}
+                        </Text>
+                      </Text>
+                    )}
+                    {price_data?.metadata?.filling && (
+                      <Text>
+                        Filling:{" "}
+                        <Text as="span" color="gray.500">
+                          {price_data?.metadata?.filling}
+                        </Text>
+                      </Text>
+                    )}
+                    <Flex justifyContent="space-between" alignItems="center">
+                      <Flex alignItems="center">
+                        <Text paddingRight="1rem">Quantity:</Text>
+                        <Select
+                          size="sm"
+                          maxW="max-content"
+                          defaultValue={quantity}
+                          onChange={e => setItemQuantity(sku, e.target.value)}
+                        >
+                          {options}
+                        </Select>
+                      </Flex>
+                      <Text marginLeft="1rem">{formattedValue}</Text>
+                    </Flex>
+                    <Button
+                      size="sm"
+                      maxW="max-content"
+                      color="white"
+                      bg="red.500"
+                      marginLeft="1rem"
+                      _hover={{ bg: "red.200" }}
+                      borderRadius="0"
+                      onClick={() => removeItem(sku)}
+                    >
+                      {cartItems > 1 ? (
+                        <span>Remove Items</span>
+                      ) : (
+                        <span>Remove Item</span>
+                      )}
+                    </Button>
+                  </Stack>
+                </CartAccordion>
+              )
+            })
           ) : (
             <Flex dir="column" align="center" justify="center">
               <Heading as="h1" size="4xl" fontWeight="400">
@@ -179,7 +162,7 @@ const Cart = () => {
             </Flex>
           )}
           {cartCount > 0 && (
-            <Box>
+            <Box marginTop="1rem">
               <Heading as="h3" size="md" fontWeight="bold" fontFamily="body">
                 Notes:
               </Heading>
@@ -190,7 +173,7 @@ const Cart = () => {
                 fontFamily="body"
                 color="gray.700"
               >
-                Alergies, substitutions, etc.
+                Allergies, substitutions, etc.
               </Heading>
               <Textarea
                 rows={10}

@@ -16,58 +16,105 @@ exports.handler = async ({ body, headers }) => {
     if (stripeEvent.type === "checkout.session.completed") {
       const session = await stripe.checkout.sessions.retrieve(
         JSON.parse(body).data.object.id,
-        { expand: ["line_items.data.price.product"] }
+        { expand: ["line_items.data.price.product", "customer"] }
       )
-      const productName = async product => {}
-      console.log(JSON.parse(body, null, 2))
 
-      // 2. Send email "chit" to jo@truetacolondon.com
+      // Send email "chit" to jo@truetacolondon.com
+      const html = `
+        <html>
+          <body>
+            <h2><b>Customer:</b> ${session?.shipping?.name}</h2>
+            <h3><b>Email:</b> ${
+              session?.customer?.email ? session?.customer?.email : ""
+            }</h3>
+            <h3><b>Shipping:</b></h3>
+            <ul style="list-style-type:none;padding-left:0;">
+              <li><b>City:</b> ${
+                session?.shipping?.address?.city
+                  ? session?.shipping?.address?.city
+                  : ""
+              }</li>
+              <li><b>Country:</b> ${
+                session?.shipping?.address?.country
+                  ? session?.shipping?.address?.country
+                  : ""
+              }</li>
+              <li><b>Line 1:</b> ${
+                session?.shipping?.address?.line1
+                  ? session?.shipping?.address?.line1
+                  : ""
+              }</li>
+              <li><b>Line 2:</b> ${
+                session?.shipping?.address?.line2
+                  ? session?.shipping?.address?.line2
+                  : ""
+              }</li>
+              <li><b>Postal Code:</b> ${
+                session?.shipping?.address?.postal_code
+                  ? session?.shipping?.address?.postal_code
+                  : ""
+              }</li>
+              <li><b>Province</b>: ${
+                session?.shipping?.address?.state
+                  ? session?.shipping?.address?.state
+                  : ""
+              }</li>
+            </ul>
+            <p><b>Notes:</b> ${session?.metadata?.notes}</p>
+            <table style="width:100%;border:1px solid black;border-collapse:collapse;">
+              <thead>
+                <tr>
+                  <th style="border:1px solid black;border-collapse:collapse;padding:4px;text-align:left;vertical-align:top;">Item</th>
+                  <th style="border:1px solid black;border-collapse:collapse;padding:4px;text-align:left;vertical-align:top;">Variant</th>
+                  <th style="border:1px solid black;border-collapse:collapse;padding:4px;text-align:left;vertical-align:top;">Filling</th>
+                  <th style="border:1px solid black;border-collapse:collapse;padding:4px;text-align:left;vertical-align:top;">Description</th>
+                  <th style="border:1px solid black;border-collapse:collapse;padding:4px;text-align:left;vertical-align:top;">Quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+              ${session.line_items.data
+                .map(
+                  item => `
+                <tr>
+                  <td style="border:1px solid black;border-collapse:collapse;padding:4px;text-align:left;vertical-align:top;">${
+                    item.price.product.name
+                  }</td>
+                  <td style="border:1px solid black;border-collapse:collapse;padding:4px;text-align:left;vertical-align:top;">${
+                    item.price.product.metadata.variant
+                      ? item.price.product.metadata.variant
+                      : ""
+                  }</td>
+                  <td style="border:1px solid black;border-collapse:collapse;padding:4px;text-align:left;vertical-align:top;">${
+                    item.price.product.metadata.filling
+                      ? item.price.product.metadata.filling
+                      : ""
+                  }</td>
+                  <td style="border:1px solid black;border-collapse:collapse;padding:4px;text-align:left;vertical-align:top;">${
+                    item.price.product.description
+                      ? item.price.product.description
+                      : ""
+                  }</td>
+                  <td style="border:1px solid black;border-collapse:collapse;padding:4px;text-align:left;vertical-align:top;">${
+                    item.quantity
+                  }</td>
+                </tr>
+              `
+                )
+                .join("\r\n")}
+              </tbody>
+            </table>
+          </body>
+        </html>
+      `
+
       const data = {
         from:
           "Chit Bot <postmaster@sandbox7f002a272f1e4364ad016df5c6b3e403.mailgun.org>",
-        to: "alexanderjameslow@gmail.com",
+        to: process.env.MAILGUN_RECIPIENT_EMAIL,
         subject: `Chit for ${
           session?.shipping?.name || "dumdum who didn't supply an email >:("
         }`,
-        html: `
-          <html>
-            <body>
-              <h1>Customer: ${session?.shipping?.name}</h1>
-              <ul>
-                <li>City: ${session?.shipping?.address?.city}</li>
-                <li>Country: ${session?.shipping?.address?.country}</li>
-                <li>Line 1: ${session?.shipping?.address?.line1}</li>
-                <li>Line 2: ${session?.shipping?.address?.line2}</li>
-                <li>Postal Code: ${session?.shipping?.address?.postal_code}</li>
-                <li>Province: ${session?.shipping?.address?.state}</li>
-              </ul>
-              <p>Notes: ${session?.metadata?.notes}</p>
-              <table>
-              <tr>
-                <th>Item</th>
-                <th>Variant</th>
-                <th>Description</th>
-                <th>Quantity</th>
-                <th>Unit Amount</th>
-                <th>Amount Total</th>
-              </tr>
-                ${session.line_items.data.map(
-                  item => `<tr>
-                    <td>${item.price.product.name}<td>
-                    <td>${
-                      item.price.metadata.variant && item.price.metadata.variant
-                    }<td>
-                    <td>${item.description}<td>
-                    <td>${item.quantity}<td>
-                    <td>${item.price.unit_amount / 100}<td>
-                    <td>${item.amount_total / 100}<td>
-                  </tr>`
-                )}
-              </table>
-              <pre>${JSON.stringify(session, null, 2)}</pre>
-            </body>
-          </html>
-        `,
+        html,
       }
 
       mailgun.messages().send(data, (err, body) => {

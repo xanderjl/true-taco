@@ -40,7 +40,7 @@ const SubMenu = menu => {
                 image: images[0],
                 currency: node.currency,
                 description,
-                product_data: {},
+                price_data: {},
               }}
               metadata={metadata}
             >

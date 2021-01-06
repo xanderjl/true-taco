@@ -77,25 +77,25 @@ exports.handler = async ({ body, headers }) => {
                   item => `
                 <tr>
                   <td style="border:1px solid black;border-collapse:collapse;padding:4px;text-align:left;vertical-align:top;">${
-                    item.price.product.name
+                    item?.price?.product?.name
                   }</td>
                   <td style="border:1px solid black;border-collapse:collapse;padding:4px;text-align:left;vertical-align:top;">${
-                    item.price.product.metadata.variant
-                      ? item.price.product.metadata.variant
+                    item?.price?.product?.metadata?.variant
+                      ? item?.price?.product?.metadata?.variant
                       : ""
                   }</td>
                   <td style="border:1px solid black;border-collapse:collapse;padding:4px;text-align:left;vertical-align:top;">${
-                    item.price.product.metadata.filling
-                      ? item.price.product.metadata.filling
+                    item?.price?.product?.metadata?.filling
+                      ? item?.price?.product?.metadata?.filling
                       : ""
                   }</td>
                   <td style="border:1px solid black;border-collapse:collapse;padding:4px;text-align:left;vertical-align:top;">${
-                    item.price.product.description
-                      ? item.price.product.description
+                    item?.price?.product?.description
+                      ? item?.price?.product?.description
                       : ""
                   }</td>
                   <td style="border:1px solid black;border-collapse:collapse;padding:4px;text-align:left;vertical-align:top;">${
-                    item.quantity
+                    item?.quantity
                   }</td>
                 </tr>
               `

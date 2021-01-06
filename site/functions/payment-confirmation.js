@@ -100,7 +100,7 @@ exports.handler = async ({ body, headers }) => {
                 </tr>
               `
                 )
-                .join("\n")}
+                .join("\r\n")}
               </tbody>
             </table>
           </body>

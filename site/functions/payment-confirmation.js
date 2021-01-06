@@ -23,44 +23,44 @@ exports.handler = async ({ body, headers }) => {
       const html = `
         <html>
           <body>
-            <h2><b>Customer:</b> ${session?.shipping?.name}</h2>
+            <h2><b>Customer:</b> ${session.shipping.name}</h2>
             <h3><b>Email:</b> ${
-              session?.customer?.email ? session?.customer?.email : ""
+              session.customer.email ? session.customer.email : ""
             }</h3>
             <h3><b>Shipping:</b></h3>
             <ul style="list-style-type:none;padding-left:0;">
               <li><b>City:</b> ${
-                session?.shipping?.address?.city
-                  ? session?.shipping?.address?.city
+                session.shipping.address.city
+                  ? session.shipping.address.city
                   : ""
               }</li>
               <li><b>Country:</b> ${
-                session?.shipping?.address?.country
-                  ? session?.shipping?.address?.country
+                session.shipping.address.country
+                  ? session.shipping.address.country
                   : ""
               }</li>
               <li><b>Line 1:</b> ${
-                session?.shipping?.address?.line1
-                  ? session?.shipping?.address?.line1
+                session.shipping.address.line1
+                  ? session.shipping.address.line1
                   : ""
               }</li>
               <li><b>Line 2:</b> ${
-                session?.shipping?.address?.line2
-                  ? session?.shipping?.address?.line2
+                session.shipping.address.line2
+                  ? session.shipping.address.line2
                   : ""
               }</li>
               <li><b>Postal Code:</b> ${
-                session?.shipping?.address?.postal_code
-                  ? session?.shipping?.address?.postal_code
+                session.shipping.address.postal_code
+                  ? session.shipping.address.postal_code
                   : ""
               }</li>
               <li><b>Province</b>: ${
-                session?.shipping?.address?.state
-                  ? session?.shipping?.address?.state
+                session.shipping.address.state
+                  ? session.shipping.address.state
                   : ""
               }</li>
             </ul>
-            <p><b>Notes:</b> ${session?.metadata?.notes}</p>
+            <p><b>Notes:</b> ${session.metadata.notes}</p>
             <table style="width:100%;border:1px solid black;border-collapse:collapse;">
               <thead>
                 <tr>
@@ -77,25 +77,25 @@ exports.handler = async ({ body, headers }) => {
                   item => `
                 <tr>
                   <td style="border:1px solid black;border-collapse:collapse;padding:4px;text-align:left;vertical-align:top;">${
-                    item?.price?.product?.name
+                    item.price.product.name
                   }</td>
                   <td style="border:1px solid black;border-collapse:collapse;padding:4px;text-align:left;vertical-align:top;">${
-                    item?.price?.product?.metadata?.variant
-                      ? item?.price?.product?.metadata?.variant
+                    item.price.product.metadata.variant
+                      ? item.price.product.metadata.variant
                       : ""
                   }</td>
                   <td style="border:1px solid black;border-collapse:collapse;padding:4px;text-align:left;vertical-align:top;">${
-                    item?.price?.product?.metadata?.filling
-                      ? item?.price?.product?.metadata?.filling
+                    item.price.product.metadata.filling
+                      ? item.price.product.metadata.filling
                       : ""
                   }</td>
                   <td style="border:1px solid black;border-collapse:collapse;padding:4px;text-align:left;vertical-align:top;">${
-                    item?.price?.product?.description
-                      ? item?.price?.product?.description
+                    item.price.product.description
+                      ? item.price.product.description
                       : ""
                   }</td>
                   <td style="border:1px solid black;border-collapse:collapse;padding:4px;text-align:left;vertical-align:top;">${
-                    item?.quantity
+                    item.quantity
                   }</td>
                 </tr>
               `
@@ -112,7 +112,7 @@ exports.handler = async ({ body, headers }) => {
           "Chit Bot <postmaster@sandbox7f002a272f1e4364ad016df5c6b3e403.mailgun.org>",
         to: process.env.MAILGUN_RECIPIENT_EMAIL,
         subject: `Chit for ${
-          session?.shipping?.name || "dumdum who didn't supply an email >:("
+          session.shipping.name || "dumdum who didn't supply an email >:("
         }`,
         html,
       }

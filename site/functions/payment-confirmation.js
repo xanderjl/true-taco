@@ -100,7 +100,7 @@ exports.handler = async ({ body, headers }) => {
                 </tr>
               `
                 )
-                .join("\r\n")}
+                .join("\n")}
               </tbody>
             </table>
           </body>
@@ -120,7 +120,7 @@ exports.handler = async ({ body, headers }) => {
       mailgun.messages().send(data, (err, body) => {
         console.log(body)
       })
-      // 3. Subtract line items from inventory of products in Sanity
+      // TODO: Subtract line items from inventory of products in Sanity
     }
 
     return {

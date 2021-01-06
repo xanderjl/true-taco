@@ -1,5 +1,5 @@
 [build]
 command = "yarn workspace site build"
-environment = {NODE_VERSION = "14.15.4"}
+environment = {NODE_VERSION = "14.15.4", AWS_LAMBDA_JS_RUNTIME = "nodejs12.x"}
 functions = "./site/functions"
 publish = "./site/public"

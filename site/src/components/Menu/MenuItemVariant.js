@@ -37,7 +37,7 @@ const MenuItemVariant = ({ variants, metadata }) => {
     image: variant.product.images[0],
     currency: variant.currency,
     description: variant.product.description,
-    product_data: {},
+    price_data: {},
   }
 
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -115,21 +115,6 @@ const MenuItemVariant = ({ variants, metadata }) => {
             )
           })}
         </Select>
-        {metadata?.options && (
-          <Select
-            size="sm"
-            variant="flushed"
-            mb="1rem"
-            fontSize="lg"
-            color="white"
-          >
-            {metadata?.options.split(", ").map((item, i) => (
-              <Text as="option" key={i} value={item} color="black">
-                {item}
-              </Text>
-            ))}
-          </Select>
-        )}
         {itemFillings && (
           <>
             <Heading size="lg" color="white">
@@ -187,7 +172,10 @@ const MenuItemVariant = ({ variants, metadata }) => {
           size="md"
           onClick={e => {
             e.preventDefault()
-            product.product_data.metadata = { filling }
+            product.price_data.metadata = {
+              filling,
+              variant: variant.metadata.variant,
+            }
             addItem(product, quantity)
             toast({
               title: "Item added to cart.",

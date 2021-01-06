@@ -31,7 +31,7 @@ const MenuItemVariant = ({ variants, metadata }) => {
     }
   `
   const product = {
-    name: `${variant.metadata.variant} ${variant.product.name}`,
+    name: variant.product.name,
     sku: variant.id,
     price: variant.unit_amount,
     image: variant.product.images[0],

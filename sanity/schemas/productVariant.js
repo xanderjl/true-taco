@@ -25,17 +25,11 @@ export default {
       validation: (rule) => rule.precision(2),
     },
     {
-      name: "taxable",
-      title: "Taxable",
-      type: "boolean",
-    },
-    {
-      name: "images",
-      title: "Images",
-      description:
-        "A list of up to 8 URLs of images for this product, meant to be displayable to the customer.",
-      type: "array",
-      of: [{ type: "productImage", options: { hotspot: true } }],
+      name: "image",
+      title: "Image",
+      description: "Meant to be displayable to the customer.",
+      type: "productImage",
+      options: { hotspot: true },
     },
   ],
   preview: {

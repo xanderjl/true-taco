@@ -9,8 +9,6 @@ import {
   Textarea,
   Stack,
   Select,
-  useMediaQuery,
-  useTheme,
 } from "@chakra-ui/react"
 import { useShoppingCart } from "use-shopping-cart"
 import bottomFrills from "../images/frills/bottom-white.svg"
@@ -18,12 +16,8 @@ import CartAccordion from "../components/Cart/CartAccordion"
 
 const Cart = () => {
   const [notes, setNotes] = useState()
-  const theme = useTheme()
-  const [isMobile] = useMediaQuery(`(max-width:${theme.breakpoints[1]})`)
 
   const {
-    incrementItem,
-    decrementItem,
     setItemQuantity,
     removeItem,
     cartCount,
@@ -87,7 +81,7 @@ const Cart = () => {
             cartItems.map((item, i) => {
               const {
                 name,
-                sku,
+                id,
                 description,
                 price_data,
                 formattedValue,
@@ -127,29 +121,28 @@ const Cart = () => {
                           size="sm"
                           maxW="max-content"
                           defaultValue={quantity}
-                          onChange={e => setItemQuantity(sku, e.target.value)}
+                          onChange={e => setItemQuantity(id, e.target.value)}
                         >
                           {options}
                         </Select>
                       </Flex>
                       <Text marginLeft="1rem">{formattedValue}</Text>
                     </Flex>
-                    <Button
-                      size="sm"
-                      maxW="max-content"
-                      color="white"
-                      bg="red.500"
-                      marginLeft="1rem"
-                      _hover={{ bg: "red.200" }}
-                      borderRadius="0"
-                      onClick={() => removeItem(sku)}
-                    >
-                      {cartItems > 1 ? (
-                        <span>Remove Items</span>
-                      ) : (
-                        <span>Remove Item</span>
-                      )}
-                    </Button>
+                    <Flex justify="flex-end">
+                      <Button
+                        size="sm"
+                        maxW="max-content"
+                        color="white"
+                        bg="red.500"
+                        _hover={{ bg: "red.200" }}
+                        borderRadius="0"
+                        onClick={() => removeItem(id)}
+                      >
+                        <Text as="span">
+                          {cartItems > 1 ? "Remove Items" : "Remove Item"}
+                        </Text>
+                      </Button>
+                    </Flex>
                   </Stack>
                 </CartAccordion>
               )

@@ -19,5 +19,11 @@ export default {
       type: "array",
       of: [{ type: "block" }],
     },
+    {
+      name: "menus",
+      title: "Menus",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "subMenu" }] }],
+    },
   ],
 }

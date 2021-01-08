@@ -7,6 +7,8 @@ import blockContent from "./blockContent"
 import product from "./product"
 import productImage from "./productImage"
 import productVariant from "./productVariant"
+import subMenu from "./subMenu"
+import productOption from "./productOption"
 
 export default createSchema({
   name: "default",
@@ -15,7 +17,9 @@ export default createSchema({
     singletonCatering,
     singletonAbout,
     blockContent,
+    subMenu,
     product,
+    productOption,
     productVariant,
     productImage,
   ]),

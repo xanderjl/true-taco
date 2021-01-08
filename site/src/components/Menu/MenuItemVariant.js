@@ -16,7 +16,7 @@ import ImageModal from "./ImageModal"
 const MenuItemVariant = ({ variants, metadata }) => {
   const { addItem } = useShoppingCart()
   const [quantity, setQuantity] = useState(1)
-  const itemFillings = metadata?.fillings && metadata.fillings.split(", ")
+  const itemFillings = metadata?.fillings
   const [filling, setFilling] = useState(itemFillings && itemFillings[0])
   const [variant, setVariant] = useState(variants[0].node)
   const toast = useToast()

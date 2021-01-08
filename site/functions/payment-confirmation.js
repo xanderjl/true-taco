@@ -20,7 +20,7 @@ exports.handler = async ({ body, headers }) => {
         { expand: ["line_items.data.price.product", "customer"] }
       )
       console.log(session)
-      // Send email "chit" to jo@truetacolondon.com
+      // Send email "chit" to info@truetacolondon.com
       const html = `
         <html>
           <body>

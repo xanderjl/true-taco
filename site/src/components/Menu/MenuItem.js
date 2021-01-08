@@ -16,7 +16,7 @@ import ImageModal from "./ImageModal"
 const MenuItem = ({ heading, price, children, product, metadata }) => {
   const { addItem } = useShoppingCart()
   const [quantity, setQuantity] = useState(1)
-  const itemFillings = metadata?.fillings && metadata.fillings.split(", ")
+  const itemFillings = metadata?.fillings
   const [filling, setFilling] = useState(itemFillings && itemFillings[0])
   const toast = useToast()
 
@@ -82,7 +82,7 @@ const MenuItem = ({ heading, price, children, product, metadata }) => {
             />
           </>
         )}
-        {itemFillings && (
+        {itemFillings.length !== 0 && (
           <>
             <Heading size="lg" color="white">
               Filling

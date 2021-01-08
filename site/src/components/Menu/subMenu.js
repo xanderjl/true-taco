@@ -13,43 +13,34 @@ const SubMenu = menu => {
       }}
       gap={{ base: "2rem", md: "5rem" }}
     >
-      {menu.data.map(({ edges }, i) => {
-        // If there are multiple options for item
-        if (edges.length > 1) {
-          return (
-            <MenuItemVariant
-              key={i}
-              variants={edges}
-              metadata={edges[0].node.product.metadata}
-            />
-          )
-        }
+      {menu.data[0].edges.map(({ node }) => {
+        const { id, title, description, image, price, fillings, options } = node
 
-        return edges.map(({ node }) => {
-          const { name, description, images, metadata } = node.product
+        // if (options?.length > 1) {
+        //   return <MenuItemVariant key={id} variants={node} />
+        // }
 
-          return (
-            <MenuItem
-              key={node.id}
-              heading={name}
-              price={node.unit_amount / 100}
-              product={{
-                name,
-                sku: node.id,
-                price: node.unit_amount,
-                image: images[0],
-                currency: node.currency,
-                description,
-                price_data: {},
-              }}
-              metadata={metadata}
-            >
-              <Text mb="1rem" fontSize="lg" color="white">
-                {description}
-              </Text>
-            </MenuItem>
-          )
-        })
+        return (
+          <MenuItem
+            key={id}
+            heading={title}
+            price={price}
+            product={{
+              id,
+              name: title,
+              price: price * 100,
+              image,
+              currency: "CAD",
+              description,
+              price_data: {},
+            }}
+            metadata={{ options, fillings }}
+          >
+            <Text mb="1rem" fontSize="lg" color="white">
+              {description}
+            </Text>
+          </MenuItem>
+        )
       })}
     </Grid>
   )

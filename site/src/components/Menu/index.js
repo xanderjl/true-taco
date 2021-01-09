@@ -83,12 +83,12 @@ const Menu = props => {
         </Heading>
         {isOpen ? (
           <Box>
-            {menus.map(({ title }) => {
+            {menus.map(({ title }, i) => {
               const products = data.allSanityProduct.group.filter(prod =>
                 prod.edges.every(({ node }) => node.menu.title === title)
               )
               return (
-                <>
+                <Box key={i}>
                   <Heading
                     as="h2"
                     size="3xl"
@@ -100,7 +100,7 @@ const Menu = props => {
                     {title}
                   </Heading>
                   <SubMenu data={products} />
-                </>
+                </Box>
               )
             })}
             <OrderButton w="6rem" h="auto" />

@@ -12,14 +12,13 @@ exports.handler = async ({ body, headers }) => {
       headers["stripe-signature"],
       process.env.STRIPE_WEBHOOK_SECRET
     )
-    console.log(stripeEvent)
 
     if (stripeEvent.type === "checkout.session.completed") {
       const session = await stripe.checkout.sessions.retrieve(
         JSON.parse(body).data.object.id,
         { expand: ["line_items.data.price.product", "customer"] }
       )
-      console.log(session)
+
       // Send email "chit" to info@truetacolondon.com
       const html = `
         <html>

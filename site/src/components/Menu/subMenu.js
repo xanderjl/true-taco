@@ -16,10 +16,6 @@ const SubMenu = menu => {
       {menu.data[0].edges.map(({ node }) => {
         const { id, title, description, image, price, fillings, options } = node
 
-        // if (options?.length > 1) {
-        //   return <MenuItemVariant key={id} variants={node} />
-        // }
-
         return (
           <MenuItem
             key={id}
@@ -32,7 +28,9 @@ const SubMenu = menu => {
               image,
               currency: "CAD",
               description,
-              price_data: {},
+              price_data: {
+                metadata: {},
+              },
             }}
             metadata={{ options, fillings }}
           >

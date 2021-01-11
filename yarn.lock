@@ -15786,9 +15786,10 @@ use-onclickoutside@^0.3.1:
     are-passive-events-supported "^1.1.0"
     use-latest "^1.0.0"
 
-use-shopping-cart@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/use-shopping-cart/-/use-shopping-cart-2.3.0.tgz#44bc973a58e401cc6e7349c0dbefddf5c89cd95e"
+use-shopping-cart@^2.4.1-beta:
+  version "2.4.1-beta"
+  resolved "https://registry.yarnpkg.com/use-shopping-cart/-/use-shopping-cart-2.4.1-beta.tgz#b5a0308bb388717042e271b4755d57d72da2f73a"
+  integrity sha512-omPv+TTMDqDfhQg8zh/dygkaB6w6iMupE5thRrbN63wM7EmEui3RCjZGd8URlXoyROnMjTDv7Xk26xiXfI8uJQ==
   dependencies:
     react-storage-hooks "^4.0.0"
     uuid "^8.3.1"

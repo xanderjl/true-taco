@@ -143,14 +143,7 @@ const MenuItem = ({ heading, price, children, product, metadata }) => {
           onClick={e => {
             e.preventDefault()
             product.id = product.id + "-" + filling
-            product.price_data.metadata.filling = filling
-            addItem(product, quantity)
-            // toast({
-            //   title: "Item added to cart.",
-            //   status: "success",
-            //   duration: 9000,
-            //   isClosable: true,
-            // })
+            addItem(product, quantity, { metadata: { filling } })
           }}
         >
           Add to cart

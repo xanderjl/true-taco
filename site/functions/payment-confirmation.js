@@ -1,4 +1,7 @@
-const stripe = require("stripe")(process.env.GATSBY_STRIPE_API_SECRET)
+const Stripe = require("stripe")
+const stripe = Stripe(process.env.GATSBY_STRIPE_API_SECRET, {
+  maxNetworkRetries: 3,
+})
 const mailgun = require("mailgun-js")({
   apiKey: process.env.MAILGUN_API_KEY,
   domain: process.env.MAILGUN_DOMAIN,

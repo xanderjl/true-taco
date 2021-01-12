@@ -16,12 +16,14 @@ exports.handler = async ({ body, headers }) => {
     if (stripeEvent.type === "checkout.session.completed") {
       const session = await stripe.checkout.sessions.retrieve(
         JSON.parse(body).data.object.id,
-        { expand: ["line_items.data", "customer"] }
+        { expand: ["line_items.data.price", "customer"] }
       )
       const lineItems = await stripe.checkout.sessions.listLineItems(
-        JSON.parse(body).data.object.id
+        JSON.parse(body).data.object.id,
+        { expand: "line_items.data.price" }
       )
-      console.log(lineItems)
+      console.log("SESSION:: ", session)
+      console.log("LINE ITEMS:: ", lineItems)
 
       // Send email "chit" to info@truetacolondon.com
       const html = `

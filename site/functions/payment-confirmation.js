@@ -18,6 +18,7 @@ exports.handler = async ({ body, headers }) => {
         JSON.parse(body).data.object.id,
         { expand: ["line_items.data.price.product", "customer"] }
       )
+      console.log(session)
 
       // Send email "chit" to info@truetacolondon.com
       const html = `

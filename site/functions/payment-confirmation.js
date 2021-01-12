@@ -20,12 +20,7 @@ exports.handler = async ({ body, headers }) => {
         JSON.parse(body).data.object.id,
         { expand: ["line_items.data.price", "customer"] }
       )
-      const lineItems = await stripe.checkout.sessions.listLineItems(
-        JSON.parse(body).data.object.id,
-        { expand: "line_items.data.price" }
-      )
       console.log("SESSION:: ", session)
-      console.log("LINE ITEMS:: ", lineItems)
 
       // Send email "chit" to info@truetacolondon.com
       const html = `

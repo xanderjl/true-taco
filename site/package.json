@@ -35,7 +35,7 @@
     "react-hook-form": "^6.8.6",
     "react-icons": "^3.11.0",
     "stripe": "^8.127.0",
-    "use-shopping-cart": "^2.3.0"
+    "use-shopping-cart": "^2.4.1-beta"
   },
   "devDependencies": {
     "prettier": "2.1.1"

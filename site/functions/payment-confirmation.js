@@ -16,7 +16,7 @@ exports.handler = async ({ body, headers }) => {
     if (stripeEvent.type === "checkout.session.completed") {
       const session = await stripe.checkout.sessions.retrieve(
         JSON.parse(body).data.object.id,
-        { expand: ["line_items.data.price.product", "customer"] }
+        { expand: ["line_items", "customer"] }
       )
       console.log(session)
 

@@ -130,7 +130,7 @@ exports.handler = async ({ body, headers }) => {
         })
       }
 
-      mailgunSend(data)
+      await mailgunSend(data)
         .then(body => console.log(body))
         .catch(err => console.log(err))
 

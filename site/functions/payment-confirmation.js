@@ -18,9 +18,9 @@ exports.handler = async ({ body, headers }) => {
     if (stripeEvent.type === "checkout.session.completed") {
       const session = await stripe.checkout.sessions.retrieve(
         JSON.parse(body).data.object.id,
-        { expand: ["line_items.data.price", "customer"] }
+        { expand: ["line_items.data.price.product", "customer"] }
       )
-      console.log("SESSION:: ", session)
+      console.log("SESSION:: ", JSON.stringify(session, null, 2))
 
       // Send email "chit" to info@truetacolondon.com
       const html = `

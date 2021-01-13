@@ -105,6 +105,7 @@ const MenuItem = ({ heading, price, children, product, metadata }) => {
             </Select>
           </>
         )}
+        {/* TODO: add variant select */}
       </Flex>
       <Flex justify={["space-between", "flex-start"]}>
         <Flex>
@@ -142,8 +143,21 @@ const MenuItem = ({ heading, price, children, product, metadata }) => {
           size="md"
           onClick={e => {
             e.preventDefault()
-            product.id = product.id + "-" + filling
-            addItem(product, quantity, { metadata: { filling } })
+            addItem(
+              {
+                ...product,
+                id: `${product.id}${filling ? "-" + filling : ""}`,
+                description: `${
+                  filling
+                    ? `Filling: ${filling}, ${product.description}`
+                    : product.description
+                }`,
+              },
+              quantity,
+              {
+                metadata: { filling },
+              }
+            )
           }}
         >
           Add to cart

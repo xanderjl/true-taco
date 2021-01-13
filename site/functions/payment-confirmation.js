@@ -136,12 +136,6 @@ exports.handler = async ({ body, headers }) => {
         .then(body => console.log(body))
         .catch(err => console.log(err))
 
-      // mailgun.messages().send(data, (err, body) => {
-      //   if (err) {
-      //     throw err
-      //   }
-      //   console.log(body)
-      // })
       // TODO: Subtract line items from inventory of products in Sanity
     }
 

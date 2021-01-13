@@ -28,6 +28,9 @@ const Menu = props => {
                 title
               }
               id
+              productId {
+                current
+              }
               title
               price
               description

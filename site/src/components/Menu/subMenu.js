@@ -1,6 +1,5 @@
 import React from "react"
 import { Grid, Text } from "@chakra-ui/react"
-import MenuItemVariant from "./MenuItemVariant"
 import MenuItem from "./MenuItem"
 
 const SubMenu = menu => {
@@ -14,7 +13,16 @@ const SubMenu = menu => {
       gap={{ base: "2rem", md: "5rem" }}
     >
       {menu.data[0].edges.map(({ node }) => {
-        const { id, title, description, image, price, fillings, options } = node
+        const {
+          id,
+          productId,
+          title,
+          description,
+          image,
+          price,
+          fillings,
+          options,
+        } = node
 
         return (
           <MenuItem
@@ -22,7 +30,7 @@ const SubMenu = menu => {
             heading={title}
             price={price}
             product={{
-              id,
+              id: productId.current,
               name: title,
               price: price * 100,
               image,

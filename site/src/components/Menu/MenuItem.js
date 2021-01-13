@@ -8,7 +8,6 @@ import {
   Select,
   Text,
   useDisclosure,
-  useToast,
 } from "@chakra-ui/react"
 import { useShoppingCart } from "use-shopping-cart"
 import ImageModal from "./ImageModal"
@@ -17,8 +16,9 @@ const MenuItem = ({ heading, price, children, product, metadata }) => {
   const { addItem } = useShoppingCart()
   const [quantity, setQuantity] = useState(1)
   const itemFillings = metadata?.fillings
+  const itemOptions = metadata?.options
   const [filling, setFilling] = useState(itemFillings && itemFillings[0])
-  const toast = useToast()
+  const [options, setOptions] = useState(itemOptions && itemOptions[0])
 
   const dotLeaders = css`
     &::after {
@@ -31,6 +31,8 @@ const MenuItem = ({ heading, price, children, product, metadata }) => {
   `
 
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const itemMatch =
+    itemOptions.filter(item => item.title === options)[0] || options
 
   return (
     <Flex direction="column" justify="space-between">
@@ -59,7 +61,7 @@ const MenuItem = ({ heading, price, children, product, metadata }) => {
             fontFamily="banner"
             fontWeight="400"
           >
-            Õ{price}Ô
+            Õ{itemOptions.length !== 0 ? itemMatch.price : price}Ô
           </Heading>
         </Flex>
         {children}
@@ -105,7 +107,29 @@ const MenuItem = ({ heading, price, children, product, metadata }) => {
             </Select>
           </>
         )}
-        {/* TODO: add variant select */}
+        {itemOptions.length !== 0 && (
+          <>
+            <Heading size="lg" color="white">
+              Options
+            </Heading>
+            <Select
+              size="sm"
+              variant="flushed"
+              mb="1rem"
+              fontSize="lg"
+              color="white"
+              onChange={e => setOptions(e.currentTarget.value)}
+            >
+              {itemOptions.map((item, i) => {
+                return (
+                  <Text as="option" key={i} value={item.title} color="black">
+                    {item.title} (${item.price})
+                  </Text>
+                )
+              })}
+            </Select>
+          </>
+        )}
       </Flex>
       <Flex justify={["space-between", "flex-start"]}>
         <Flex>
@@ -146,16 +170,19 @@ const MenuItem = ({ heading, price, children, product, metadata }) => {
             addItem(
               {
                 ...product,
-                id: `${product.id}${filling ? "-" + filling : ""}`,
+                id: `${product.id}${options ? "-" + itemMatch.title : ""}${
+                  filling ? "-" + filling : ""
+                }`,
                 description: `${
                   filling
                     ? `Filling: ${filling}, ${product.description}`
                     : product.description
                 }`,
+                price: itemMatch ? itemMatch.price * 100 : price * 100,
               },
               quantity,
               {
-                metadata: { filling },
+                metadata: { filling, variant: itemMatch && itemMatch.title },
               }
             )
           }}

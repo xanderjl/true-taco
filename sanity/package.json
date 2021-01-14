@@ -16,13 +16,13 @@
     "sanity"
   ],
   "dependencies": {
-    "@sanity/base": "^2.1.4",
+    "@sanity/base": "^2.1.6",
     "@sanity/client": "^2.1.4",
     "@sanity/components": "^2.1.4",
     "@sanity/core": "^2.1.4",
-    "@sanity/default-layout": "^2.1.4",
+    "@sanity/default-layout": "^2.1.6",
     "@sanity/default-login": "^2.1.4",
-    "@sanity/desk-tool": "^2.1.4",
+    "@sanity/desk-tool": "^2.1.6",
     "@sanity/vision": "^2.1.4",
     "@stripe/react-stripe-js": "^1.1.2",
     "@stripe/stripe-js": "^1.11.0",

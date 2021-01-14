@@ -130,6 +130,7 @@ const MenuItem = ({ heading, price, children, product, metadata }) => {
             </Select>
           </>
         )}
+        {/* TODO: add extras component */}
       </Flex>
       <Flex justify={["space-between", "flex-start"]}>
         <Flex>

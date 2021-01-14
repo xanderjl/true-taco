@@ -32,12 +32,36 @@ const Menu = props => {
                 current
               }
               title
-              price
               description
+              image {
+                image {
+                  asset {
+                    fluid(maxWidth: 800) {
+                      ...GatsbySanityImageFluid
+                    }
+                  }
+                  hotspot {
+                    x
+                    y
+                    height
+                    width
+                  }
+                }
+              }
+              price
               fillings
               options {
                 title
                 price
+              }
+              extras {
+                id
+                title
+                price
+                options {
+                  title
+                  price
+                }
               }
             }
           }

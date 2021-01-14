@@ -60,6 +60,11 @@ export default {
       validation: (rule) => rule.precision(2),
     },
     {
+      name: "stock",
+      title: "Stock",
+      type: "number",
+    },
+    {
       name: "image",
       title: "Image",
       description: "Meant to be displayable to the customer.",
@@ -78,14 +83,31 @@ export default {
       type: "array",
       of: [{ type: "productOption" }],
     },
+    {
+      name: "extras",
+      title: "Extras",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: {
+            type: "product",
+          },
+          options: {
+            filter: "menu._ref == $menu",
+            filterParams: {
+              menu: "99df0625-2558-4b36-bc53-469a3a0cbe15",
+            },
+          },
+        },
+      ],
+    },
   ],
   preview: {
     select: {
       title: "title",
-      defaultVariant: "defaultVariant",
-      productVariants: "productVariants",
-      subtitle: "defaultVariant.description",
-      media: "defaultVariant.images.0.image",
+      subtitle: "description",
+      media: "image.image",
     },
   },
 }

@@ -9,6 +9,7 @@ import productImage from "./productImage"
 import productVariant from "./productVariant"
 import subMenu from "./subMenu"
 import productOption from "./productOption"
+import stock from "./stock"
 
 export default createSchema({
   name: "default",
@@ -19,6 +20,7 @@ export default createSchema({
     blockContent,
     subMenu,
     product,
+    stock,
     productOption,
     productVariant,
     productImage,

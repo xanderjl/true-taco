@@ -21,7 +21,6 @@ exports.handler = async ({ body, headers }) => {
         JSON.parse(body).data.object.id,
         { expand: ["line_items.data.price.product", "customer"] }
       )
-      console.log("SESSION:: ", JSON.stringify(session, null, 2))
 
       // Send email "chit" to info@truetacolondon.com
       const html = `
@@ -64,7 +63,9 @@ exports.handler = async ({ body, headers }) => {
                   : ""
               }</li>
             </ul>
-            <p><b>Notes:</b> ${session.metadata.notes}</p>
+            <p><b>Notes:</b> ${
+              session.metadata.notes ? session.metadata.notes : ""
+            }</p>
             <table style="width:100%;border:1px solid black;border-collapse:collapse;">
               <thead>
                 <tr>

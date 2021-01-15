@@ -7,6 +7,7 @@ import OrderButton from "./OrderButton"
 import FrillsTop from "../../images/frills/top.svg"
 import FrillsBottom from "../../images/frills/bottom.svg"
 import SubMenu from "./subMenu"
+import Serializers from "../Serializers"
 
 const Menu = props => {
   const data = useStaticQuery(graphql`
@@ -19,6 +20,7 @@ const Menu = props => {
           title
         }
         _rawBody
+        _rawOpenBody
       }
       allSanityProduct(filter: { active: { eq: true } }) {
         group(field: menu___title) {
@@ -70,7 +72,7 @@ const Menu = props => {
     }
   `)
 
-  const { menus, isOpen, heading, _rawBody } = data.sanityMenu
+  const { menus, isOpen, heading, _rawBody, _rawOpenBody } = data.sanityMenu
 
   return (
     <Box
@@ -100,7 +102,7 @@ const Menu = props => {
         <Heading
           as="h1"
           size="4xl"
-          mb="5rem"
+          mb="3rem"
           color="white"
           fontWeight="400"
           textAlign="center"
@@ -109,29 +111,34 @@ const Menu = props => {
           {heading}
         </Heading>
         {isOpen ? (
-          <Box>
-            {menus.map(({ title }, i) => {
-              const products = data.allSanityProduct.group.filter(prod =>
-                prod.edges.every(({ node }) => node.menu.title === title)
-              )
-              return (
-                <Box key={i}>
-                  <Heading
-                    as="h2"
-                    size="3xl"
-                    mb="3rem"
-                    color="white"
-                    fontWeight="400"
-                    textDecor="underline"
-                  >
-                    {title}
-                  </Heading>
-                  <SubMenu data={products} />
-                </Box>
-              )
-            })}
-            <OrderButton w="6rem" h="auto" />
-          </Box>
+          <>
+            <Box maxW="70ch" m="0 auto" mb="5rem" color="white" fontSize="xl">
+              <BlockContent blocks={_rawOpenBody} serializers={Serializers} />
+            </Box>
+            <Box>
+              {menus.map(({ title }, i) => {
+                const products = data.allSanityProduct.group.filter(prod =>
+                  prod.edges.every(({ node }) => node.menu.title === title)
+                )
+                return (
+                  <Box key={i}>
+                    <Heading
+                      as="h2"
+                      size="3xl"
+                      mb="3rem"
+                      color="white"
+                      fontWeight="400"
+                      textDecor="underline"
+                    >
+                      {title}
+                    </Heading>
+                    <SubMenu data={products} />
+                  </Box>
+                )
+              })}
+              <OrderButton w="6rem" h="auto" />
+            </Box>
+          </>
         ) : (
           <Flex
             dir="column"

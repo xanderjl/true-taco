@@ -20,6 +20,12 @@ export default {
       of: [{ type: "block" }],
     },
     {
+      name: "openBody",
+      title: "Open Copy",
+      type: "array",
+      of: [{ type: "block" }],
+    },
+    {
       name: "menus",
       title: "Menus",
       type: "array",

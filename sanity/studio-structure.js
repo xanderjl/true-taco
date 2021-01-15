@@ -4,7 +4,7 @@ import { GiKnifeFork } from "react-icons/gi"
 import { AiOutlineInfoCircle } from "react-icons/ai"
 
 const hiddenDocTypes = (listItems) =>
-  !["menu", "catering", "about"].includes(listItems.getId())
+  !["menu", "catering", "about", "cart"].includes(listItems.getId())
 
 export default () =>
   S.list()
@@ -33,6 +33,12 @@ export default () =>
             .id("about")
             .schemaType("about")
             .documentId("singletonAbout")
+        ),
+      S.listItem()
+        .title("Cart")
+        .icon(AiOutlineInfoCircle)
+        .child(
+          S.editor().id("cart").schemaType("cart").documentId("singletonCart")
         ),
       ...S.documentTypeListItems().filter(hiddenDocTypes),
     ])

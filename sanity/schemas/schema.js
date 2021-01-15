@@ -10,6 +10,8 @@ import productVariant from "./productVariant"
 import subMenu from "./subMenu"
 import productOption from "./productOption"
 import stock from "./stock"
+import pickupTime from "./pickupTime"
+import singletonCart from "./pages/singletonCart"
 
 export default createSchema({
   name: "default",
@@ -17,10 +19,12 @@ export default createSchema({
     singletonMenu,
     singletonCatering,
     singletonAbout,
+    singletonCart,
     blockContent,
     subMenu,
     product,
     stock,
+    pickupTime,
     productOption,
     productVariant,
     productImage,

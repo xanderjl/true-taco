@@ -16,7 +16,7 @@ export default {
       return <Text pb="1rem">{props.children}</Text>
     },
   },
-  list: ({ children, options, type }) => {
+  list: ({ children, type }) => {
     return (
       <List pb="1rem" styleType={type} stylePosition="inside">
         {children}

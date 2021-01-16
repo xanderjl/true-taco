@@ -7,6 +7,12 @@ const mailgun = require("mailgun-js")({
   domain: process.env.MAILGUN_DOMAIN,
   url: process.env.MAILGUN_URL,
 })
+const sanityClient = require("@sanity/client")
+const client = sanityClient({
+  projectId: process.env.GATSBY_SANITY_ID,
+  dataset: process.env.GATSBY_SANITY_DATASET,
+  token: process.env.SANITY_TOKEN,
+})
 
 exports.handler = async ({ body, headers }) => {
   console.log("env:::   ", process.env)
@@ -65,6 +71,9 @@ exports.handler = async ({ body, headers }) => {
                   : ""
               }</li>
             </ul>
+            <p><b>Pickup Time:</b> ${
+              session.metadata.selectedTime ? session.metadata.selectedTime : ""
+            }</p>
             <p><b>Notes:</b> ${
               session.metadata.notes ? session.metadata.notes : ""
             }</p>
@@ -138,6 +147,21 @@ exports.handler = async ({ body, headers }) => {
         .catch(err => console.log(err))
 
       // TODO: Subtract line items from inventory of products in Sanity
+
+      // const findTime = await client
+      //   .fetch(`*[_type == "cart"]{times}`)
+      //   .then(query => {
+      //     query[0].times
+      //       .map(({ time }) => time)
+      //       .indexOf(session.metadata.selectedTime)
+      //   })
+
+      // client
+      //   .patch("singletonCart")
+      //   .dec({ "": 1 })
+      //   .commit()
+      //   .then(res => console.log("Available times have been adjusted"))
+      //   .catch(err => console.log("Oops. Something went wrong: ", err.message))
     }
 
     return {

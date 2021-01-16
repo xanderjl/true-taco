@@ -10,7 +10,7 @@ exports.handler = async (event, context) => {
     )}\n}`
   )
   try {
-    await fetch("https://api.github.com/repos/XanderJL/last-draft/dispatches", {
+    await fetch("https://api.github.com/repos/XanderJL/true-taco/dispatches", {
       method: "POST",
       headers: {
         Accept: "application/vnd.github.v3+json",

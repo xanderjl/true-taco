@@ -8,9 +8,16 @@ exports.handler = async ({ body }) => {
     const raw_items = Object.values(cart)
 
     raw_items.map(item => {
-      const { quantity, currency, price, name, description, price_data } = item
+      const {
+        quantity,
+        currency,
+        price,
+        name,
+        description,
+        price_data,
+        image,
+      } = item
       const new_item = {
-        // price: item.sku,
         quantity,
         price_data: {
           currency,
@@ -19,7 +26,7 @@ exports.handler = async ({ body }) => {
             name,
             description,
             metadata: price_data.metadata,
-            // images: image,
+            images: [image],
           },
         },
       }

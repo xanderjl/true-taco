@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import Layout, { Container, Section } from "../components/Layout"
 import {
   Text,
@@ -18,6 +18,13 @@ import client from "../../sanityClient"
 const Cart = ({ data }) => {
   const [notes, setNotes] = useState()
   const [times, setTimes] = useState([])
+  const [selectedTime, setSelectedTime] = useState("8:00")
+
+  useEffect(() => {
+    client.fetch(`*[_type == "cart"]{times}`).then(query => {
+      setTimes(query[0].times)
+    })
+  }, [])
 
   const {
     setItemQuantity,
@@ -45,7 +52,7 @@ const Cart = ({ data }) => {
       },
       body: JSON.stringify({
         cart: cartDetails,
-        metadata: { notes },
+        metadata: { notes, selectedTime },
         subtotal: totalPrice,
       }),
     })
@@ -57,13 +64,6 @@ const Cart = ({ data }) => {
     redirectToCheckout({ sessionId: response.sessionId })
     clearCart()
   }
-
-  // TODO: figure out how to set state within a promise
-  // client.fetch(`*[_type == "cart"]{times}`).then(query => {
-  //   query[0].times.map(({ time, count }) =>
-  //     setTimes([...times, { time, count }])
-  //   )
-  // })
 
   return (
     <Layout title="Cart" bg="gray.100">
@@ -164,6 +164,31 @@ const Cart = ({ data }) => {
           )}
           {cartCount > 0 && (
             <Box marginTop="1rem">
+              <Heading
+                as="h3"
+                size="md"
+                mb="0.5rem"
+                fontWeight="bold"
+                fontFamily="body"
+              >
+                Pickup Time:
+              </Heading>
+              <Select
+                size="sm"
+                width="max-content"
+                mb="1.25rem"
+                onChange={e => setSelectedTime(e.target.value)}
+              >
+                {times.map(({ time, count }, i) => (
+                  <option
+                    key={i}
+                    value={time}
+                    disabled={count === 0 ? true : false}
+                  >
+                    {time}
+                  </option>
+                ))}
+              </Select>
               <Heading as="h3" size="md" fontWeight="bold" fontFamily="body">
                 Notes:
               </Heading>

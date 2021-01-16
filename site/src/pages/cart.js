@@ -164,14 +164,11 @@ const Cart = ({ data }) => {
           )}
           {cartCount > 0 && (
             <Box marginTop="1rem">
-              <Heading as="h3" size="md" fontWeight="bold" fontFamily="body">
+              {/* <Heading as="h3" size="md" fontWeight="bold" fontFamily="body">
                 Request Pickup Time:
               </Heading>
               <Select variant="flushed" mb="1.25rem">
-                {/* {pickupTimes.map(({ _key, time, count }) => (
-                  <option key={_key}>{time}</option>
-                ))} */}
-              </Select>
+              </Select> */}
               <Heading as="h3" size="md" fontWeight="bold" fontFamily="body">
                 Notes:
               </Heading>

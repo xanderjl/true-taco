@@ -46,6 +46,7 @@ jobs:
         env:
           GATSBY_SANITY_ID: ${{ secrets.GATSBY_SANITY_ID }}
           GATSBY_SANITY_DATASET: ${{ secrets.GATSBY_SANITY_DATASET }}
+          SANITY_TOKEN: ${{ secrets.SANITY_TOKEN }}
           GATSBY_STRIPE_API_PUBLIC: ${{ secrets.GATSBY_STRIPE_API_PUBLIC }}
           GATSBY_STRIPE_API_SECRET: ${{ secrets.GATSBY_STRIPE_API_SECRET }}
           GATSBY_PRODUCTION_URL: ${{ secrets.GATSBY_PRODUCTION_URL }}

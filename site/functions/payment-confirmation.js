@@ -122,8 +122,7 @@ exports.handler = async ({ body, headers }) => {
       `
 
       const data = {
-        from:
-          "Chit Bot <postmaster@sandbox7f002a272f1e4364ad016df5c6b3e403.mailgun.org>",
+        from: `Chit Bot <${process.env.MAIGLUN_SENDER_EMAIL}>`,
         to: process.env.MAILGUN_RECIPIENT_EMAIL,
         subject: `Chit for ${
           session.shipping.name || "dumdum who didn't supply an email >:("
@@ -143,23 +142,6 @@ exports.handler = async ({ body, headers }) => {
       await mailgunSend(data)
         .then(body => console.log(body))
         .catch(err => console.log(err))
-
-      // TODO: Subtract line items from inventory of products in Sanity
-
-      // const findTime = await client
-      //   .fetch(`*[_type == "cart"]{times}`)
-      //   .then(query => {
-      //     query[0].times
-      //       .map(({ time }) => time)
-      //       .indexOf(session.metadata.selectedTime)
-      //   })
-
-      // client
-      //   .patch("singletonCart")
-      //   .dec({ "": 1 })
-      //   .commit()
-      //   .then(res => console.log("Available times have been adjusted"))
-      //   .catch(err => console.log("Oops. Something went wrong: ", err.message))
     }
 
     return {

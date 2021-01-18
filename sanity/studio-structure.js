@@ -1,7 +1,7 @@
 import S from "@sanity/desk-tool/structure-builder"
 import { GrClipboard } from "react-icons/gr"
 import { GiKnifeFork } from "react-icons/gi"
-import { AiOutlineInfoCircle } from "react-icons/ai"
+import { AiOutlineInfoCircle, AiOutlineShoppingCart } from "react-icons/ai"
 
 const hiddenDocTypes = (listItems) =>
   !["menu", "catering", "about", "cart"].includes(listItems.getId())
@@ -36,7 +36,7 @@ export default () =>
         ),
       S.listItem()
         .title("Cart")
-        .icon(AiOutlineInfoCircle)
+        .icon(AiOutlineShoppingCart)
         .child(
           S.editor().id("cart").schemaType("cart").documentId("singletonCart")
         ),

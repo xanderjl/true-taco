@@ -24,13 +24,6 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-source-stripe`,
-      options: {
-        objects: [`Product`, `Sku`, `Price`],
-        secretKey: process.env.GATSBY_STRIPE_API_SECRET,
-      },
-    },
-    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,

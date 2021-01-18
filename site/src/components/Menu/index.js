@@ -51,7 +51,11 @@ const Menu = props => {
                 }
               }
               price
-              fillings
+              fillings {
+                id
+                title
+                active
+              }
               options {
                 title
                 price

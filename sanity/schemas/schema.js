@@ -12,6 +12,7 @@ import productOption from "./productOption"
 import stock from "./stock"
 import pickupTime from "./pickupTime"
 import singletonCart from "./pages/singletonCart"
+import filling from "./filling"
 
 export default createSchema({
   name: "default",
@@ -23,6 +24,7 @@ export default createSchema({
     blockContent,
     subMenu,
     product,
+    filling,
     stock,
     pickupTime,
     productOption,

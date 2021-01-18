@@ -75,7 +75,7 @@ export default {
       name: "fillings",
       title: "Fillings",
       type: "array",
-      of: [{ type: "string" }],
+      of: [{ type: "reference", to: { type: "filling" } }],
     },
     {
       name: "options",

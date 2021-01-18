@@ -17,7 +17,7 @@ const MenuItem = ({ heading, price, children, product, metadata }) => {
   const [quantity, setQuantity] = useState(1)
   const itemFillings = metadata?.fillings
   const itemOptions = metadata?.options
-  const [filling, setFilling] = useState(itemFillings && itemFillings[0])
+  const [filling, setFilling] = useState(itemFillings && itemFillings[0]?.title)
   const [options, setOptions] = useState(itemOptions && itemOptions[0])
 
   const dotLeaders = css`
@@ -97,13 +97,15 @@ const MenuItem = ({ heading, price, children, product, metadata }) => {
               color="white"
               onChange={e => setFilling(e.currentTarget.value)}
             >
-              {itemFillings.map((item, i) => {
-                return (
-                  <Text as="option" key={i} value={item} color="black">
-                    {item}
-                  </Text>
-                )
-              })}
+              {itemFillings
+                .filter(item => item.active)
+                .map(({ id, title }) => {
+                  return (
+                    <Text as="option" key={id} value={title} color="black">
+                      {title}
+                    </Text>
+                  )
+                })}
             </Select>
           </>
         )}

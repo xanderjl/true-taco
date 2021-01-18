@@ -2180,7 +2180,7 @@
     get-random-values "^1.2.0"
     lodash "^4.17.15"
 
-"@sanity/client@2.1.4", "@sanity/client@^2.1.4":
+"@sanity/client@2.1.4", "@sanity/client@^2.0.1", "@sanity/client@^2.1.4":
   version "2.1.4"
   resolved "https://registry.npmjs.org/@sanity/client/-/client-2.1.4.tgz#89f64d4ec706b6c9e70605c2249677c22cab984e"
   dependencies:
@@ -2192,7 +2192,7 @@
     make-error "^1.3.0"
     object-assign "^4.1.1"
 
-"@sanity/client@^1.149.13", "@sanity/client@^1.149.16":
+"@sanity/client@^1.149.13":
   version "1.150.7"
   resolved "https://registry.yarnpkg.com/@sanity/client/-/client-1.150.7.tgz#e05eec38becd5fc8db0ba11d30e406d17013b9de"
   dependencies:
@@ -2511,22 +2511,13 @@
     memoize-one "^3.1.1"
     oneline "^1.0.3"
 
-"@sanity/mutator@2.1.4":
+"@sanity/mutator@2.1.4", "@sanity/mutator@^2.0.1":
   version "2.1.4"
   resolved "https://registry.npmjs.org/@sanity/mutator/-/mutator-2.1.4.tgz#89de9d4babc2293d5880d36c45e4126930c81958"
   dependencies:
     "@types/diff-match-patch" "^1.0.32"
     debug "^3.1.0"
     diff-match-patch "^1.0.4"
-    lodash "^4.17.15"
-
-"@sanity/mutator@^1.149.16":
-  version "1.150.1"
-  resolved "https://registry.yarnpkg.com/@sanity/mutator/-/mutator-1.150.1.tgz#3b66136fd5d2d24dc8de07cd68f668fe68c1d1ae"
-  dependencies:
-    "@types/diff-match-patch" "^1.0.32"
-    debug "^4.1.1"
-    diff-match-patch "^1.0.0"
     lodash "^4.17.15"
 
 "@sanity/observable@1.150.1":
@@ -3782,7 +3773,7 @@ axe-core@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.0.2.tgz#c7cf7378378a51fcd272d3c09668002a4990b1cb"
 
-axios@^0.19.0, axios@^0.19.2:
+axios@^0.19.0:
   version "0.19.2"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
   dependencies:
@@ -3791,6 +3782,13 @@ axios@^0.19.0, axios@^0.19.2:
 axios@^0.20.0:
   version "0.20.0"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.20.0.tgz#057ba30f04884694993a8cd07fa394cff11c50bd"
+  dependencies:
+    follow-redirects "^1.10.0"
+
+axios@^0.21.0:
+  version "0.21.1"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.1.tgz#22563481962f4d6bde9a76d516ef0e5d3c09b2b8"
+  integrity sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==
   dependencies:
     follow-redirects "^1.10.0"
 
@@ -4320,7 +4318,7 @@ buffer-alloc-unsafe@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/buffer-alloc-unsafe/-/buffer-alloc-unsafe-1.1.0.tgz#bd7dc26ae2972d0eda253be061dba992349c19f0"
 
-buffer-alloc@^1.1.0, buffer-alloc@^1.2.0:
+buffer-alloc@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/buffer-alloc/-/buffer-alloc-1.2.0.tgz#890dd90d923a873e08e10e5fd51a57e5b7cce0ec"
   dependencies:
@@ -4711,20 +4709,6 @@ cheerio@^1.0.0-rc.3:
     htmlparser2 "^3.9.1"
     lodash "^4.15.0"
     parse5 "^3.0.1"
-
-chokidar@3.4.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.4.0.tgz#b30611423ce376357c765b9b8f904b9fba3c0be8"
-  dependencies:
-    anymatch "~3.1.1"
-    braces "~3.0.2"
-    glob-parent "~5.1.0"
-    is-binary-path "~2.1.0"
-    is-glob "~4.0.1"
-    normalize-path "~3.0.0"
-    readdirp "~3.4.0"
-  optionalDependencies:
-    fsevents "~2.1.2"
 
 chokidar@^2.0.3, chokidar@^2.0.4, chokidar@^2.1.8:
   version "2.1.8"
@@ -5725,7 +5709,7 @@ debug@3.1.0, debug@=3.1.0, debug@~3.1.0:
   dependencies:
     ms "2.0.0"
 
-debug@4:
+debug@4, debug@^4.2.0:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.1.tgz#f0d229c505e0c6d8c49ac553d1b13dc183f6b2ee"
   dependencies:
@@ -6032,7 +6016,7 @@ devcert@^1.1.3:
     tmp "^0.0.33"
     tslib "^1.10.0"
 
-diff-match-patch@^1.0.0, diff-match-patch@^1.0.4, diff-match-patch@^1.0.5:
+diff-match-patch@^1.0.4, diff-match-patch@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/diff-match-patch/-/diff-match-patch-1.0.5.tgz#abb584d5f10cd1196dfc55aa03701592ae3f7b37"
 
@@ -7645,7 +7629,7 @@ gatsby-cli@^2.13.1:
     yoga-layout-prebuilt "^1.9.6"
     yurnalist "^1.1.2"
 
-gatsby-core-utils@^1.3.6, gatsby-core-utils@^1.4.0:
+gatsby-core-utils@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/gatsby-core-utils/-/gatsby-core-utils-1.4.0.tgz#d42234b8a15b34237921522f9ae303a2bb833c78"
   dependencies:
@@ -7849,26 +7833,6 @@ gatsby-recipes@^0.3.1:
     xstate "^4.9.1"
     yoga-layout-prebuilt "^1.9.6"
 
-gatsby-source-filesystem@2.3.12:
-  version "2.3.12"
-  resolved "https://registry.yarnpkg.com/gatsby-source-filesystem/-/gatsby-source-filesystem-2.3.12.tgz#d92cb9c6c4685ab272399b57f42134dcc61effdf"
-  dependencies:
-    "@babel/runtime" "^7.10.2"
-    better-queue "^3.8.10"
-    bluebird "^3.7.2"
-    chokidar "3.4.0"
-    file-type "^12.4.2"
-    fs-extra "^8.1.0"
-    gatsby-core-utils "^1.3.6"
-    got "^9.6.0"
-    md5-file "^3.2.3"
-    mime "^2.4.6"
-    pretty-bytes "^5.3.0"
-    progress "^2.0.3"
-    read-chunk "^3.2.0"
-    valid-url "^1.0.9"
-    xstate "^4.10.0"
-
 gatsby-source-filesystem@^2.3.30:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/gatsby-source-filesystem/-/gatsby-source-filesystem-2.5.0.tgz#589ced0e748b219e60908e07b46240f70b5aa96f"
@@ -7888,32 +7852,26 @@ gatsby-source-filesystem@^2.3.30:
     valid-url "^1.0.9"
     xstate "^4.13.0"
 
-gatsby-source-sanity@^6.0.4:
-  version "6.0.4"
-  resolved "https://registry.yarnpkg.com/gatsby-source-sanity/-/gatsby-source-sanity-6.0.4.tgz#5b3ff7f872edde10df6ae8ccc3d4c0dad86ae847"
+gatsby-source-sanity@^6.0.5:
+  version "6.0.5"
+  resolved "https://registry.yarnpkg.com/gatsby-source-sanity/-/gatsby-source-sanity-6.0.5.tgz#58fd5f502fafc07860bcc856a86726779fe9b01f"
+  integrity sha512-nJt7J9TY6ZbL2pqX0hTzL1/nmnRD1yblyFShTLKKu9TCJm1hFk/EHxlrW2Rk+yiaCN4oNYJyiw9/sWIyi50LSw==
   dependencies:
-    "@sanity/client" "^1.149.16"
+    "@sanity/client" "^2.0.1"
     "@sanity/image-url" "^0.140.19"
-    "@sanity/mutator" "^1.149.16"
+    "@sanity/mutator" "^2.0.1"
     "@types/url-parse" "^1.4.3"
-    axios "^0.19.2"
-    debug "^4.1.0"
+    axios "^0.21.0"
+    debug "^4.2.0"
     fs-extra "^9.0.1"
     get-stream "^5.1.0"
-    lodash "^4.17.15"
+    lodash "^4.17.20"
     oneline "^1.0.2"
     pump "^3.0.0"
-    rxjs "^6.5.5"
-    split2 "^3.1.1"
+    rxjs "^6.6.3"
+    split2 "^3.2.2"
     through2 "^3.0.1"
     url-parse "^1.4.4"
-
-gatsby-source-stripe@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/gatsby-source-stripe/-/gatsby-source-stripe-3.1.1.tgz#67f27e707e1f85c88518a89a7a424b564d535880"
-  dependencies:
-    gatsby-source-filesystem "2.3.12"
-    stripe "8.64.0"
 
 gatsby-telemetry@^1.4.1:
   version "1.4.1"
@@ -10545,12 +10503,6 @@ math-expression-evaluator@^1.2.14:
   resolved "https://registry.yarnpkg.com/math-expression-evaluator/-/math-expression-evaluator-1.2.22.tgz#c14dcb3d8b4d150e5dcea9c68c8dad80309b0d5e"
 >>>>>>> develop
 
-md5-file@^3.2.3:
-  version "3.2.3"
-  resolved "https://registry.yarnpkg.com/md5-file/-/md5-file-3.2.3.tgz#f9bceb941eca2214a4c0727f5e700314e770f06f"
-  dependencies:
-    buffer-alloc "^1.1.0"
-
 md5-file@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/md5-file/-/md5-file-5.0.0.tgz#e519f631feca9c39e7f9ea1780b63c4745012e20"
@@ -12691,7 +12643,7 @@ prettier@^2.0.5:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.1.2.tgz#3050700dae2e4c8b67c4c3f666cdb8af405e1ce5"
 
-pretty-bytes@^5.1.0, pretty-bytes@^5.3.0, pretty-bytes@^5.4.1:
+pretty-bytes@^5.1.0, pretty-bytes@^5.4.1:
   version "5.4.1"
   resolved "https://registry.yarnpkg.com/pretty-bytes/-/pretty-bytes-5.4.1.tgz#cd89f79bbcef21e3d21eb0da68ffe93f803e884b"
 
@@ -13436,12 +13388,6 @@ readdirp@^2.2.1:
     micromatch "^3.1.10"
     readable-stream "^2.0.2"
 
-readdirp@~3.4.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/readdirp/-/readdirp-3.4.0.tgz#9fdccdf9e9155805449221ac645e8303ab5b9ada"
-  dependencies:
-    picomatch "^2.2.1"
-
 readdirp@~3.5.0:
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/readdirp/-/readdirp-3.5.0.tgz#9ba74c019b15d365278d2e91bb8c48d7b4d42c9e"
@@ -13927,7 +13873,7 @@ rx-lite@*, rx-lite@^4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/rx-lite/-/rx-lite-4.0.8.tgz#0b1e11af8bc44836f04a6407e92da42467b79444"
 
-rxjs@^6.4.0, rxjs@^6.5.3, rxjs@^6.5.5, rxjs@^6.6.0:
+rxjs@^6.4.0, rxjs@^6.5.3, rxjs@^6.6.0, rxjs@^6.6.3:
   version "6.6.3"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.6.3.tgz#8ca84635c4daa900c0d3967a6ee7ac60271ee552"
   dependencies:
@@ -14539,7 +14485,7 @@ split-string@^3.0.1, split-string@^3.0.2:
   dependencies:
     extend-shallow "^3.0.0"
 
-split2@^3.1.1, split2@^3.2.2:
+split2@^3.2.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/split2/-/split2-3.2.2.tgz#bf2cf2a37d838312c249c89206fd7a17dd12365f"
   dependencies:
@@ -14855,13 +14801,6 @@ strip-outer@^1.0.0:
   resolved "https://registry.yarnpkg.com/strip-outer/-/strip-outer-1.0.1.tgz#b2fd2abf6604b9d1e6013057195df836b8a9d631"
   dependencies:
     escape-string-regexp "^1.0.2"
-
-stripe@8.64.0:
-  version "8.64.0"
-  resolved "https://registry.yarnpkg.com/stripe/-/stripe-8.64.0.tgz#5fe05223927836b52da81a25856fa62891a60856"
-  dependencies:
-    "@types/node" ">=8.1.0"
-    qs "^6.6.0"
 
 stripe@^8.127.0:
   version "8.127.0"
@@ -16468,7 +16407,7 @@ xss@^1.0.6:
     commander "^2.20.3"
     cssfilter "0.0.10"
 
-xstate@^4.10.0, xstate@^4.11.0, xstate@^4.13.0, xstate@^4.9.1:
+xstate@^4.11.0, xstate@^4.13.0, xstate@^4.9.1:
   version "4.14.0"
   resolved "https://registry.yarnpkg.com/xstate/-/xstate-4.14.0.tgz#dd9f3f0af4acd04a01b3ad60d3d4c66c51ac1b5d"
 

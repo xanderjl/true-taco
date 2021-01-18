@@ -7,12 +7,6 @@ const mailgun = require("mailgun-js")({
   domain: process.env.MAILGUN_DOMAIN,
   url: process.env.MAILGUN_URL,
 })
-const sanityClient = require("@sanity/client")
-const client = sanityClient({
-  projectId: process.env.GATSBY_SANITY_ID,
-  dataset: process.env.GATSBY_SANITY_DATASET,
-  token: process.env.SANITY_TOKEN,
-})
 
 exports.handler = async ({ body, headers }) => {
   try {

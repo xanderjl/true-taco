@@ -9,6 +9,12 @@ export default {
       type: "string",
     },
     {
+      name: "gratuityText",
+      title: "Gratuity Text",
+      type: "text",
+      rows: 2,
+    },
+    {
       name: "notesPlaceholder",
       title: "Notes Placeholder",
       type: "text",

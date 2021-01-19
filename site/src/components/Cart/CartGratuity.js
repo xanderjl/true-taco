@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/react"
 
 const CartGratuity = ({
+  subText,
   value,
   gratuity,
   gratuityType,
@@ -28,7 +29,7 @@ const CartGratuity = ({
           Gratuity:
         </Heading>
         <Heading as="h3" size="sm" fontFamily="body">
-          Tips are much appreciated!
+          {subText}
         </Heading>
       </Flex>
       <Select

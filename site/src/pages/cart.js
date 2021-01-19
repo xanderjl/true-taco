@@ -221,6 +221,7 @@ const Cart = ({ data }) => {
                 ))}
               </Select>
               <CartGratuity
+                subText={data.sanityCart.gratuityText}
                 value={dollarValue}
                 gratuity={gratuity}
                 gratuityType={gratuityType}
@@ -291,6 +292,7 @@ export const data = graphql`
   {
     sanityCart {
       notesPlaceholder
+      gratuityText
     }
   }
 `

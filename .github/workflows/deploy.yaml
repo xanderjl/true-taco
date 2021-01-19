@@ -54,7 +54,7 @@ jobs:
           MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
           MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
           MAILGUN_URL: ${{ secrets.MAILGUN_URL }}
-          MAILGUN_SENDER_EMAIL: ${{ secrents.MAILGUN_SENDER_EMAIL }}
+          MAILGUN_SENDER_EMAIL: ${{ secrets.MAILGUN_SENDER_EMAIL }}
           MAILGUN_RECIPIENT_EMAIL: ${{ secrets.MAILGUN_RECIPIENT_EMAIL }}
 
         run: yarn workspace site build

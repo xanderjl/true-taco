@@ -24,7 +24,7 @@ exports.handler = async ({ body, headers }) => {
         { expand: ["line_items.data.price.product", "customer"] }
       )
 
-      // Send email "chit" to info@truetacolondon.com
+      // Send email "chit" to recipient mail
       const html = `
         <html>
           <body>

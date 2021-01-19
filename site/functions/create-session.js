@@ -2,7 +2,6 @@ const stripe = require("stripe")(process.env.GATSBY_STRIPE_API_SECRET)
 
 exports.handler = async ({ body }) => {
   const { cart, metadata, subtotal } = JSON.parse(body)
-
   try {
     const line_items = []
     const raw_items = Object.values(cart)
@@ -33,6 +32,19 @@ exports.handler = async ({ body }) => {
       line_items.push(new_item)
     })
 
+    const gratuity = {
+      price_data: {
+        currency: "cad",
+        product_data: {
+          name: "Gratuity",
+        },
+        unit_amount_decimal: metadata.gratuity.endsWith("%")
+          ? Math.ceil(subtotal * (parseInt(metadata?.gratuity) * 0.01))
+          : parseInt(metadata?.gratuity) * 100,
+      },
+      quantity: 1,
+    }
+
     const hst = {
       price_data: {
         currency: "cad",
@@ -53,7 +65,7 @@ exports.handler = async ({ body }) => {
       success_url: `${process.env.GATSBY_PRODUCTION_URL}/success`,
       cancel_url: process.env.GATSBY_PRODUCTION_URL,
       mode: "payment",
-      line_items: [...line_items, hst],
+      line_items: [...line_items, gratuity, hst],
       metadata,
     })
 

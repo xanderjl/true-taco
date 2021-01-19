@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useReducer } from "react"
 import Layout, { Container, Section } from "../components/Layout"
 import {
   Text,
@@ -14,11 +14,33 @@ import { useShoppingCart } from "use-shopping-cart"
 import bottomFrills from "../images/frills/bottom-white.svg"
 import CartAccordion from "../components/Cart/CartAccordion"
 import client from "../../sanityClient"
+import CartGratuity from "../components/Cart/CartGratuity"
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "setGratuity":
+      return { ...state, gratuity: action.payload }
+    case "setGratuityType":
+      return { ...state, gratuityType: action.payload }
+    case "setDollarValue":
+      return { ...state, dollarValue: action.payload }
+    default:
+      throw new Error("gratuity whatever didn't match")
+  }
+}
 
 const Cart = ({ data }) => {
   const [notes, setNotes] = useState()
   const [times, setTimes] = useState([])
   const [selectedTime, setSelectedTime] = useState("8:00")
+  const [state, dispatch] = useReducer(reducer, {
+    gratuity: "18%",
+    gratuityType: "percentage",
+    dollarValue: "0.00",
+  })
+  const { gratuityType, gratuity, dollarValue } = state
+
+  const parse = val => val.replace(/^\$/, "")
 
   useEffect(() => {
     client.fetch(`*[_type == "cart"]{times}`).then(query => {
@@ -52,7 +74,16 @@ const Cart = ({ data }) => {
       },
       body: JSON.stringify({
         cart: cartDetails,
-        metadata: { notes, selectedTime },
+        metadata: {
+          notes,
+          selectedTime,
+          gratuity:
+            gratuityType === "percentage"
+              ? gratuity
+              : gratuityType === "dollar"
+              ? dollarValue
+              : "0.00",
+        },
         subtotal: totalPrice,
       }),
     })
@@ -189,6 +220,23 @@ const Cart = ({ data }) => {
                   </option>
                 ))}
               </Select>
+              <CartGratuity
+                value={dollarValue}
+                gratuity={gratuity}
+                gratuityType={gratuityType}
+                handleValue={valueString =>
+                  dispatch({
+                    type: "setDollarValue",
+                    payload: parse(valueString),
+                  })
+                }
+                handleGratuity={e =>
+                  dispatch({ type: "setGratuity", payload: e.target.value })
+                }
+                handleGratuityType={e =>
+                  dispatch({ type: "setGratuityType", payload: e.target.value })
+                }
+              />
               <Heading as="h3" size="md" fontWeight="bold" fontFamily="body">
                 Notes:
               </Heading>

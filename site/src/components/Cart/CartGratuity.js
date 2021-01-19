@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import {
   Flex,
   Heading,
@@ -11,13 +11,15 @@ import {
   Stack,
 } from "@chakra-ui/react"
 
-const CartGratuity = () => {
-  const [gratuityType, setGratuityType] = useState(null)
-  const [gratuity, setGratuity] = useState()
-  const [value, setValue] = useState("0.00")
-
+const CartGratuity = ({
+  value,
+  gratuity,
+  gratuityType,
+  handleValue,
+  handleGratuity,
+  handleGratuityType,
+}) => {
   const format = val => `$` + val
-  const parse = val => val.replace(/^\$/, "")
 
   return (
     <Stack direction="column" spacing={4} mb="1.25rem">
@@ -32,7 +34,8 @@ const CartGratuity = () => {
       <Select
         maxW="13ch"
         size="sm"
-        onChange={e => setGratuityType(e.target.value)}
+        value={gratuityType}
+        onChange={handleGratuityType}
       >
         <option value="none">None</option>
         <option value="percentage">Percentage</option>
@@ -42,7 +45,8 @@ const CartGratuity = () => {
         <Select
           maxW="13ch"
           size="sm"
-          onChange={e => setGratuity(e.target.value)}
+          value={gratuity}
+          onChange={handleGratuity}
         >
           <option value="15%">15%</option>
           <option value="18%">18%</option>
@@ -52,7 +56,7 @@ const CartGratuity = () => {
         <NumberInput
           maxW="13ch"
           size="sm"
-          onChange={valueString => setValue(parse(valueString))}
+          onChange={handleValue}
           value={format(value)}
         >
           <NumberInputField />

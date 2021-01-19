@@ -14,6 +14,7 @@ import { useShoppingCart } from "use-shopping-cart"
 import bottomFrills from "../images/frills/bottom-white.svg"
 import CartAccordion from "../components/Cart/CartAccordion"
 import client from "../../sanityClient"
+import CartGratuity from "../components/Cart/CartGratuity"
 
 const Cart = ({ data }) => {
   const [notes, setNotes] = useState()
@@ -189,6 +190,7 @@ const Cart = ({ data }) => {
                   </option>
                 ))}
               </Select>
+              <CartGratuity />
               <Heading as="h3" size="md" fontWeight="bold" fontFamily="body">
                 Notes:
               </Heading>

@@ -39,8 +39,8 @@ exports.handler = async ({ body }) => {
           name: "Gratuity",
         },
         unit_amount_decimal: metadata.gratuity.endsWith("%")
-          ? Math.ceil(subtotal * (parseInt(metadata?.gratuity) * 0.01))
-          : parseInt(metadata?.gratuity) * 100,
+          ? Math.ceil(subtotal * (parseInt(metadata.gratuity) * 0.01))
+          : parseInt(metadata.gratuity) * 100,
       },
       quantity: 1,
     }

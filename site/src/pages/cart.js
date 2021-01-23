@@ -93,7 +93,7 @@ const Cart = ({ data }) => {
       .catch(error => console.log(error))
 
     redirectToCheckout({ sessionId: response.sessionId })
-    clearCart()
+    // clearCart()
   }
 
   return (

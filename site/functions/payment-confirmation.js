@@ -116,7 +116,7 @@ exports.handler = async ({ body, headers }) => {
       `
 
       const data = {
-        from: `Chit Bot <${process.env.MAIGLUN_SENDER_EMAIL}>`,
+        from: process.env.MAIGLUN_SENDER_EMAIL,
         to: process.env.MAILGUN_RECIPIENT_EMAIL,
         subject: `Chit for ${
           session.shipping.name || "dumdum who didn't supply an email >:("

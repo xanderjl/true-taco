@@ -170,6 +170,7 @@ const Footer = () => {
               <Box ml="0.25rem" as={FiExternalLink} />
             </MotionLink>
           </Flex>
+          <Flex justifyContent="center">&copy; True Taco 2021</Flex>
         </Section>
       </Container>
     </Box>

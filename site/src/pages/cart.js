@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useReducer } from "react"
+import React, { useState, useReducer } from "react"
 import Layout, { Container, Section } from "../components/Layout"
 import {
   Text,
@@ -13,8 +13,8 @@ import {
 import { useShoppingCart } from "use-shopping-cart"
 import bottomFrills from "../images/frills/bottom-white.svg"
 import CartAccordion from "../components/Cart/CartAccordion"
-import client from "../../sanityClient"
 import CartGratuity from "../components/Cart/CartGratuity"
+import availableTimes from "../util/availableTimes"
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -31,7 +31,6 @@ const reducer = (state, action) => {
 
 const Cart = ({ data }) => {
   const [notes, setNotes] = useState()
-  const [times, setTimes] = useState([])
   const [selectedTime, setSelectedTime] = useState("8:00")
   const [state, dispatch] = useReducer(reducer, {
     gratuity: "18%",
@@ -40,13 +39,15 @@ const Cart = ({ data }) => {
   })
   const { gratuityType, gratuity, dollarValue } = state
 
-  const parse = val => val.replace(/^\$/, "")
+  const {
+    notesPlaceholder,
+    gratuityText,
+    startTime,
+    endTime,
+    iterator,
+  } = data.sanityCart
 
-  useEffect(() => {
-    client.fetch(`*[_type == "cart"]{times}`).then(query => {
-      setTimes(query[0].times)
-    })
-  }, [])
+  const parse = val => val.replace(/^\$/, "")
 
   const {
     setItemQuantity,
@@ -210,18 +211,25 @@ const Cart = ({ data }) => {
                 mb="1.25rem"
                 onChange={e => setSelectedTime(e.target.value)}
               >
-                {times.map(({ time, count }, i) => (
-                  <option
-                    key={i}
-                    value={time}
-                    disabled={count === 0 ? true : false}
-                  >
-                    {time}
-                  </option>
-                ))}
+                {availableTimes(startTime, endTime, iterator).map((time, i) => {
+                  const readableTime = new Date(time).toLocaleTimeString(
+                    navigator.language,
+                    {
+                      hour: "numeric",
+                      minute: "numeric",
+                      hour12: true,
+                    }
+                  )
+                  // TODO: solve option disable logic
+                  return (
+                    <option key={i} value={readableTime}>
+                      {readableTime}
+                    </option>
+                  )
+                })}
               </Select>
               <CartGratuity
-                subText={data.sanityCart.gratuityText}
+                subText={gratuityText}
                 value={dollarValue}
                 gratuity={gratuity}
                 gratuityType={gratuityType}
@@ -253,7 +261,7 @@ const Cart = ({ data }) => {
               <Textarea
                 rows={10}
                 borderRadius="2px"
-                placeholder={data.sanityCart.notesPlaceholder}
+                placeholder={notesPlaceholder}
                 value={notes}
                 onChange={e => {
                   setNotes(e.target.value)
@@ -293,6 +301,9 @@ export const data = graphql`
     sanityCart {
       notesPlaceholder
       gratuityText
+      startTime
+      endTime
+      iterator
     }
   }
 `

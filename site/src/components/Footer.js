@@ -53,7 +53,7 @@ const Footer = () => {
               </Text>
               <Text>
                 Located inside The Market at the Western Fair. Open every
-                Saturday between 8AM - 3PM.
+                Saturday between 8am-2pm and Sundays 10am-2pm.
               </Text>
             </Flex>
             <Flex flexDir="column">

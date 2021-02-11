@@ -114,48 +114,34 @@ const Menu = props => {
         >
           {heading}
         </Heading>
-        {isOpen ? (
-          <>
-            <Box maxW="70ch" m="0 auto" mb="5rem" color="white" fontSize="xl">
-              <BlockContent blocks={_rawOpenBody} serializers={Serializers} />
-            </Box>
-            <Box>
-              {menus.map(({ title }, i) => {
-                const products = data.allSanityProduct.group.filter(prod =>
-                  prod.edges.every(({ node }) => node.menu.title === title)
-                )
-                return (
-                  <Box key={i}>
-                    <Heading
-                      as="h2"
-                      size="3xl"
-                      mb="3rem"
-                      color="white"
-                      fontWeight="400"
-                      textDecor="underline"
-                    >
-                      {title}
-                    </Heading>
-                    <SubMenu data={products} />
-                  </Box>
-                )
-              })}
-              <OrderButton w="6rem" h="auto" />
-            </Box>
-          </>
-        ) : (
-          <Flex
-            dir="column"
-            maxW="70ch"
-            m="0 auto"
-            align="center"
-            justify="center"
-            color="white"
-            fontSize={["xl", "2xl"]}
-          >
+        <Box maxW="70ch" m="0 auto" mb="5rem" color="white" fontSize="xl">
+          {isOpen ? (
+            <BlockContent blocks={_rawOpenBody} serializers={Serializers} />
+          ) : (
             <BlockContent blocks={_rawBody} />
-          </Flex>
-        )}
+          )}
+        </Box>
+        {menus.map(({ title }, i) => {
+          const products = data.allSanityProduct.group.filter(prod =>
+            prod.edges.every(({ node }) => node.menu.title === title)
+          )
+          return (
+            <Box key={i}>
+              <Heading
+                as="h2"
+                size="3xl"
+                mb="3rem"
+                color="white"
+                fontWeight="400"
+                textDecor="underline"
+              >
+                {title}
+              </Heading>
+              <SubMenu menu={products} isOpen={isOpen} />
+            </Box>
+          )
+        })}
+        <OrderButton w="6rem" h="auto" />
       </Container>
     </Box>
   )

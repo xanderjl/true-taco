@@ -12,7 +12,14 @@ import {
 import { useShoppingCart } from "use-shopping-cart"
 import ImageModal from "./ImageModal"
 
-const MenuItem = ({ heading, price, children, product, metadata }) => {
+const MenuItem = ({
+  heading,
+  price,
+  children,
+  product,
+  metadata,
+  shopOpen,
+}) => {
   const { addItem } = useShoppingCart()
   const [quantity, setQuantity] = useState(1)
   const itemFillings = metadata?.fillings
@@ -134,65 +141,67 @@ const MenuItem = ({ heading, price, children, product, metadata }) => {
         )}
         {/* TODO: add extras component */}
       </Flex>
-      <Flex justify={["space-between", "flex-start"]}>
-        <Flex>
+      {shopOpen && (
+        <Flex justify={["space-between", "flex-start"]}>
+          <Flex>
+            <Button
+              variant="ghost"
+              p="0.25rem"
+              color="white"
+              _hover={{ bg: "transparent" }}
+              fontSize="2xl"
+              onClick={() => {
+                quantity > 1 && setQuantity(quantity - 1)
+              }}
+            >
+              -
+            </Button>
+            <Text m="0 0.25rem 0 0.25rem" color="white" fontSize="2xl">
+              {quantity}
+            </Text>
+            <Button
+              variant="ghost"
+              p="0.25rem"
+              color="white"
+              _hover={{ bg: "transparent" }}
+              fontSize="2xl"
+              onClick={() => setQuantity(quantity + 1)}
+            >
+              +
+            </Button>
+          </Flex>
           <Button
-            variant="ghost"
-            p="0.25rem"
-            color="white"
-            _hover={{ bg: "transparent" }}
-            fontSize="2xl"
-            onClick={() => {
-              quantity > 1 && setQuantity(quantity - 1)
+            w="max-content"
+            ml="1rem"
+            colorScheme="green"
+            borderRadius={0}
+            size="md"
+            onClick={e => {
+              e.preventDefault()
+              addItem(
+                {
+                  ...product,
+                  id: `${product.id}${options ? "-" + itemMatch.title : ""}${
+                    filling ? "-" + filling : ""
+                  }`,
+                  description: `${
+                    filling
+                      ? `Filling: ${filling}, ${product.description}`
+                      : product.description
+                  }`,
+                  price: itemMatch ? itemMatch.price * 100 : price * 100,
+                },
+                quantity,
+                {
+                  metadata: { filling, variant: itemMatch && itemMatch.title },
+                }
+              )
             }}
           >
-            -
-          </Button>
-          <Text m="0 0.25rem 0 0.25rem" color="white" fontSize="2xl">
-            {quantity}
-          </Text>
-          <Button
-            variant="ghost"
-            p="0.25rem"
-            color="white"
-            _hover={{ bg: "transparent" }}
-            fontSize="2xl"
-            onClick={() => setQuantity(quantity + 1)}
-          >
-            +
+            Add to cart
           </Button>
         </Flex>
-        <Button
-          w="max-content"
-          ml="1rem"
-          colorScheme="green"
-          borderRadius={0}
-          size="md"
-          onClick={e => {
-            e.preventDefault()
-            addItem(
-              {
-                ...product,
-                id: `${product.id}${options ? "-" + itemMatch.title : ""}${
-                  filling ? "-" + filling : ""
-                }`,
-                description: `${
-                  filling
-                    ? `Filling: ${filling}, ${product.description}`
-                    : product.description
-                }`,
-                price: itemMatch ? itemMatch.price * 100 : price * 100,
-              },
-              quantity,
-              {
-                metadata: { filling, variant: itemMatch && itemMatch.title },
-              }
-            )
-          }}
-        >
-          Add to cart
-        </Button>
-      </Flex>
+      )}
     </Flex>
   )
 }

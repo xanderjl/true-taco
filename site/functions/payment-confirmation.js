@@ -106,8 +106,8 @@ exports.handler = async ({ body, headers }) => {
                   <td style="border:1px solid black;border-collapse:collapse;padding:4px;text-align:left;vertical-align:top;">${
                     item.quantity
                   }</td>
-                  <td style="border:1px solid black;border-collapse:collapse;padding:4px;text-align:left;vertical-align:top;">${
-                    item.amount_subtotal
+                  <td style="border:1px solid black;border-collapse:collapse;padding:4px;text-align:left;vertical-align:top;">$${
+                    item.amount_subtotal / 100
                   }</td>
                 </tr>
               `

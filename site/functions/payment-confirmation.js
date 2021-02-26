@@ -21,6 +21,7 @@ exports.handler = async ({ body, headers }) => {
         JSON.parse(body).data.object.id,
         { expand: ["line_items.data.price.product", "customer"] }
       )
+      console.log(session)
 
       // Send email "chit" to recipient mail
       const html = `
@@ -77,6 +78,7 @@ exports.handler = async ({ body, headers }) => {
                   <th style="border:1px solid black;border-collapse:collapse;padding:4px;text-align:left;vertical-align:top;">Filling</th>
                   <th style="border:1px solid black;border-collapse:collapse;padding:4px;text-align:left;vertical-align:top;">Description</th>
                   <th style="border:1px solid black;border-collapse:collapse;padding:4px;text-align:left;vertical-align:top;">Quantity</th>
+                  <th style="border:1px solid black;border-collapse:collapse;padding:4px;text-align:left;vertical-align:top;">Unit Amount</th>
                 </tr>
               </thead>
               <tbody>
@@ -105,12 +107,19 @@ exports.handler = async ({ body, headers }) => {
                   <td style="border:1px solid black;border-collapse:collapse;padding:4px;text-align:left;vertical-align:top;">${
                     item.quantity
                   }</td>
+                  <td style="border:1px solid black;border-collapse:collapse;padding:4px;text-align:left;vertical-align:top;">${
+                    item.amount_subtotal
+                  }</td>
                 </tr>
               `
                 )
                 .join("\r\n")}
               </tbody>
             </table>
+            <ul style="list-style-type:none;padding-left:0;">
+              <li><b>Sub Total:</b> $${session.amount_subtotal / 100}</li>
+              <li><b>Total:</b> $${session.amount_total / 100}</li>
+            </ul>
           </body>
         </html>
       `

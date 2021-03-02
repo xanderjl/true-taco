@@ -119,9 +119,10 @@ exports.handler = async ({ body, headers }) => {
             </table>
             <ul style="list-style-type:none;padding-left:0;">
             <li><b>Total:</b> $${session.amount_total / 100}</li>
-            <li><b>Stripe Fee:</b> $${
-              (session.amount_subtotal / 100) * 0.029 + 0.3
-            }</li>
+            <li><b>Stripe Fee:</b> $${(
+              (session.amount_subtotal / 100) * 0.029 +
+              0.3
+            ).toFixed(2)}</li>
             </ul>
           </body>
         </html>

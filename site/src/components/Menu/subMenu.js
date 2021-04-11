@@ -35,7 +35,7 @@ const SubMenu = ({ menu, isOpen }) => {
               id: productId.current,
               name: title,
               price: price * 100,
-              image: image?.image.asset.fluid.src,
+              image: image?.image?.asset?.fluid?.src,
               currency: "CAD",
               description,
               price_data: {

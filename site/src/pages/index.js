@@ -2,7 +2,7 @@ import React from "react"
 import { Box, Heading } from "@chakra-ui/react"
 import Layout, { Container } from "../components/Layout"
 import Menu from "../components/Menu"
-import formingPupusas from "../images/forming-pupusa.jpg"
+import landingHero from "../images/landing-hero.png"
 
 const Home = () => {
   return (
@@ -12,7 +12,7 @@ const Home = () => {
         h={{ base: "calc(100vh - 3.25rem)", md: "calc(100vh - 4rem)" }}
         pos="relative"
         bg="orange.100"
-        backgroundImage={`url(${formingPupusas})`}
+        backgroundImage={`url(${landingHero})`}
         backgroundPosition="center"
         backgroundSize="cover"
         backgroundRepeat="none"

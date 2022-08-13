@@ -7,5 +7,8 @@
   "workspaces": [
     "site",
     "sanity"
-  ]
+  ],
+  "volta": {
+    "node": "12.22.12"
+  }
 }
